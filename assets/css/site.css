@@ -1788,6 +1788,12 @@ main::before {
     grid-template-columns: 1fr;
   }
 
+  .release--legacy {
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
   .release__body,
   .information-panel,
   .production-credit {
