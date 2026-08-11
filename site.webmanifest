@@ -1,0 +1,17 @@
+{
+  "name": "레네 RENÉ / arcadiatripper",
+  "short_name": "arcadiatripper",
+  "description": "a sound chef floating in space.",
+  "lang": "ko",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfbf8",
+  "theme_color": "#fbfbf8",
+  "icons": [
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
