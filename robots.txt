@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arcadiatripper.github.io/sitemap.xml
+Sitemap: https://arcadiatripper.com/sitemap.xml
+Sitemap: https://arcadiatripper.com/koala-sampler-kr-manual/sitemap.xml

@@ -2,7 +2,7 @@
 
 레네 RENÉ의 음악, 글, 가이드를 모은 정적 개인 홈페이지입니다.
 
-- 공개 주소: <https://arcadiatripper.github.io/>
+- 공개 주소: <https://arcadiatripper.com/>
 - 기술 구성: HTML, CSS, 최소한의 JavaScript
 - 배포 방식: GitHub Pages에서 저장소 루트의 정적 파일을 직접 제공
 - 글꼴: LINE Seed Sans KR (SIL Open Font License 1.1)
@@ -22,6 +22,6 @@
 
 ## GitHub Pages 배포
 
-저장소 이름을 `arcadiatripper.github.io`로 만들고 이 파일들을 기본 브랜치의 루트에 올린 뒤, 저장소의 **Settings → Pages**에서 기본 브랜치의 `/ (root)`를 배포 원본으로 선택합니다. 저장소 생성, 커밋, 푸시와 공개 배포는 별도 승인 후 진행합니다.
+`arcadiatripper.github.io` 저장소의 기본 브랜치 루트를 GitHub Pages 배포 원본으로 사용하며, 루트의 `CNAME` 파일로 커스텀 도메인 `arcadiatripper.com`을 지정합니다. 저장소 생성, 커밋, 푸시와 공개 배포는 별도 승인 후 진행합니다.
 
 Koala Sampler 한국어 가이드는 별도 저장소와 주소를 유지하며 이 홈페이지 프로젝트에서 수정하지 않습니다.
