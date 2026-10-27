@@ -103,53 +103,58 @@
   show();
 })();
 
-// the bar's dot board: faint dots on the logo's grid; a soft band of light drifts across now and then and a few dots
-// blink, like an LED board idling. Still for reduced motion; resting while the tab is hidden
+// the bar's dot board: faint dots on the logo's grid with water sloshing through them: a surface that rolls in
+// waves left to right, the dots under it lit, the crest brightest. Still for reduced motion; resting while the tab
+// is hidden
 (() => {
   const canvas = document.querySelector('.gnav__dots');
   if (!canvas) return;
   const bar = canvas.parentElement;
   const ctx = canvas.getContext('2d');
   const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const PITCH = 7, R = 1.25;
-  let w = 0, h = 0, cols = 0, rows = 0, ink = '#000', seeds = [], logo = null;
+  const PITCH = 7, R = 1.3;
+  let w = 0, h = 0, cols = 0, rows = 0, ink = '#000', logo = null;
   const size = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = bar.clientWidth; h = bar.clientHeight;
     canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     cols = Math.ceil(w / PITCH) + 1; rows = Math.ceil(h / PITCH) + 1;
-    seeds = Array.from({ length: cols * rows }, () => Math.random());
     const l = bar.querySelector('.gnav__logo');
+    logo = null;
     if (l) {  // the logo keeps its own dots: none of the board's under it
       const b = bar.getBoundingClientRect(), r = l.getBoundingClientRect();
       logo = { x0: r.left - b.left - 6, x1: r.right - b.left + 6, y0: r.top - b.top - 6, y1: r.bottom - b.top + 6 };
     }
   };
   const colour = () => { ink = getComputedStyle(bar).color; };
+  // the water's surface at x (pixels from the top): two rolling waves and a slow swell
+  const surface = (x, t) => h * (0.55
+    + 0.16 * Math.sin(x * 0.018 - t * 0.0019)
+    + 0.10 * Math.sin(x * 0.041 + t * 0.0013)
+    + 0.06 * Math.sin(t * 0.0007));
   const draw = (t) => {
     ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = ink;
-    const span = w + 400;
-    const band = ((t / 9000) % 1.6) * span - 200;  // left to right in ~9 s, then a rest
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        const px = x * PITCH + PITCH / 2, py = y * PITCH + PITCH / 2;
+    for (let x = 0; x < cols; x++) {
+      const px = x * PITCH + PITCH / 2;
+      const top = surface(px, t);
+      for (let y = 0; y < rows; y++) {
+        const py = y * PITCH + PITCH / 2;
         if (logo && px > logo.x0 && px < logo.x1 && py > logo.y0 && py < logo.y1) continue;
-        const seed = seeds[y * cols + x];
-        let a = 0.07;
-        const d = Math.abs(px - py * 0.6 - band);
-        if (d < 90) a += 0.16 * (1 - d / 90) ** 2;
-        if (seed > 0.985) a += 0.18 * Math.max(0, Math.sin(t / 700 + seed * 400));
+        const d = py - top;  // below the surface: > 0
+        let a = 0.05, r = R;
+        if (d > 0) a = 0.11 + 0.05 * Math.sin(px * 0.07 + py * 0.11 - t * 0.003);
+        if (Math.abs(d) < PITCH) { a = 0.26 * (1 - Math.abs(d) / PITCH) + a; r = R * (1 + 0.35 * (1 - Math.abs(d) / PITCH)); }
         ctx.globalAlpha = a;
-        ctx.beginPath(); ctx.arc(px, py, R, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI * 2); ctx.fill();
       }
     }
     ctx.globalAlpha = 1;
   };
   let last = 0;
   const tick = (t) => {
-    if (!document.hidden && t - last > 50) { draw(t); last = t; }
+    if (!document.hidden && t - last > 33) { draw(t); last = t; }
     requestAnimationFrame(tick);
   };
   size(); colour();

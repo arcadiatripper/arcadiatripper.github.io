@@ -124,7 +124,7 @@ body.flipper-page {
 }
 
 .flipper-page .gnav {
-  --gnav-bg: color-mix(in srgb, var(--well) 94%, transparent);
+  --gnav-bg: color-mix(in srgb, var(--card) 96%, transparent);
   --gnav-drop-bg: var(--card);
   --gnav-ink: var(--ink);
   --gnav-line: color-mix(in srgb, var(--ink) 18%, transparent);
