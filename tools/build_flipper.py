@@ -3,10 +3,11 @@
 
     python3 tools/build_flipper.py
 
-Writes index.html, flipper/index.html, en/index.html and en/flipper/index.html. GitHub Pages serves those
-files as they are; nothing runs on the server. Change words here, then run this again and commit the output.
-While flipper is the only plug-in, the home page (/) shows the flipper page; when a second plug-in comes,
-the home page becomes a page of plug-in cards and /flipper stays where it is.
+Writes ko/ and en/ (home and flipper/ for each language), plus the small pages at /, /flipper/ and /artist/
+that send a visitor to their language. GitHub Pages serves those files as they are; nothing runs on the
+server. Change words here, then run this again and commit the output.
+While flipper is the only plug-in, each language's home page (/ko/, /en/) shows the flipper page; when a
+second plug-in comes, those become pages of plug-in cards and /ko/flipper/, /en/flipper/ stay where they are.
 """
 
 from __future__ import annotations
@@ -455,20 +456,67 @@ GTAG = """    <!-- Google tag (gtag.js) -->
       gtag('config', 'G-EK4GXNHFLS');
     </script>"""
 
-# Old portfolio links (arcadiatripper.com/#discography …) now live on /artist/.
-OLD_ANCHORS = """    <script>
-      (function () {
+# The pages at /, /flipper/ and /artist/ have no language of their own: they send the visitor to /ko/… or /en/…
+# by the language they last picked on the site, else their browser's. The old portfolio lived at / with
+# anchors (arcadiatripper.com/#discography …); those go on to the artist page.
+CHOOSER = """<!doctype html>
+<!-- Written by tools/build_flipper.py. -->
+<html lang="en">
+  <head>
+{gtag}
+    <script>
+      (function () {{
+        var lang = null;
+        try {{ lang = localStorage.getItem('lang'); }} catch (error) {{}}
+        if (lang !== 'ko' && lang !== 'en') {{
+          var list = navigator.languages || [navigator.language || ''];
+          lang = /^ko\\b/i.test(list[0] || '') || list.some(function (l) {{ return /^ko\\b/i.test(l); }}) ? 'ko' : 'en';
+        }}
+        var page = '{page}';
+        var hash = location.hash;
         var old = ['#top', '#discography', '#guides', '#writing', '#credits', '#playlists', '#legacy', '#about'];
-        if (old.indexOf(location.hash) > -1) location.replace('/artist/' + (location.hash === '#top' ? '' : location.hash));
-      })();
-    </script>"""
+        if (page === '' && old.indexOf(hash) > -1) {{ page = 'artist/'; if (hash === '#top') hash = ''; }}
+        location.replace('/' + lang + '/' + page + hash);
+      }})();
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{title}</title>
+    <meta name="description" content="{description}">
+    <link rel="alternate" hreflang="ko" href="{site}/ko/{page}">
+    <link rel="alternate" hreflang="en" href="{site}/en/{page}">
+    <link rel="alternate" hreflang="x-default" href="{site}/{page}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{site}/{page}">
+    <meta property="og:title" content="{title}">
+    <meta property="og:description" content="{description}">
+    <meta property="og:site_name" content="arcadiatripper">
+    <meta property="og:image" content="{site}/assets/images/{image}">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
+  </head>
+  <body>
+    <p><a href="/ko/{page}" lang="ko" hreflang="ko">한국어</a> · <a href="/en/{page}" lang="en" hreflang="en">English</a></p>
+  </body>
+</html>
+"""
+
+CHOOSERS = {
+    "": ("flipper — 무료 샘플러 · free sampler plug-in",
+         "자르고, 뒤집고, 두드리는 무료 오픈소스 샘플러. Chop it, flip it, play it: a free open-source sampler.",
+         "flipper/og-flipper.png"),
+    "flipper/": ("flipper — 무료 샘플러 · free sampler plug-in",
+                 "자르고, 뒤집고, 두드리는 무료 오픈소스 샘플러. Chop it, flip it, play it: a free open-source sampler.",
+                 "flipper/og-flipper.png"),
+    "artist/": ("레네 RENÉ / arcadiatripper", "Music, guides and playlists by 레네 (tripper).", "og-arcadiatripper.jpg"),
+}
 
 
 def page(lang: str, home: bool) -> str:
     t = T[lang]
-    prefix = "" if lang == "ko" else "/en"
+    prefix = f"/{lang}"
     here = f"{prefix}/" if home else f"{prefix}/flipper/"
-    ko_here = "/" if home else "/flipper/"
+    ko_here = "/ko/" if home else "/ko/flipper/"
     en_here = "/en/" if home else "/en/flipper/"
     canonical = f"{SITE}{prefix}/flipper/"
     gnav_label = {"ko": "한", "en": "EN"}
@@ -484,14 +532,13 @@ def page(lang: str, home: bool) -> str:
 <html lang="{lang}" class="no-js">
   <head>
 {GTAG}
-{OLD_ANCHORS if (home and lang == 'ko') else ''}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{E(t['title'])}</title>
     <meta name="description" content="{E(t['description'])}">
     <meta name="theme-color" content="#fff7e6">
     <link rel="canonical" href="{canonical}">
-    <link rel="alternate" hreflang="ko" href="{SITE}/flipper/">
+    <link rel="alternate" hreflang="ko" href="{SITE}/ko/flipper/">
     <link rel="alternate" hreflang="en" href="{SITE}/en/flipper/">
     <link rel="alternate" hreflang="x-default" href="{SITE}/flipper/">
 
@@ -643,11 +690,14 @@ def page(lang: str, home: bool) -> str:
 
 def main() -> None:
     outputs = {
-        "index.html": page("ko", home=True),
-        "flipper/index.html": page("ko", home=False),
+        "ko/index.html": page("ko", home=True),
+        "ko/flipper/index.html": page("ko", home=False),
         "en/index.html": page("en", home=True),
         "en/flipper/index.html": page("en", home=False),
     }
+    for where, (title, description, image) in CHOOSERS.items():
+        outputs[f"{where}index.html"] = CHOOSER.format(gtag=GTAG, page=where, title=E(title),
+                                                       description=E(description), site=SITE, image=image)
     for rel, text in outputs.items():
         path = ROOT / rel
         path.parent.mkdir(parents=True, exist_ok=True)

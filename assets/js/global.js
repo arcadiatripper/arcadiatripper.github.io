@@ -24,3 +24,16 @@
     }
   });
 })();
+
+(() => {
+  // The 한 / EN switch remembers the pick, so arcadiatripper.com (/) opens in that language next time.
+  document.querySelectorAll('.gnav__lang a[hreflang]').forEach((link) => {
+    link.addEventListener('click', () => {
+      try {
+        localStorage.setItem('lang', link.getAttribute('hreflang'));
+      } catch (error) {
+        // nothing to keep
+      }
+    });
+  });
+})();
