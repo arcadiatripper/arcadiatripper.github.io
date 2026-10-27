@@ -152,7 +152,6 @@
   }
 }
 
-/* the name in the top bar (the tripper logo is still being picked) */
 /* the tripper logo: lit dots in the bar's ink, the unlit ones faint behind them */
 .gnav__logo {
   display: block;
@@ -255,8 +254,10 @@
 }
 
 .gnav__theme button {
+  display: grid;
   min-width: 34px;
-  padding: 4px 10px;
+  padding: 5px 10px;
+  place-items: center;
   border: 0;
   border-radius: 999px;
   background: none;
@@ -306,4 +307,10 @@
 .theme-switching *::before,
 .theme-switching *::after {
   transition: none !important;
+}
+
+/* the plug-in's pixel icons (sun, moon) */
+.px-icon {
+  display: block;
+  fill: currentColor;
 }

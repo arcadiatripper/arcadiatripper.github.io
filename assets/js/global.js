@@ -26,7 +26,7 @@
 })();
 
 (() => {
-  // The 한 / EN switch remembers the pick, so arcadiatripper.com (/) opens in that language next time.
+  // The ko / en switch remembers the pick, so arcadiatripper.com (/) opens in that language next time.
   document.querySelectorAll('.gnav__lang a[hreflang]').forEach((link) => {
     link.addEventListener('click', () => {
       try {

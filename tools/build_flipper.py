@@ -347,8 +347,8 @@ def engines_block(lang: str, t: dict) -> str:
           <div class="engines__keys">
             <div class="seg" role="tablist" aria-label="{E(t['engines_tab_label'])}">{''.join(tabs)}</div>
             <div class="seg seg--look" role="group" aria-label="{E(t['theme_label'])}">
-              <button class="seg__item" type="button" data-look-set="day" aria-pressed="true">{E(t['day'])}</button>
-              <button class="seg__item" type="button" data-look-set="night" aria-pressed="false">{E(t['night'])}</button>
+              <button class="seg__item" type="button" data-look-set="day" aria-pressed="true" aria-label="{E(t['day'])}" title="{E(t['day'])}">{pixel_icon(SUN)}</button>
+              <button class="seg__item" type="button" data-look-set="night" aria-pressed="false" aria-label="{E(t['night'])}" title="{E(t['night'])}">{pixel_icon(MOON)}</button>
             </div>
           </div>
           {''.join(panels)}"""
@@ -492,6 +492,18 @@ def tripper_logo() -> str:
 
 TRIPPER_LOGO = tripper_logo()
 
+# The plug-in's own day / night keys (clean skin, Widgets.cpp iconPath): 7 x 7 square cells.
+SUN = ["...X...", ".X...X.", "..XXX..", "X.XXX.X", "..XXX..", ".X...X.", "...X..."]
+MOON = ["...XX..", ".XXX...", "XXX....", "XXX....", "XXX....", ".XXXX..", "..XXXX."]
+
+
+def pixel_icon(rows: list[str]) -> str:
+    cells = "".join(f'<rect x="{x * 2}" y="{y * 2}" width="2" height="2"/>'
+                    for y, row in enumerate(rows) for x, c in enumerate(row) if c == "X")
+    return (f'<svg class="px-icon" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"'
+            f' shape-rendering="crispEdges">{cells}</svg>')
+
+
 def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> str:
     """The bar at the top of every page: the tripper logo, the menu (plug-ins, artist), day / night on pages that
     have a night look, and the language switch. current is "flipper" or "artist"."""
@@ -503,8 +515,8 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
     if theme:
         theme_keys = f"""
         <div class="gnav__theme" role="group" aria-label="{E(t['theme_label'])}">
-          <button type="button" data-theme-set="day" aria-pressed="true">{E(t['day'])}</button>
-          <button type="button" data-theme-set="night" aria-pressed="false">{E(t['night'])}</button>
+          <button type="button" data-theme-set="day" aria-pressed="true" aria-label="{E(t['day'])}" title="{E(t['day'])}">{pixel_icon(SUN)}</button>
+          <button type="button" data-theme-set="night" aria-pressed="false" aria-label="{E(t['night'])}" title="{E(t['night'])}">{pixel_icon(MOON)}</button>
         </div>"""
     return f"""    <header class="gnav">
       <div class="gnav__inner">
@@ -519,9 +531,9 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
           <a href="{prefix}/artist/"{here if current == 'artist' else ''}>ARTIST</a>
         </nav>{theme_keys}
         <div class="gnav__lang" aria-label="{E(t['lang_label'])}">
-          <a href="{ko_href}" lang="ko" hreflang="ko"{' aria-current="true"' if lang == 'ko' else ''}>한</a>
+          <a href="{ko_href}" lang="ko" hreflang="ko"{' aria-current="true"' if lang == 'ko' else ''}>ko</a>
           <span aria-hidden="true">/</span>
-          <a href="{en_href}" lang="en" hreflang="en"{' aria-current="true"' if lang == 'en' else ''}>EN</a>
+          <a href="{en_href}" lang="en" hreflang="en"{' aria-current="true"' if lang == 'en' else ''}>en</a>
         </div>
       </div>
     </header>"""

@@ -1205,3 +1205,9 @@ h2.heading,
 .band--engines[data-look="night"] .shot--day {
   display: none !important;
 }
+
+/* the "other language" band in the plug-in's butter too, not the artist pages' yellow */
+.flipper-page .lang-hint {
+  background: var(--card);
+  color: var(--ink);
+}
