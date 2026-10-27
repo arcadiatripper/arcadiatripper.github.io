@@ -165,28 +165,6 @@
   opacity: 0.13;
 }
 
-/* PLUGINS and ARTIST in the logo's dots: 7 rows, 13 px tall */
-.gnav__dots {
-  display: block;
-  height: 13px;
-  font-size: 13px;
-  fill: currentColor;
-}
-
-.gnav__said {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.gnav__links a,
-.gnav__menu-key {
-  padding-bottom: 4px;
-}
-
 /* PLUGINS opens a small list of the plug-ins (flipper now, more later) */
 .gnav__menu {
   position: relative;
@@ -206,6 +184,15 @@
   cursor: pointer;
 }
 
+
+.gnav__menu-key span {
+  font-size: 9px;
+  transition: transform 150ms ease;
+}
+
+.gnav__menu-key[aria-expanded="true"] span {
+  transform: rotate(180deg);
+}
 
 .gnav__menu-key:hover,
 .gnav__menu-key[data-current="true"] {
@@ -301,21 +288,13 @@
     gap: 8px;
   }
 
-  .gnav__dots {
-    height: 10px;
-    font-size: 10px;
-  }
 }
 
 @media (max-width: 400px) {
   .gnav__logo {
-    height: 14px;
+    height: 16px;
   }
 
-  .gnav__dots {
-    height: 9px;
-    font-size: 9px;
-  }
 
   .gnav__theme button {
     padding: 4px 5px;

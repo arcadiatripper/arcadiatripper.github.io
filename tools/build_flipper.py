@@ -492,36 +492,6 @@ def tripper_logo() -> str:
 
 TRIPPER_LOGO = tripper_logo()
 
-# The menu words in the same dots: capitals on a 5 x 7 grid.
-MENU_GLYPHS = {
-    "A": [".###.", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
-    "G": [".###.", "#...#", "#....", "#.###", "#...#", "#...#", ".###."],
-    "I": [".###.", "..#..", "..#..", "..#..", "..#..", "..#..", ".###."],
-    "L": ["#....", "#....", "#....", "#....", "#....", "#....", "#####"],
-    "N": ["#...#", "##..#", "#.#.#", "#..##", "#...#", "#...#", "#...#"],
-    "P": ["####.", "#...#", "#...#", "####.", "#....", "#....", "#...."],
-    "R": ["####.", "#...#", "#...#", "####.", "#.#..", "#..#.", "#...#"],
-    "S": [".####", "#....", "#....", ".###.", "....#", "....#", "####."],
-    "T": ["#####", "..#..", "..#..", "..#..", "..#..", "..#..", "..#.."],
-    "U": ["#...#", "#...#", "#...#", "#...#", "#...#", "#...#", ".###."],
-    "▾": [".....", ".....", "#####", ".###.", "..#..", ".....", "....."],
-}
-
-
-def dot_word(word: str) -> str:
-    """A menu word in dots (svg in currentColor); the word itself stays for screen readers."""
-    lit, off = [], []
-    for n, ch in enumerate(word):
-        for y, row in enumerate(MENU_GLYPHS[ch]):
-            for x, c in enumerate(row):
-                dot = f'<circle cx="{(n * 6 + x) * 10 + 5}" cy="{y * 10 + 5}" r="3.8"/>'
-                (lit if c == "#" else off).append(dot)
-    w = len(word) * 60 - 10
-    text = word.rstrip("▾")
-    return (f'<svg class="gnav__dots" viewBox="0 0 {w} 70" style="width:{w / 70 * 1.0:.3f}em" aria-hidden="true" focusable="false">'
-            f'<g class="gnav__logo-off">{"".join(off)}</g><g>{"".join(lit)}</g></svg><span class="gnav__said">{text}</span>')
-
-
 def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> str:
     """The bar at the top of every page: the tripper logo, the menu (plug-ins, artist), day / night on pages that
     have a night look, and the language switch. current is "flipper" or "artist"."""
@@ -541,12 +511,12 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
         <a class="gnav__home" href="{prefix}/" aria-label="tripper">{TRIPPER_LOGO}</a>
         <nav class="gnav__links" aria-label="{E(t['nav_label'])}">
           <div class="gnav__menu" data-menu>
-            <button type="button" class="gnav__menu-key" aria-expanded="false" aria-controls="menu-plugins"{plugins_on}>{dot_word("PLUGINS▾")}</button>
+            <button type="button" class="gnav__menu-key" aria-expanded="false" aria-controls="menu-plugins"{plugins_on}>PLUGINS<span aria-hidden="true">▾</span></button>
             <div class="gnav__drop" id="menu-plugins" hidden>
               <a href="{prefix}/flipper/"{here if current == 'flipper' else ''}><b>flipper<i>.</i></b></a>
             </div>
           </div>
-          <a href="{prefix}/artist/"{here if current == 'artist' else ''}>{dot_word("ARTIST")}</a>
+          <a href="{prefix}/artist/"{here if current == 'artist' else ''}>ARTIST</a>
         </nav>{theme_keys}
         <div class="gnav__lang" aria-label="{E(t['lang_label'])}">
           <a href="{ko_href}" lang="ko" hreflang="ko"{' aria-current="true"' if lang == 'ko' else ''}>한</a>
