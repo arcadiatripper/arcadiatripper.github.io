@@ -64,13 +64,14 @@
 })();
 
 (() => {
-  // Day / night: the page opens in day; the pick is kept for the next visit.
-  const keys = document.querySelectorAll('[data-theme-set]');
+  // Day / night: the page opens in day; the pick is kept for the next visit. One key, as in the plug-in: the moon
+  // by day, the sun by night.
+  const keys = document.querySelectorAll('[data-theme-toggle]');
   if (!keys.length) return;
   const root = document.documentElement;
   const show = () => {
     const night = root.dataset.theme === 'night';
-    keys.forEach((key) => key.setAttribute('aria-pressed', String((key.dataset.themeSet === 'night') === night)));
+    keys.forEach((key) => key.setAttribute('aria-pressed', String(night)));
   };
   // the switch is instant: no colour fades while it happens
   const still = () => {
@@ -88,10 +89,11 @@
     key.addEventListener('pointerenter', warm, { once: true });
     key.addEventListener('click', () => {
       still();
-      if (key.dataset.themeSet === 'night') root.dataset.theme = 'night';
+      const night = root.dataset.theme !== 'night';
+      if (night) root.dataset.theme = 'night';
       else delete root.dataset.theme;
       try {
-        localStorage.setItem('theme', key.dataset.themeSet);
+        localStorage.setItem('theme', night ? 'night' : 'day');
       } catch (error) {
         // nothing to keep
       }
@@ -99,4 +101,22 @@
     });
   });
   show();
+})();
+
+(() => {
+  // The pixel icons sit on whole device pixels, as in the plug-in (a half-pixel place blurs their 2 px cells).
+  const snap = () => document.querySelectorAll('.px-icon').forEach((icon) => {
+    icon.style.transform = '';
+    const box = icon.getBoundingClientRect();
+    if (!box.width) return;
+    const dpr = window.devicePixelRatio || 1;
+    const dx = Math.round(box.left * dpr) / dpr - box.left;
+    const dy = Math.round(box.top * dpr) / dpr - box.top;
+    if (dx || dy) icon.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+  window.addEventListener('resize', snap);
+  window.addEventListener('load', snap);
+  if (document.fonts) document.fonts.ready.then(snap);
+  document.addEventListener('click', () => requestAnimationFrame(snap));
+  snap();
 })();

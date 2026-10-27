@@ -1184,11 +1184,15 @@ h2.heading,
   margin: 0;
 }
 
-.seg__item[aria-pressed="true"] {
+.night-key--engines {
+  width: 44px;
+  height: 44px;
+  align-self: center;
   border-color: var(--e-line);
-  background: var(--e-pick);
+  border-radius: 12px;
+  background: var(--e-well);
   box-shadow: 0 2px 0 var(--e-line);
-  color: var(--e-pick-text);
+  color: var(--e-ink);
 }
 
 .engine__how {

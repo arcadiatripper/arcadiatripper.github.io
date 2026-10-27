@@ -30,16 +30,16 @@
       if (focus) tab.focus();
     };
     // day / night for the engine pictures only; it starts from the page's look and follows the page's button
-    const looks = [...engines.querySelectorAll('[data-look-set]')];
+    const lookKey = engines.querySelector('[data-look-toggle]');
     const look = (name) => {
       engines.dataset.look = name;
-      looks.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lookSet === name)));
+      if (lookKey) lookKey.setAttribute('aria-pressed', String(name === 'night'));
     };
-    looks.forEach((b) => b.addEventListener('click', () => {
+    if (lookKey) lookKey.addEventListener('click', () => {
       document.documentElement.classList.add('theme-switching');
-      look(b.dataset.lookSet);
+      look(engines.dataset.look === 'night' ? 'day' : 'night');
       requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.remove('theme-switching')));
-    }));
+    });
     look(document.documentElement.dataset.theme === 'night' ? 'night' : 'day');
     new MutationObserver(() => look(document.documentElement.dataset.theme === 'night' ? 'night' : 'day'))
       .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });

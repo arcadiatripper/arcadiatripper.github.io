@@ -346,10 +346,7 @@ def engines_block(lang: str, t: dict) -> str:
     return f"""
           <div class="engines__keys">
             <div class="seg" role="tablist" aria-label="{E(t['engines_tab_label'])}">{''.join(tabs)}</div>
-            <div class="seg seg--look" role="group" aria-label="{E(t['theme_label'])}">
-              <button class="seg__item" type="button" data-look-set="day" aria-pressed="true" aria-label="{E(t['day'])}" title="{E(t['day'])}">{pixel_icon(SUN)}</button>
-              <button class="seg__item" type="button" data-look-set="night" aria-pressed="false" aria-label="{E(t['night'])}" title="{E(t['night'])}">{pixel_icon(MOON)}</button>
-            </div>
+            {night_key(t, "data-look-toggle", " night-key--engines")}
           </div>
           {''.join(panels)}"""
 
@@ -497,11 +494,17 @@ SUN = ["...X...", ".X...X.", "..XXX..", "X.XXX.X", "..XXX..", ".X...X.", "...X..
 MOON = ["...XX..", ".XXX...", "XXX....", "XXX....", "XXX....", ".XXXX..", "..XXXX."]
 
 
-def pixel_icon(rows: list[str]) -> str:
+def pixel_icon(rows: list[str], name: str) -> str:
     cells = "".join(f'<rect x="{x * 2}" y="{y * 2}" width="2" height="2"/>'
                     for y, row in enumerate(rows) for x, c in enumerate(row) if c == "X")
-    return (f'<svg class="px-icon" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false"'
-            f' shape-rendering="crispEdges">{cells}</svg>')
+    return (f'<svg class="px-icon px-icon--{name}" viewBox="0 0 14 14" width="14" height="14" aria-hidden="true"'
+            f' focusable="false" shape-rendering="crispEdges">{cells}</svg>')
+
+
+def night_key(t: dict, attr: str, extra_class: str = "") -> str:
+    """One key, as in the plug-in's header: the moon by day (press for night), the sun by night."""
+    return (f'<button type="button" class="night-key{extra_class}" {attr} aria-pressed="false" aria-label="{E(t["night"])}"'
+            f' title="{E(t["day"])} / {E(t["night"])}">{pixel_icon(MOON, "moon")}{pixel_icon(SUN, "sun")}</button>')
 
 
 def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> str:
@@ -514,10 +517,7 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
     theme_keys = ""
     if theme:
         theme_keys = f"""
-        <div class="gnav__theme" role="group" aria-label="{E(t['theme_label'])}">
-          <button type="button" data-theme-set="day" aria-pressed="true" aria-label="{E(t['day'])}" title="{E(t['day'])}">{pixel_icon(SUN)}</button>
-          <button type="button" data-theme-set="night" aria-pressed="false" aria-label="{E(t['night'])}" title="{E(t['night'])}">{pixel_icon(MOON)}</button>
-        </div>"""
+        <div class="gnav__theme">{night_key(t, "data-theme-toggle")}</div>"""
     return f"""    <header class="gnav">
       <div class="gnav__inner">
         <a class="gnav__home" href="{prefix}/" aria-label="tripper">{TRIPPER_LOGO}</a>
