@@ -459,10 +459,22 @@ h2.heading,
   line-height: 1.15;
 }
 
-.slide__body p:last-child {
+.slide__text {
   margin-top: 12px;
   color: var(--soft);
   font-size: 19px;
+}
+
+/* how it was made, in small print under the line */
+.slide__how,
+.engine__how {
+  max-width: 46ch;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed color-mix(in srgb, currentColor 30%, transparent);
+  color: var(--soft);
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .slides__controls {
@@ -802,6 +814,7 @@ h2.heading,
 
 .field {
   display: grid;
+  min-width: 0;
   gap: 8px;
   color: var(--soft);
   font-size: 13px;
@@ -810,6 +823,7 @@ h2.heading,
 
 .field output {
   color: var(--ink);
+  white-space: nowrap;
 }
 
 .field input[type="number"] {
@@ -833,6 +847,7 @@ h2.heading,
 
 .tempo__result {
   display: grid;
+  min-width: 0;
   gap: 6px;
   color: var(--soft);
   font-size: 13px;
@@ -1147,4 +1162,46 @@ h2.heading,
   .seg {
     transition: none;
   }
+}
+
+/* the tempo answer may break between its numbers on a narrow phone */
+@media (max-width: 400px) {
+  .tempo__result--small output {
+    white-space: normal;
+  }
+}
+
+/* the engines' own day / night, next to the engine tabs */
+.engines__keys {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.engines__keys .seg {
+  margin: 0;
+}
+
+.seg__item[aria-pressed="true"] {
+  border-color: var(--e-line);
+  background: var(--e-pick);
+  box-shadow: 0 2px 0 var(--e-line);
+  color: var(--e-pick-text);
+}
+
+.engine__how {
+  color: inherit;
+  opacity: 0.75;
+}
+
+.band--engines[data-look="day"] .shot--day,
+.band--engines[data-look="night"] .shot--night {
+  display: block !important;
+}
+
+.band--engines[data-look="day"] .shot--night,
+.band--engines[data-look="night"] .shot--day {
+  display: none !important;
 }

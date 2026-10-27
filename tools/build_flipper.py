@@ -67,12 +67,18 @@ T = {
             ("fx", "fx", "판을 긁고 효과를 걸어요."),
         ],
         "engines_title": "엔진을 바꾸면, 옷도 바뀌어요",
-        "engines_sub": "옛 샘플러의 결을 회로까지 따라 만들었어요.",
+        "engines_sub": "전설적인 샘플러 두 대와 90년대 게임기 소리 칩을, 회로까지 따라 만들었어요.",
         "engines": [
-            ("clean", "clean", "샘플 그대로. 늘여도 맑게.", "CLEAN · THE SAMPLE AS IT IS"),
-            ("black", "black", "거칠고 묵직하게.", "BLACK · 12-BIT · 26 kHz"),
-            ("grey", "grey", "단단하고 따뜻하게.", "GREY · 12-BIT · 40 kHz"),
-            ("purple", "purple", "동글고 먹먹하게.", "PURPLE · 4-BIT · 32 kHz"),
+            ("clean", "clean", "샘플 그대로. 늘여도 맑게.", "CLEAN · THE SAMPLE AS IT IS", ""),
+            ("black", "black", "80년대 후반의 전설적인 샘플러. 거칠고 묵직하게.", "BLACK · 12-BIT · 26 kHz",
+             "회로도를 따라 만들었어요. 12비트로 담는 방식, 샘플을 건너뛰고 되풀이하는 음정, 출력마다 다른 필터, 움직이는 필터까지. "
+             "아직 추정인 곳은 움직이는 필터가 머무는 시간과 담을 때의 레벨이에요."),
+            ("grey", "grey", "80년대 후반의 또 다른 전설적인 샘플러. 단단하고 따뜻하게.", "GREY · 12-BIT · 40 kHz",
+             "공개된 자료가 적어서 추정한 곳이 있어요: 12비트로 담는 방식, 음정을 바꾸는 방식, 출력 필터의 모양, 잡음 크기. "
+             "실제 기계 녹음으로 맞춰 갈 거예요."),
+            ("purple", "purple", "90년대 초 게임기의 소리 칩. 동글고 먹먹하게.", "PURPLE · 4-BIT · 32 kHz",
+             "칩의 계산(BRR 디코딩, 가우스 보간, 32,040 Hz)은 오픈소스 에뮬레이터 ares와 7,300가지 경우를 비교해 비트 하나까지 같아요. "
+             "보드의 필터는 회로도대로예요. 추정은 샘플을 칩의 형식으로 바꾸는 인코더 하나예요."),
         ],
         "engines_tab_label": "엔진 고르기",
         "tempo_title": "키를 내리면, 템포를 알려줘요",
@@ -86,14 +92,23 @@ T = {
         "tempo_ct": "센트",
         "slides_title": "핵심 기능",
         "slides": [
-            ("lazy", "레이지 찹", "들으면서 톡톡. 친 자리가 잘려요."),
-            ("melody", "멜로디", "한 조각을 건반에 깔고, 스케일을 골라요."),
-            ("key", "키 찾기", "샘플의 키를 찾아 알려줘요."),
-            ("midi", "찹을 MIDI로", "자른 순서를 DAW로 끌어다 놓아요."),
-            ("drum", "드럼 킷", "원샷 16개를 칸마다 따로 다듬어요."),
-            ("fx", "fx 랙", "필터부터 스페이스까지, 아홉 칸."),
-            ("scratch", "스크래치", "판을 잡고 긁어요. 베이비, 처프 패턴도."),
-            ("night", "낮과 밤", "버튼 하나로 밤 화면."),
+            ("lazy", "레이지 찹", "들으면서 톡톡. 친 자리가 잘려요.", ""),
+            ("key", "키 찾기", "샘플의 키를 찾고, 튜닝이 몇 센트 어긋났는지도 알려줘요.",
+             "직접 만든 분석기(MIT)예요. 음 높이 분포(크로마)를 Albrecht–Shanahan 키 프로필과 맞춰 보고, 키가 적힌 루프 158개로 다듬었어요. "
+             "음이 없는 소리엔 키를 붙이지 않아요."),
+            ("repitch", "리피치와 템포 유지", "리피치는 옛 샘플러처럼 키와 속도가 같이. 템포 유지는 템포는 그대로 두고 키만.",
+             "템포 유지는 Rubber Band R3(GPL)로 미리 구워 두고, 굽는 동안엔 Signalsmith Stretch(MIT)로 바로 들려줘요. "
+             "바운스도 구운 소리를 그대로 써서, 들은 그대로 나가요."),
+            ("crisp", "또렷하게", "템포 유지로 늘려도 타격이 뭉개지지 않게. 비트와 드럼 루프는 켜고, 멜로디·코드·목소리는 꺼 두세요.",
+             "켜면 타격과 타격 사이를 한 조각씩 따로 늘리고, 타격의 앞부분은 원래 소리를 그대로 남겨요. Signalsmith Stretch(MIT)."),
+            ("channels", "채널 고르기", "샘플마다 스테레오, 왼쪽, 오른쪽, 가운데, 양옆 중에서 골라요. 다른 샘플러에선 보기 힘든 기능이에요.",
+             "가운데 = (L+R)/2, 양옆 = (L−R)/2. 엔진보다 앞, 샘플이 들어오는 자리에서 바꾸고 원래보다 커지지 않아요. 샘플러 화면에서 써요."),
+            ("melody", "멜로디", "한 조각을 건반에 깔고, 스케일을 골라요.", ""),
+            ("midi", "찹을 MIDI로", "자른 순서를 DAW로 끌어다 놓아요.", ""),
+            ("drum", "드럼 킷", "원샷 16개를 칸마다 따로 다듬어요.", ""),
+            ("fx", "fx 랙", "필터부터 스페이스까지, 아홉 칸.", "Airwindows(MIT) 모델에 직접 만든 펀치, 퍼즈, 필터를 더했어요."),
+            ("scratch", "스크래치", "판을 잡고 긁어요. 베이비, 처프 패턴도.", ""),
+            ("night", "낮과 밤", "버튼 하나로 밤 화면.", ""),
         ],
         "slides_prev": "이전",
         "slides_next": "다음",
@@ -155,12 +170,19 @@ T = {
             ("fx", "fx", "Scratch the record, add effects."),
         ],
         "engines_title": "Change the engine, change the look",
-        "engines_sub": "Old samplers' grain, modelled down to the circuits.",
+        "engines_sub": "Two legendary samplers and an early-90s console's sound chip, modelled down to the circuits.",
         "engines": [
-            ("clean", "clean", "The sample as it is. Clear however far you stretch it.", "CLEAN · THE SAMPLE AS IT IS"),
-            ("black", "black", "Gritty and heavy.", "BLACK · 12-BIT · 26 kHz"),
-            ("grey", "grey", "Tight and warm.", "GREY · 12-BIT · 40 kHz"),
-            ("purple", "purple", "Round and hazy.", "PURPLE · 4-BIT · 32 kHz"),
+            ("clean", "clean", "The sample as it is. Clear however far you stretch it.", "CLEAN · THE SAMPLE AS IT IS", ""),
+            ("black", "black", "The legendary late-80s sampler. Gritty and heavy.", "BLACK · 12-BIT · 26 kHz",
+             "Built from the schematics: how it stores 12 bits, pitch by skipping and repeating samples, a different filter "
+             "on each output, and the moving filter. Still estimated: how long the moving filter holds, and the recording level."),
+            ("grey", "grey", "The other legendary late-80s sampler. Tight and warm.", "GREY · 12-BIT · 40 kHz",
+             "Little is published about it, so these are estimates: its 12-bit storage, how it changes pitch, the output "
+             "filter's shape and the noise level. Recordings of a real unit will tune them."),
+            ("purple", "purple", "An early-90s console's sound chip. Round and hazy.", "PURPLE · 4-BIT · 32 kHz",
+             "The chip's maths (BRR decoding, gaussian interpolation, 32,040 Hz) matches the open-source emulator ares bit for "
+             "bit, across 7,300 test cases. The board's filter follows the schematic. The one estimate: the encoder that turns "
+             "a sample into the chip's format."),
         ],
         "engines_tab_label": "Pick an engine",
         "tempo_title": "Pitch it down, it tells you the tempo",
@@ -174,14 +196,23 @@ T = {
         "tempo_ct": "ct",
         "slides_title": "What it does",
         "slides": [
-            ("lazy", "Lazy chop", "Tap along. It chops where you tap."),
-            ("melody", "Melody", "One slice across the keys, in the scale you pick."),
-            ("key", "Key detection", "It finds the sample's key."),
-            ("midi", "Chop to MIDI", "Drag the chop order into your DAW."),
-            ("drum", "Drum kit", "16 one-shots, each trimmed on its own."),
-            ("fx", "fx rack", "Nine slots, from filter to space."),
-            ("scratch", "Scratch", "Grab the record. Baby and chirp patterns too."),
-            ("night", "Day and night", "One button for the night look."),
+            ("lazy", "Lazy chop", "Tap along. It chops where you tap.", ""),
+            ("key", "Key detection", "It finds the sample's key, and how many cents it is off tune.",
+             "Our own analyser (MIT): it matches the pitch-class profile (chroma) against the Albrecht–Shanahan key profiles, "
+             "tuned on 158 key-labelled loops. A sound with no notes in it gets no key."),
+            ("repitch", "Repitch and keep tempo", "Repitch moves key and speed together, like the old samplers. Keep tempo moves the key only.",
+             "Keep tempo is baked ahead with Rubber Band R3 (GPL); until the bake is ready you hear Signalsmith Stretch (MIT). "
+             "Bounces use the same bake, so what you hear is what you get."),
+            ("crisp", "Crisp", "Hits stay sharp when keep tempo stretches. On for beats and drum loops, off for melodies, chords and voices.",
+             "When on, each stretch between two hits is done on its own and every hit's attack keeps the original sound. Signalsmith Stretch (MIT)."),
+            ("channels", "Channel select", "Per sample: stereo, left, right, mid or side. Something you rarely find in other samplers.",
+             "Mid = (L+R)/2, side = (L−R)/2. Picked where the sample comes in, before the engine, and never louder than the source. On the sampler screen."),
+            ("melody", "Melody", "One slice across the keys, in the scale you pick.", ""),
+            ("midi", "Chop to MIDI", "Drag the chop order into your DAW.", ""),
+            ("drum", "Drum kit", "16 one-shots, each trimmed on its own.", ""),
+            ("fx", "fx rack", "Nine slots, from filter to space.", "Airwindows (MIT) models, plus our own punch, fuzz and filter."),
+            ("scratch", "Scratch", "Grab the record. Baby and chirp patterns too.", ""),
+            ("night", "Day and night", "One button for the night look.", ""),
         ],
         "slides_prev": "Previous",
         "slides_next": "Next",
@@ -274,11 +305,12 @@ def slides_block(lang: str, t: dict) -> str:
     """The main features, one picture and one line each, turned like pages (scroll-snap, arrows and dots)."""
     slides, dots = [], []
     count = len(t["slides"])
-    for i, (key, name, text) in enumerate(t["slides"]):
+    for i, (key, name, text, how) in enumerate(t["slides"]):
+        how_line = f'<p class="slide__how">{E(how)}</p>' if how else ""
         slides.append(f"""
             <li class="slide" id="feature-{key}" aria-roledescription="slide" aria-label="{i + 1} / {count}">
               <div class="slide__shot card">{shot(f'feature_{key}', lang, name)}</div>
-              <div class="slide__body"><p class="slide__n">{i + 1:02d} / {count:02d}</p><h3>{E(name)}</h3><p>{E(text)}</p></div>
+              <div class="slide__body"><p class="slide__n">{i + 1:02d} / {count:02d}</p><h3>{E(name)}</h3><p class="slide__text">{E(text)}</p>{how_line}</div>
             </li>""")
         dots.append(f'<button type="button" class="slides__dot" aria-label="{E(name)}" data-slide-to="{i}"></button>')
     return f"""
@@ -295,7 +327,8 @@ def slides_block(lang: str, t: dict) -> str:
 
 def engines_block(lang: str, t: dict) -> str:
     tabs, panels = [], []
-    for i, (key, name, text, plate) in enumerate(t["engines"]):
+    for i, (key, name, text, plate, how) in enumerate(t["engines"]):
+        how_line = f'<p class="engine__how">{E(how)}</p>' if how else ""
         selected = "true" if i == 0 else "false"
         hidden = "" if i == 0 else " hidden"
         tabs.append(
@@ -307,11 +340,17 @@ def engines_block(lang: str, t: dict) -> str:
               <div class="engine__shot">{shot(f'engine_{key}', lang, name)}</div>
               <div class="engine__body">
                 <p class="engine__plate">{E(plate)}</p>
-                <p class="engine__text">{E(text)}</p>
+                <p class="engine__text">{E(text)}</p>{how_line}
               </div>
             </div>""")
     return f"""
-          <div class="seg" role="tablist" aria-label="{E(t['engines_tab_label'])}">{''.join(tabs)}</div>
+          <div class="engines__keys">
+            <div class="seg" role="tablist" aria-label="{E(t['engines_tab_label'])}">{''.join(tabs)}</div>
+            <div class="seg seg--look" role="group" aria-label="{E(t['theme_label'])}">
+              <button class="seg__item" type="button" data-look-set="day" aria-pressed="true">{E(t['day'])}</button>
+              <button class="seg__item" type="button" data-look-set="night" aria-pressed="false">{E(t['night'])}</button>
+            </div>
+          </div>
           {''.join(panels)}"""
 
 
@@ -428,8 +467,59 @@ CHOOSERS = {
 }
 
 
-# The tripper logo is still being picked; until then the top bar spells the name.
-TRIPPER_LOGO = '<span class="gnav__word">tripper</span>'
+# The tripper logo (D2, picked 2026-10-27): "tripper" in round dots on a 5 x 9 grid, as on an mp3 player's
+# screen. The unlit dots of each letter's cell stay faintly visible, like an LCD that is switched on.
+TRIPPER_GLYPHS = {
+    "t": [".#...", ".#...", "####.", ".#...", ".#...", ".#..#", "..##.", ".....", "....."],
+    "r": [".....", ".....", "#.##.", "##..#", "#....", "#....", "#....", ".....", "....."],
+    "i": ["..#..", ".....", ".##..", "..#..", "..#..", "..#..", ".###.", ".....", "....."],
+    "p": [".....", ".....", "####.", "#...#", "#...#", "#...#", "####.", "#....", "#...."],
+    "e": [".....", ".....", ".###.", "#...#", "#####", "#....", ".###.", ".....", "....."],
+}
+
+
+def tripper_logo() -> str:
+    """The logo as inline svg in currentColor, so it follows the top bar's ink by day and by night."""
+    lit, off = [], []
+    for n, ch in enumerate("tripper"):
+        for y, row in enumerate(TRIPPER_GLYPHS[ch]):
+            for x, c in enumerate(row):
+                dot = f'<circle cx="{(n * 6 + x) * 10 + 5}" cy="{y * 10 + 5}" r="3.8"/>'
+                (lit if c == "#" else off).append(dot)
+    return ('<svg class="gnav__logo" viewBox="0 0 410 90" aria-hidden="true" focusable="false">'
+            f'<g class="gnav__logo-off">{"".join(off)}</g><g>{"".join(lit)}</g></svg>')
+
+
+TRIPPER_LOGO = tripper_logo()
+
+# The menu words in the same dots: capitals on a 5 x 7 grid.
+MENU_GLYPHS = {
+    "A": [".###.", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"],
+    "G": [".###.", "#...#", "#....", "#.###", "#...#", "#...#", ".###."],
+    "I": [".###.", "..#..", "..#..", "..#..", "..#..", "..#..", ".###."],
+    "L": ["#....", "#....", "#....", "#....", "#....", "#....", "#####"],
+    "N": ["#...#", "##..#", "#.#.#", "#..##", "#...#", "#...#", "#...#"],
+    "P": ["####.", "#...#", "#...#", "####.", "#....", "#....", "#...."],
+    "R": ["####.", "#...#", "#...#", "####.", "#.#..", "#..#.", "#...#"],
+    "S": [".####", "#....", "#....", ".###.", "....#", "....#", "####."],
+    "T": ["#####", "..#..", "..#..", "..#..", "..#..", "..#..", "..#.."],
+    "U": ["#...#", "#...#", "#...#", "#...#", "#...#", "#...#", ".###."],
+    "▾": [".....", ".....", "#####", ".###.", "..#..", ".....", "....."],
+}
+
+
+def dot_word(word: str) -> str:
+    """A menu word in dots (svg in currentColor); the word itself stays for screen readers."""
+    lit, off = [], []
+    for n, ch in enumerate(word):
+        for y, row in enumerate(MENU_GLYPHS[ch]):
+            for x, c in enumerate(row):
+                dot = f'<circle cx="{(n * 6 + x) * 10 + 5}" cy="{y * 10 + 5}" r="3.8"/>'
+                (lit if c == "#" else off).append(dot)
+    w = len(word) * 60 - 10
+    text = word.rstrip("▾")
+    return (f'<svg class="gnav__dots" viewBox="0 0 {w} 70" style="width:{w / 70 * 1.0:.3f}em" aria-hidden="true" focusable="false">'
+            f'<g class="gnav__logo-off">{"".join(off)}</g><g>{"".join(lit)}</g></svg><span class="gnav__said">{text}</span>')
 
 
 def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> str:
@@ -451,12 +541,12 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
         <a class="gnav__home" href="{prefix}/" aria-label="tripper">{TRIPPER_LOGO}</a>
         <nav class="gnav__links" aria-label="{E(t['nav_label'])}">
           <div class="gnav__menu" data-menu>
-            <button type="button" class="gnav__menu-key" aria-expanded="false" aria-controls="menu-plugins"{plugins_on}>PLUGINS<span aria-hidden="true">▾</span></button>
+            <button type="button" class="gnav__menu-key" aria-expanded="false" aria-controls="menu-plugins"{plugins_on}>{dot_word("PLUGINS▾")}</button>
             <div class="gnav__drop" id="menu-plugins" hidden>
               <a href="{prefix}/flipper/"{here if current == 'flipper' else ''}><b>flipper<i>.</i></b></a>
             </div>
           </div>
-          <a href="{prefix}/artist/"{here if current == 'artist' else ''}>ARTIST</a>
+          <a href="{prefix}/artist/"{here if current == 'artist' else ''}>{dot_word("ARTIST")}</a>
         </nav>{theme_keys}
         <div class="gnav__lang" aria-label="{E(t['lang_label'])}">
           <a href="{ko_href}" lang="ko" hreflang="ko"{' aria-current="true"' if lang == 'ko' else ''}>한</a>

@@ -138,7 +138,7 @@
   }
 
   .gnav__links {
-    gap: 12px;
+    gap: 10px;
     letter-spacing: 0.06em;
   }
 
@@ -153,11 +153,38 @@
 }
 
 /* the name in the top bar (the tripper logo is still being picked) */
-.gnav__word {
-  font-family: var(--gnav-font);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+/* the tripper logo: lit dots in the bar's ink, the unlit ones faint behind them */
+.gnav__logo {
+  display: block;
+  width: auto;
+  height: 22px;
+  fill: currentColor;
+}
+
+.gnav__logo-off {
+  opacity: 0.13;
+}
+
+/* PLUGINS and ARTIST in the logo's dots: 7 rows, 13 px tall */
+.gnav__dots {
+  display: block;
+  height: 13px;
+  font-size: 13px;
+  fill: currentColor;
+}
+
+.gnav__said {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.gnav__links a,
+.gnav__menu-key {
+  padding-bottom: 4px;
 }
 
 /* PLUGINS opens a small list of the plug-ins (flipper now, more later) */
@@ -179,14 +206,6 @@
   cursor: pointer;
 }
 
-.gnav__menu-key span {
-  font-size: 9px;
-  transition: transform 150ms ease;
-}
-
-.gnav__menu-key[aria-expanded="true"] span {
-  transform: rotate(180deg);
-}
 
 .gnav__menu-key:hover,
 .gnav__menu-key[data-current="true"] {
@@ -269,4 +288,36 @@
 .gnav button:focus-visible {
   outline: 3px solid #dc2626;
   outline-offset: 3px;
+}
+
+/* the dot logo and menu words, smaller on a phone */
+@media (max-width: 560px) {
+  .gnav__logo {
+    height: 17px;
+  }
+
+  .gnav__inner,
+  .gnav__links {
+    gap: 8px;
+  }
+
+  .gnav__dots {
+    height: 10px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .gnav__logo {
+    height: 14px;
+  }
+
+  .gnav__dots {
+    height: 9px;
+    font-size: 9px;
+  }
+
+  .gnav__theme button {
+    padding: 4px 5px;
+  }
 }

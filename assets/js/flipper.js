@@ -29,6 +29,16 @@
       engines.dataset.skin = tab.dataset.skin;
       if (focus) tab.focus();
     };
+    // day / night for the engine pictures only; it starts from the page's look and follows the page's button
+    const looks = [...engines.querySelectorAll('[data-look-set]')];
+    const look = (name) => {
+      engines.dataset.look = name;
+      looks.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lookSet === name)));
+    };
+    looks.forEach((b) => b.addEventListener('click', () => look(b.dataset.lookSet)));
+    look(document.documentElement.dataset.theme === 'night' ? 'night' : 'day');
+    new MutationObserver(() => look(document.documentElement.dataset.theme === 'night' ? 'night' : 'day'))
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
     tabs.forEach((tab, i) => {
       tab.tabIndex = i === 0 ? 0 : -1;
       tab.addEventListener('click', () => pick(tab, false));
