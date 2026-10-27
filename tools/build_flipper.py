@@ -71,8 +71,8 @@ T = {
         "engines": [
             ("clean", "clean", "샘플 그대로. 늘여도 맑게.", "CLEAN · THE SAMPLE AS IT IS", ""),
             ("black", "black", "80년대 후반의 전설적인 샘플러. 거칠고 묵직하게.", "BLACK · 12-BIT · 26 kHz",
-             "회로도를 따라 만들었어요. 12비트로 담는 방식, 샘플을 건너뛰고 되풀이하는 음정, 출력마다 다른 필터, 움직이는 필터까지. "
-             "아직 추정인 곳은 움직이는 필터가 머무는 시간과 담을 때의 레벨이에요."),
+             "회로도대로 만들었어요. 12비트로 담는 방식, 샘플을 건너뛰고 되풀이하는 음정, 출력마다 다른 필터, 움직이는 필터까지. "
+             "움직이는 필터는 실제 기계의 녹음과 비교해 맞췄어요."),
             ("grey", "grey", "80년대 후반의 또 다른 전설적인 샘플러. 단단하고 따뜻하게.", "GREY · 12-BIT · 40 kHz",
              "공개된 자료가 적어서 추정한 곳이 있어요: 12비트로 담는 방식, 음정을 바꾸는 방식, 출력 필터의 모양, 잡음 크기. "
              "실제 기계 녹음으로 맞춰 갈 거예요."),
@@ -174,8 +174,8 @@ T = {
         "engines": [
             ("clean", "clean", "The sample as it is. Clear however far you stretch it.", "CLEAN · THE SAMPLE AS IT IS", ""),
             ("black", "black", "The legendary late-80s sampler. Gritty and heavy.", "BLACK · 12-BIT · 26 kHz",
-             "Built from the schematics: how it stores 12 bits, pitch by skipping and repeating samples, a different filter "
-             "on each output, and the moving filter. Still estimated: how long the moving filter holds, and the recording level."),
+             "Built to the schematics: how it stores 12 bits, pitch by skipping and repeating samples, a different filter "
+             "on each output, and the moving filter, which was checked against recordings of a real unit."),
             ("grey", "grey", "The other legendary late-80s sampler. Tight and warm.", "GREY · 12-BIT · 40 kHz",
              "Little is published about it, so these are estimates: its 12-bit storage, how it changes pitch, the output "
              "filter's shape and the noise level. Recordings of a real unit will tune them."),
