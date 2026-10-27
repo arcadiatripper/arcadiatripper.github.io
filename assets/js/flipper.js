@@ -17,8 +17,7 @@
   }
 
   // Engines: the tabs pick a panel, and the band wears that engine's skin.
-  const engines = document.querySelector('[data-engines]');
-  if (engines) {
+  document.querySelectorAll('[data-engines]').forEach((engines) => {
     const tabs = [...engines.querySelectorAll('[role="tab"]')];
     const pick = (tab, focus) => {
       tabs.forEach((other) => {
@@ -42,11 +41,48 @@
         event.preventDefault();
       });
     });
-  }
+  });
+
+  // Features: arrows and dots turn the slides; swiping or scrolling the track works too.
+  document.querySelectorAll('[data-slides]').forEach((box) => {
+    const track = box.querySelector('[data-slides-track]');
+    const slides = [...track.children];
+    const dots = [...box.querySelectorAll('[data-slide-to]')];
+    const prev = box.querySelector('[data-slides-prev]');
+    const next = box.querySelector('[data-slides-next]');
+    let current = 0;
+
+    const mark = (index) => {
+      current = index;
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
+      prev.disabled = index === 0;
+      next.disabled = index === slides.length - 1;
+    };
+    const go = (index) => {
+      const target = Math.max(0, Math.min(slides.length - 1, index));
+      track.scrollTo({ left: slides[target].offsetLeft, behavior: reducedMotion ? 'auto' : 'smooth' });
+      mark(target);
+    };
+
+    prev.addEventListener('click', () => go(current - 1));
+    next.addEventListener('click', () => go(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => go(i)));
+    track.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') go(current + 1);
+      else if (event.key === 'ArrowLeft') go(current - 1);
+      else return;
+      event.preventDefault();
+    });
+    let settle = 0;
+    track.addEventListener('scroll', () => {
+      clearTimeout(settle);
+      settle = setTimeout(() => mark(Math.round(track.scrollLeft / track.clientWidth)), 80);
+    });
+    mark(0);
+  });
 
   // Key and tempo: in repitch, a key change of st semitones moves the tempo by 2^(st/12).
-  const tempo = document.querySelector('[data-tempo]');
-  if (tempo) {
+  document.querySelectorAll('[data-tempo]').forEach((tempo) => {
     const bpm = tempo.querySelector('[data-tempo-bpm]');
     const key = tempo.querySelector('[data-tempo-key]');
     const keyOut = tempo.querySelector('[data-tempo-key-out]');
@@ -80,5 +116,5 @@
 
     [bpm, key, target].forEach((input) => input.addEventListener('input', update));
     update();
-  }
+  });
 })();
