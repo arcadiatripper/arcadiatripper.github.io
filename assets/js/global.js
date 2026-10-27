@@ -37,3 +37,52 @@
     });
   });
 })();
+
+(() => {
+  // PLUGINS: a click opens the list; a click elsewhere or Escape closes it.
+  document.querySelectorAll('[data-menu]').forEach((menu) => {
+    const key = menu.querySelector('button');
+    const list = menu.querySelector('.gnav__drop');
+    const set = (open) => {
+      key.setAttribute('aria-expanded', String(open));
+      list.hidden = !open;
+    };
+    key.addEventListener('click', (event) => {
+      event.stopPropagation();
+      set(list.hidden);
+    });
+    document.addEventListener('click', (event) => {
+      if (!menu.contains(event.target)) set(false);
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !list.hidden) {
+        set(false);
+        key.focus();
+      }
+    });
+  });
+})();
+
+(() => {
+  // Day / night: the page opens in day; the pick is kept for the next visit.
+  const keys = document.querySelectorAll('[data-theme-set]');
+  if (!keys.length) return;
+  const root = document.documentElement;
+  const show = () => {
+    const night = root.dataset.theme === 'night';
+    keys.forEach((key) => key.setAttribute('aria-pressed', String((key.dataset.themeSet === 'night') === night)));
+  };
+  keys.forEach((key) => {
+    key.addEventListener('click', () => {
+      if (key.dataset.themeSet === 'night') root.dataset.theme = 'night';
+      else delete root.dataset.theme;
+      try {
+        localStorage.setItem('theme', key.dataset.themeSet);
+      } catch (error) {
+        // nothing to keep
+      }
+      show();
+    });
+  });
+  show();
+})();

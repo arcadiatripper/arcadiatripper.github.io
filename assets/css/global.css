@@ -23,7 +23,7 @@
   margin: 0 auto;
   padding: 0 26px;
   align-items: center;
-  gap: 28px;
+  gap: 24px;
 }
 
 .gnav a {
@@ -133,11 +133,145 @@
     gap: 16px;
   }
 
-  .gnav__home span {
-    display: none;
+  .gnav__inner {
+    gap: 12px;
   }
 
   .gnav__links {
-    gap: 16px;
+    gap: 12px;
+    letter-spacing: 0.06em;
   }
+
+  .gnav__lang {
+    gap: 4px;
+  }
+
+  .gnav__theme button {
+    min-width: 0;
+    padding: 4px 7px;
+  }
+}
+
+/* the tripper logo (an inline SVG in currentColor) */
+.gnav__home svg {
+  display: block;
+  width: auto;
+  height: 26px;
+}
+
+/* PLUGINS opens a small list of the plug-ins (flipper now, more later) */
+.gnav__menu {
+  position: relative;
+}
+
+.gnav__menu-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.gnav__menu-key span {
+  font-size: 9px;
+  transition: transform 150ms ease;
+}
+
+.gnav__menu-key[aria-expanded="true"] span {
+  transform: rotate(180deg);
+}
+
+.gnav__menu-key:hover,
+.gnav__menu-key[data-current="true"] {
+  border-bottom-color: currentColor;
+}
+
+.gnav__drop {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -14px;
+  display: grid;
+  min-width: 200px;
+  padding: 6px;
+  border: 1px solid var(--gnav-line);
+  border-radius: 12px;
+  background: var(--gnav-drop-bg, #fffdf7);
+  box-shadow: 0 12px 30px -12px rgb(0 0 0 / 30%);
+}
+
+.gnav__drop[hidden] {
+  display: none;
+}
+
+.gnav__drop a {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  letter-spacing: 0;
+}
+
+.gnav__drop a:hover,
+.gnav__drop a[aria-current="page"] {
+  background: var(--gnav-drop-hover, rgb(0 0 0 / 6%));
+}
+
+.gnav__drop b {
+  font-family: "flipper ui", system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.gnav__drop b i {
+  color: #ff4b3e;
+  font-style: normal;
+}
+
+.gnav__drop span {
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+/* day / night, on pages that have a night look */
+.gnav__theme {
+  display: flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 7%);
+  font-family: var(--gnav-font);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.gnav__theme button {
+  min-width: 34px;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.gnav__theme button[aria-pressed="true"] {
+  background: var(--gnav-drop-bg, #fffdf7);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 18%);
+  opacity: 1;
+}
+
+.gnav button:focus-visible {
+  outline: 3px solid #dc2626;
+  outline-offset: 3px;
 }

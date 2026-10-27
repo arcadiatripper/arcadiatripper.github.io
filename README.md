@@ -14,7 +14,8 @@
 - `/`, `/flipper/`, `/artist/`는 언어가 없는 짧은 주소입니다. 맨 위 막대에서 마지막으로 고른 언어, 없으면 브라우저 언어(한국어면 `/ko/`, 아니면 `/en/`)로 바로 넘겨 줍니다.
 - 예전 첫 화면의 `#discography` 같은 주소는 `/`가 `/ko/artist/#discography`(또는 영어)로 넘겨 줍니다.
 - 맨 위 막대(`assets/css/global.css`, `assets/js/global.js`)는 모든 페이지에서 같은 자리, 같은 말을 씁니다.
-- flipper 페이지 네 개와 짧은 주소 페이지 세 개는 `tools/build_flipper.py`가 한 틀과 한국어 · 영어 문구로 만듭니다. 문구를 바꾸면 `python3 tools/build_flipper.py`를 다시 돌리고 결과를 커밋합니다. 베타 공개 날에는 그 파일의 `RELEASED`를 `True`로, 소개 영상이 나오면 `VIDEO_ID`를 채웁니다.
+- flipper 페이지 네 개와 짧은 주소 페이지 세 개는 `tools/build_flipper.py`가 한 틀과 한국어 · 영어 문구로 만듭니다. 문구를 바꾸면 `python3 tools/build_flipper.py`를 다시 돌리고 결과를 커밋합니다. 베타 공개 날에는 그 파일의 `RELEASED`를 `True`로, 소개 영상이 나오면 `VIDEO_ID`를 채웁니다. 첫 화면 뒤에 도는 녹화는 `assets/video/flipper/hero_ko.{webm,mp4,webp}`(영어는 `hero_en`)에 두면 쓰이고, 없으면 샘플러 스크린샷이 나옵니다.
+- 페이지는 늘 낮 화면으로 열리고, 맨 위 낮/밤 버튼으로 바꿉니다(고른 것은 다음 방문에도 남음). 맨 위 막대(로고, PLUGINS ▾, ARTIST, 한/EN)는 아티스트 페이지까지 이 스크립트가 같이 고쳐 씁니다.
 - flipper 화면 그림(`assets/images/flipper/`)은 flipper 저장소의 `flipper_snapshot`으로 뽑습니다. 글꼴(`assets/fonts/flipper-ui/`)은 플러그인의 "flipper ui"(Fredoka + 나눔스퀘어라운드)와 스킨 글꼴을 웹용으로 줄인 것이며 SIL OFL 1.1입니다.
 - flipper 코드 저장소에서는 GitHub Pages를 켜지 않습니다. 켜면 그 저장소가 `arcadiatripper.com/flipper` 주소를 차지합니다.
 
