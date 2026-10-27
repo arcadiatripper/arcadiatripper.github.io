@@ -35,7 +35,11 @@
       engines.dataset.look = name;
       looks.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lookSet === name)));
     };
-    looks.forEach((b) => b.addEventListener('click', () => look(b.dataset.lookSet)));
+    looks.forEach((b) => b.addEventListener('click', () => {
+      document.documentElement.classList.add('theme-switching');
+      look(b.dataset.lookSet);
+      requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.remove('theme-switching')));
+    }));
     look(document.documentElement.dataset.theme === 'night' ? 'night' : 'day');
     new MutationObserver(() => look(document.documentElement.dataset.theme === 'night' ? 'night' : 'day'))
       .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });

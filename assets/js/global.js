@@ -72,8 +72,22 @@
     const night = root.dataset.theme === 'night';
     keys.forEach((key) => key.setAttribute('aria-pressed', String((key.dataset.themeSet === 'night') === night)));
   };
+  // the switch is instant: no colour fades while it happens
+  const still = () => {
+    root.classList.add('theme-switching');
+    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('theme-switching')));
+  };
+  // the other look's pictures load once the page is in, so a switch never waits for them
+  const warm = () => document.querySelectorAll('img.shot--day, img.shot--night').forEach((img) => {
+    img.loading = 'eager';
+    if (img.decode) img.decode().catch(() => {});
+  });
+  if (document.readyState === 'complete') setTimeout(warm, 300);
+  else window.addEventListener('load', () => setTimeout(warm, 300));
   keys.forEach((key) => {
+    key.addEventListener('pointerenter', warm, { once: true });
     key.addEventListener('click', () => {
+      still();
       if (key.dataset.themeSet === 'night') root.dataset.theme = 'night';
       else delete root.dataset.theme;
       try {

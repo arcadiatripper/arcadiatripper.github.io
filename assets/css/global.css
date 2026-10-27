@@ -321,3 +321,10 @@
     padding: 4px 5px;
   }
 }
+
+/* day / night switches at once */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
