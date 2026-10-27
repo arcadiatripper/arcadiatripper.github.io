@@ -74,11 +74,10 @@ T = {
              "회로도대로 만들었어요. 12비트로 담는 방식, 샘플을 건너뛰고 되풀이하는 음정, 출력마다 다른 필터, 움직이는 필터까지. "
              "움직이는 필터는 실제 기계의 녹음과 비교해 맞췄어요."),
             ("grey", "grey", "80년대 후반의 또 다른 전설적인 샘플러. 단단하고 따뜻하게.", "GREY · 12-BIT · 40 kHz",
-             "공개된 자료가 적어서 추정한 곳이 있어요: 12비트로 담는 방식, 음정을 바꾸는 방식, 출력 필터의 모양, 잡음 크기. "
-             "실제 기계 녹음으로 맞춰 갈 거예요."),
+             "공개된 자료가 적어서 추정한 곳이 있어요: 12비트로 담는 방식, 음정을 바꾸는 방식, 출력 필터의 모양, 잡음 크기."),
             ("purple", "purple", "90년대 초 게임기의 소리 칩. 동글고 먹먹하게.", "PURPLE · 4-BIT · 32 kHz",
              "칩의 계산(BRR 디코딩, 가우스 보간, 32,040 Hz)은 오픈소스 에뮬레이터 ares와 7,300가지 경우를 비교해 비트 하나까지 같아요. "
-             "보드의 필터는 회로도대로예요. 추정은 샘플을 칩의 형식으로 바꾸는 인코더 하나예요."),
+             "보드의 필터는 회로도대로예요."),
         ],
         "engines_tab_label": "엔진 고르기",
         "tempo_title": "키를 내리면, 템포를 알려줘요",
@@ -178,11 +177,10 @@ T = {
              "on each output, and the moving filter, which was checked against recordings of a real unit."),
             ("grey", "grey", "The other legendary late-80s sampler. Tight and warm.", "GREY · 12-BIT · 40 kHz",
              "Little is published about it, so these are estimates: its 12-bit storage, how it changes pitch, the output "
-             "filter's shape and the noise level. Recordings of a real unit will tune them."),
+             "filter's shape and the noise level."),
             ("purple", "purple", "An early-90s console's sound chip. Round and hazy.", "PURPLE · 4-BIT · 32 kHz",
              "The chip's maths (BRR decoding, gaussian interpolation, 32,040 Hz) matches the open-source emulator ares bit for "
-             "bit, across 7,300 test cases. The board's filter follows the schematic. The one estimate: the encoder that turns "
-             "a sample into the chip's format."),
+             "bit, across 7,300 test cases. The board's filter follows the schematic."),
         ],
         "engines_tab_label": "Pick an engine",
         "tempo_title": "Pitch it down, it tells you the tempo",
@@ -351,221 +349,267 @@ def engines_block(lang: str, t: dict) -> str:
           {''.join(panels)}"""
 
 
-# The long read: each part of the plug-in, what it does and why it is that way. Every claim here is in the plug-in's
-# design notes (flipper docs/DESIGN.md, DRUM.md, DECK.md, RECORDING.md); the quotes are 레네's own words from them.
+# The long read: each part of the plug-in, a picture and its features as cards to turn. Every claim here is in the
+# plug-in's design notes (flipper docs/DESIGN.md, DRUM.md, DECK.md, RECORDING.md, third_party/airwindows/README.md).
 DEEP = {
     "ko": {
         "title": "하나하나, 직접 다듬었어요",
-        "lead": "요즘 나오는 샘플러를 따라 만든 게 아니에요. 비트를 만들면서 걸리던 것들을 하나씩 정해서 만들었어요. "
-                "아래는 그 결정들이에요.",
-        "quote_by": "만든 사람의 메모",
+        "lead": "요즘 나오는 샘플러를 따라 만든 게 아니에요. 비트를 만들면서 걸리던 것들을 하나씩 정해서 만들었어요.",
+        "prev": "이전 카드", "next": "다음 카드",
         "parts": [
             {
-                "key": "chop", "shot": "feature_lazy",
-                "title": "자르기",
+                "key": "chop", "shot": "feature_lazy", "title": "자르기",
                 "lead": "샘플 한 부분을 잘라 새 소리처럼 들리게 하는 것. flipper가 가장 잘하려는 일이에요.",
-                "points": [
-                    "네 가지 방법: 타격 찾기(감도를 움직이면 바로 다시 잘림), 박자(1/16부터 한 마디), 레이지 찹, 주사위.",
-                    "레이지 찹: 재생하면서 패드든 건반이든 치면 그 자리에서 잘려요. 박보다 조금 일찍 쳐도 80 ms 앞부터 60 ms 뒤까지의 "
-                    "타격을 찾아 붙여서, 실제 드럼 루프에서 탭의 90–100 %가 제자리에 붙어요.",
-                    "불 켜진 패드 방식: 다음 조각의 패드만 불이 들어오고, 그 패드를 눌러야 잘려요. 옛 기계처럼.",
-                    "주사위: 굴릴 때마다 새 찹. 끌어서 혼돈을 0–100 %로 정해요. 0 %는 뚜렷한 타격만 고르게, 100 %는 완전히 마음대로.",
-                    "건너뛰기: 카운트인이나 숨소리는 지우지 않고 빼 둬요. 파일은 그대로고, 언제든 되돌릴 수 있어요.",
-                    "최대 64조각. 조각마다 설정은 다섯 개뿐이에요: 음높이, 리버스, 볼륨, 페이드 인, 페이드 아웃.",
+                "cards": [
+                    ("타격 찾기", "샘플을 열 때 타격을 한 번 찾아 두고, 감도를 움직이면 다시 분석하지 않고 바로 다시 잘라요. 새 샘플은 50 %로 잘려서 들어와요."),
+                    ("박자", "1/16, 1/8, 1/4, 1/2, 한 마디마다. 샘플의 템포를 따라요."),
+                    ("레이지 찹", "재생하면서 패드든 건반이든 치면 그 자리에서 잘려요. 1번 조각은 시작에서 바로 시작해요. 전체가 되돌리기 한 번이에요."),
+                    ("일찍 쳐도 제자리", "탭보다 80 ms 앞부터 60 ms 뒤까지의 타격을 찾아 붙여요. 실제 드럼 루프에서 탭의 90–100 %가 제 타격에 붙어요."),
+                    ("불 켜진 패드", "다음 조각의 패드만 불이 들어오고, 그 패드를 눌러야 잘려요. 옛 기계처럼 치고 싶을 때."),
+                    ("주사위", "굴릴 때마다 새 찹이에요. 잠근 마커와 건너뛴 부분은 그대로 두고 나머지만 새로 잘라요."),
+                    ("혼돈", "주사위를 끌어서 0–100 %. 0 %는 뚜렷한 타격만 고르게, 50 %부터는 아무 데나 섞이고, 100 %는 완전히 마음대로예요. 주사위 눈이 혼돈을 보여줘요."),
+                    ("손으로", "더블클릭으로 마커를 더하고(가까운 타격에 붙음), 끌어서 옮기고, 드래그로 여러 개를 골라 지워요. alt를 누르면 붙지 않아요."),
+                    ("잠금", "잠근 마커는 다시 잘라도 그 자리에 남아요."),
+                    ("건너뛰기", "카운트인이나 숨소리는 지우지 않고 빼 둬요. 뒤 조각이 한 칸씩 당겨지고, 파일은 그대로라 언제든 되돌려요."),
+                    ("시작과 끝", "조각마다 시작과 끝을 ms로 밀고 당겨요. 0은 언제나 '자른 그대로'. 자석을 켜면 10 ms 안의 0 교차점에 붙어요."),
+                    ("다섯 가지만", "최대 64조각. 조각마다 설정은 음높이, 리버스, 볼륨, 페이드 인, 페이드 아웃뿐이에요. 페이드는 0에서 시작해요."),
+                    ("클릭 없이", "모든 소리의 시작과 끝에 0.1 ms 가장자리를 둬서, 파형 중간을 잘라도 '틱' 소리가 나지 않아요."),
                 ],
-                "quote": "레이지찹 기능이 있는 샘플러가 없어서 이걸 만들고 있는 거기도 하거든.",
             },
             {
-                "key": "keys", "shot": "feature_repitch",
-                "title": "키와 템포",
+                "key": "keys", "shot": "feature_repitch", "title": "키와 템포", "tempo": True,
                 "lead": "키와 속도는 패드마다가 아니라 샘플 하나에 있어요. 샘플 하나를 통째로 다른 곡처럼 만들기 위해서예요.",
-                "points": [
-                    "리피치: 옛 샘플러처럼 키를 내리면 느려지고 어두워져요. 디지털 잡음이 생기지 않아요.",
-                    "템포 유지: 템포는 그대로 두고 키만 바꿔요. 소리는 미리 구워 두고, 굽는 동안에도 바로 들려요.",
-                    "키를 내리면 몇 BPM이 되는지 알려주고, 반대로 원하는 BPM을 치면 몇 반음 몇 센트를 내리면 되는지 알려줘요. "
-                    "메트로놈에 귀로 맞추던 계산이에요.",
-                    "DAW 템포 키 하나로 지금 곡의 템포에 맞춰요.",
-                    "키 칩: 샘플의 키와, 지금 키 노브로 들리는 키를 같이 보여줘요(예: Am → Gm).",
+                "cards": [
+                    ("리피치", "옛 샘플러처럼 키를 내리면 느려지고 어두워져요. 늘이기를 하지 않아서 디지털 잡음이 없어요."),
+                    ("템포 유지", "템포는 그대로 두고 키만. 소리는 미리 구워 두고, 굽는 동안에도 바로 들려요."),
+                    ("템포 계산", "키를 내리면 몇 BPM이 되는지 보여줘요. 원하는 BPM을 치면 몇 반음 몇 센트를 내리면 되는지 알려줘요."),
+                    ("DAW 템포", "키 하나로 지금 곡의 템포에 맞춰요. 리피치에선 키를, 템포 유지에선 속도를 맞춰요."),
+                    ("키 칩", "샘플의 키와, 지금 키 노브로 들리는 키를 같이 보여줘요. 예: Am → Gm. 튜닝이 몇 센트 어긋났는지도요."),
+                    ("또렷하게", "템포 유지로 늘릴 때 타격과 타격 사이를 따로 늘리고, 타격의 앞부분은 원래 소리를 남겨요. 비트에 켜고, 멜로디엔 꺼요."),
+                    ("루프와 원샷", "샘플마다 루프(템포 있음)인지 원샷인지. 파일 이름과 길이로 먼저 짐작하고, 바꿀 수 있어요."),
                 ],
-                "tempo": True,
-                "quote": "",
             },
             {
-                "key": "play", "shot": "feature_melody",
-                "title": "연주",
+                "key": "play", "shot": "feature_melody", "title": "연주",
                 "lead": "샘플러는 덱 하나처럼 움직여요. 패드마다 따로 놀지 않아요.",
-                "points": [
-                    "패드 16개나 32개, 페이지를 넘겨 64조각까지. 패드 1번이 C3이에요.",
-                    "모노(기본): 새 패드가 앞 소리를 5 ms 만에 끊어요. 덱 하나로 찹을 연주하듯이. 폴리: 소리가 겹쳐요.",
-                    "누르는 동안 / 슬라이스 전체: 누른 만큼만, 또는 다음 마커까지 끝까지. 어느 쪽이든 조각은 자기 끝에서 멈춰요.",
-                    "멜로디: 한 조각을 건반에 깔아요. 반음씩, 또는 스케일 여덟 가지(장조, 단조, 도리안, 프리지안, 믹솔리디안, "
-                    "화성 단조, 장 · 단 펜타토닉). 흰 건반 배치를 고르면 어느 스케일이든 C장조처럼 쳐요.",
-                    "원키는 C3에 묶여 있지 않아요. 옮기거나, 건반을 오른쪽 클릭해 그 건반을 원키로.",
+                "cards": [
+                    ("패드", "16개나 32개, 페이지를 넘겨 64조각까지. 패드 1번이 C3이에요."),
+                    ("모노", "기본이에요. 새 패드가 앞 소리를 5 ms 만에 끊어요. 덱 하나로 찹을 연주하듯이."),
+                    ("폴리", "소리가 겹쳐요. 멜로디에서 화음을 칠 때."),
+                    ("누르는 동안", "누른 만큼만 울려요. 조각은 자기 끝에서 멈춰요."),
+                    ("슬라이스 전체", "한 번 치면 다음 마커까지 끝까지 울려요."),
+                    ("멜로디", "한 조각을 건반에 깔아요. 반음씩, 또는 장조, 단조, 도리안, 프리지안, 믹솔리디안, 화성 단조, 장 · 단 펜타토닉."),
+                    ("흰 건반 배치", "고르면 어느 스케일이든 C장조처럼 흰 건반으로 쳐요. 패드 컨트롤러엔 '모든 건반'."),
+                    ("원키", "C3에 묶여 있지 않아요. ‹ ›로 옮기거나, 건반을 오른쪽 클릭하면 그 건반이 원키예요."),
+                    ("128건반", "화면 건반은 MIDI 음 전부. 휠로 넘기고, 확대하고, 누르면 진짜 MIDI 음을 보내요."),
+                    ("서스테인", "멜로디에서 서스테인 페달이 돼요."),
+                    ("패닉", "머리줄 키나 MIDI CC 120 · 123으로 모든 소리를 5 ms 만에 꺼요."),
                 ],
-                "quote": "키보드 연주할 때 온음계가 편하거든.",
             },
             {
-                "key": "sample", "shot": "feature_channels",
-                "title": "샘플 담기",
-                "lead": "샘플은 파일을 끌어 놓거나, DAW의 소리를 바로 녹음해서 들어와요.",
-                "points": [
-                    "녹음: 다른 트랙(사이드체인)이나 flipper 자신의 출력(리샘플). 바로 또는 다음 마디부터, 멈출 때까지 또는 1 · 2 · 4 · 8마디.",
-                    "채널 고르기: 스테레오, 왼쪽, 오른쪽, 가운데, 양옆. 가운데를 고르면 가운데에 있는 소리가, 양옆을 고르면 넓게 퍼진 소리가 남아요.",
-                    "전체 샘플 게인: 엔진 뒤, fx 앞에서 샘플 하나의 크기를 맞춰요. 노멀라이즈도 여기로.",
-                    "어느 나라 말의 파일 이름이든 열려요.",
+                "key": "sample", "shot": "feature_channels", "title": "샘플 담기",
+                "lead": "파일을 끌어 놓거나, DAW의 소리를 바로 녹음해서 샘플로 써요.",
+                "cards": [
+                    ("녹음", "다른 트랙(사이드체인)이나 flipper 자신의 출력(리샘플)을 받아 새 샘플로."),
+                    ("언제, 얼마나", "바로 또는 다음 마디 첫 박부터. 멈출 때까지 또는 1 · 2 · 4 · 8마디(DAW 템포 기준)."),
+                    ("채널 고르기", "스테레오, 왼쪽, 오른쪽, 가운데, 양옆. 가운데 = (L+R)/2, 양옆 = (L−R)/2. 원래보다 커지지 않아요."),
+                    ("전체 샘플 게인", "엔진 뒤, fx 앞에서 샘플 하나의 크기를 맞춰요. 노멀라이즈도 여기로."),
+                    ("어떤 파일 이름이든", "어느 나라 말의 파일 이름이든 열려요."),
                 ],
-                "quote": "",
             },
             {
-                "key": "deck", "shot": "feature_fx",
-                "title": "fx와 턴테이블",
-                "lead": "fx 화면에는 이펙트 랙과, 자른 구간을 판처럼 돌리는 턴테이블이 있어요.",
-                "points": [
-                    "랙 열 칸: 필터, 펀치, 디스토트, 크러시, 테이프, 코러스, 노이즈, 에코, 스페이스, 전체. 처음엔 다 꺼져 있고, "
-                    "노브를 올리면 켜져요. 꺼진 칸은 CPU를 쓰지 않아요.",
-                    "에코와 흔들림은 DAW의 박을 따라가서, 바운스해도 들은 그대로예요.",
-                    "fx 패드: 누르는 동안만 걸리는 효과.",
-                    "판: 33⅓ rpm. 마우스나 컨트롤러로 잡아서 긁어요. 손 움직임은 부드럽게 이어져서, 바늘이 튀지 않아요.",
-                    "스크래치 패턴: 베이비, 처프, 트랜스, 플레어 등. 건반 16개로 조각을 골라 긁고, 세게 칠수록 멀리 밀어요.",
-                    "곡 따라 돌기: DAW를 재생하면 판도 큐부터 곡에 맞춰 돌아요.",
+                "key": "rack", "shot": "feature_fx", "title": "fx 랙",
+                "lead": "열 칸이 소리 순서대로 이어져요. 처음엔 다 꺼져 있고, 노브를 올리면 켜져요. 꺼진 칸은 CPU를 쓰지 않아요.",
+                "cards": [
+                    ("필터", "직접 만든 필터. LP · BP · HP, 12 또는 24 dB, 레조넌스. 깨끗하게 또는 살짝 찌그러지는 래더. 랙 맨 앞이나 맨 끝."),
+                    ("펀치", "노브 하나짜리 컴프레서. 직접 만들었고, 피드백과 클래식 두 가지예요."),
+                    ("디스토트", "다섯 가지: soft, tube, clip, fold, 그리고 직접 만든 fuzz. 2배 오버샘플로 돌아요."),
+                    ("크러시", "샘플레이트를 낮추고 비트를 깎아요. 계단처럼, 또는 부드럽게."),
+                    ("테이프", "테이프에 녹음한 듯한 노브 하나. '흔들림'은 테이프를 살아 있게 하는 작은 변화예요."),
+                    ("코러스", "앙상블 코러스. 빠르기, 폭, 섞기."),
+                    ("노이즈", "먼지, 히스, 크래클. 샘플이 울리는 동안만 나서, 조용한 곳에 잡음이 남지 않아요."),
+                    ("에코", "테이프, 디지털(핑퐁 포함), 그레인. 시간은 박자(1/16–한 마디, 점 · 셋잇단)."),
+                    ("스페이스", "리버브 다섯 가지(작은 방부터 넓은 공간까지). 프리딜레이와 스테레오 폭."),
+                    ("전체", "랙 전체를 한 번에. 입력(클리퍼), 폭, 톤, 출력, fx 켜고 끄기."),
+                    ("fx 패드", "누르는 동안 걸리는 16개. 빨강 컷, 노랑 스터터, 청록 테이프(멈춤 · 뒤로 · 반속 · 거꾸로), 파랑 던지기(LP · HP · 에코 · 크러시)."),
+                    ("박자에 맞게", "fx 패드는 바로, 다음 1/16, 다음 박 중에 시작해요. 에코와 흔들림은 DAW의 박을 따라서, 바운스해도 들은 그대로예요."),
+                    ("어디서 왔나", "펀치, 필터, fuzz, 비트, 히스, 크래클, 디지털 · 그레인 에코는 직접 만들었어요. 나머지는 Airwindows(MIT) 모델이에요."),
                 ],
-                "quote": "",
             },
             {
-                "key": "drum", "shot": "feature_drum",
-                "title": "드럼",
+                "key": "deck", "shot": "feature_scratch", "title": "턴테이블",
+                "lead": "자른 구간을 판처럼 돌리고 긁어요. 지금 엔진의 소리 그대로예요.",
+                "cards": [
+                    ("판", "33⅓ rpm, 한 바퀴에 1.8초. 리피치, 템포 유지, 옛 기계 엔진 모두 자기 방식대로 읽어요."),
+                    ("손", "마우스나 컨트롤러로 잡아요. 손이 움직인 만큼만 판이 움직여서 바늘이 튀지 않고, 움직임은 부드럽게 이어져요."),
+                    ("슬립매트", "잡으면 몇 ms 안에 서고, 놓으면 25 ms 안에 판 속도를 따라잡아요."),
+                    ("모터", "▶ ■의 시작과 멈춤 시간. 바로, 또는 테이프처럼 천천히 서요."),
+                    ("페이더", "부드럽게(믹스용)부터 날카롭게(스크래치용)까지 곡선. 소리가 열리는 지점과 거꾸로도 골라요."),
+                    ("스크래치 패턴", "베이비, 처프, 트랜스, 플레어 등. 누르는 동안 판에 올린 조각을 그 패턴으로 긁어요."),
+                    ("16건반", "건반 16개가 조각 1–16을 골라 긁어요. 세게 칠수록 멀리 밀어요. 다음 16분음표에서 시작해요."),
+                    ("곡 따라 돌기", "DAW를 재생하면 판이 큐부터 곡에 맞춰 돌아요. 잠깐 떼어 놓아도 다시 곡 자리로 돌아와요."),
+                    ("컨트롤러", "끝없이 도는 노브는 조그, 스트립은 손 위치, 피치 휠은 밀고 당기기. MIDI 지정할 때 알아서 맞춰요."),
+                    ("오토메이션", "판, 손, 페이더가 DAW 파라미터라서, 긁은 것까지 바운스에 그대로 들어가요."),
+                ],
+            },
+            {
+                "key": "drum", "shot": "feature_drum", "title": "드럼",
                 "lead": "원샷 16개로 킷을 짜는 화면이에요. 샘플러와 같은 플러그인 안에 있어요.",
-                "points": [
-                    "셀마다 엔진(clean · grey · black · purple), 볼륨, 팬, 음높이 ±24, 페이드, 초크 그룹 1–4.",
-                    "출력 16개: 셀마다 DAW의 다른 트랙으로 보낼 수 있어요.",
-                    "에코와 스페이스는 셀마다 보내는 양만 정하고, 무거운 이펙트는 하나만 돌려요(CPU).",
-                    "MIDI 채널 10의 C1부터 셀 1–16. 샘플러 패드와 겹치지 않게 구역이 나뉘어 있어요.",
-                    "킷 파일(.flipkit)로 저장하고 다른 프로젝트에서 열어요. 파일 여러 개를 한 번에 끌어 놓으면 차례로 채워져요.",
+                "cards": [
+                    ("셀 16개", "파일을 끌어 놓으면 들어가요. 여러 개를 놓으면 그 셀부터 차례로 채워요."),
+                    ("셀마다 엔진", "clean, grey, black, purple을 셀마다 따로."),
+                    ("셀마다 조절", "볼륨, 팬, 음높이 ±24, 페이드 인 · 아웃. 모두 DAW 오토메이션이 돼요."),
+                    ("초크", "그룹 1–4. 같은 그룹을 치면 앞 소리가 멈춰요. 오픈 · 클로즈 하이햇처럼."),
+                    ("출력 16개", "셀마다 DAW의 다른 트랙으로 보내요. 1번은 fx 랙을 거쳐요."),
+                    ("에코 · 스페이스", "셀마다 보내는 양만 정하고, 무거운 이펙트는 하나만 돌려요(CPU)."),
+                    ("건반 구역", "셀은 C6부터, MIDI 채널 10이면 C1부터. 샘플러 패드와 겹치지 않게 나뉘어 있어요."),
+                    ("킷 파일", ".flipkit에 샘플과 설정을 함께. 다른 프로젝트에서 열면 킷만 들어와요."),
                 ],
-                "quote": "",
             },
             {
-                "key": "out", "shot": "feature_midi",
-                "title": "내보내기와 안전",
+                "key": "out", "shot": "feature_midi", "title": "내보내기와 안전",
                 "lead": "만든 것은 그대로 DAW로 가고, 갑자기 큰 소리는 나지 않게 했어요.",
-                "points": [
-                    "찹을 MIDI로: 루프가 각 조각에 닿는 순간 그대로 MIDI 클립을 만들어, DAW 트랙에 끌어 놓아요. 원래 그루브에서 시작해요.",
-                    "바운스 = 연주: 블록 크기 1부터 4096까지, 실시간이든 오프라인이든 같은 소리예요.",
-                    "MIDI 지정: 연주에 쓰는 컨트롤은 모두 MIDI로 지정할 수 있어요.",
-                    ".flip 파일 하나에 샘플과 찹, 설정이 다 들어가요.",
-                    "갑자기 큰 소리를 가장 심각한 버그로 다뤄요. 원인을 고치고 테스트로 막았어요. 평소 소리를 바꾸는 리미터는 넣지 않았고, "
-                    "맨 끝의 안전 리미터(세이프 · 빈티지 · 끔)는 고를 수 있어요.",
+                "cards": [
+                    ("찹을 MIDI로", "루프가 각 조각에 닿는 순간 그대로 MIDI 클립을 만들어 DAW 트랙에 끌어 놓아요. 원래 그루브에서 시작해요."),
+                    ("바운스 = 연주", "블록 크기 1부터 4096까지, 실시간이든 오프라인이든 같은 소리예요."),
+                    ("MIDI 지정", "연주에 쓰는 컨트롤은 모두 MIDI로 지정해요. 누르는 동안 / 눌러서 켜고 끄기도 골라요."),
+                    (".flip 파일", "샘플, 찹, 설정을 파일 하나에. 예전 판의 flip도 같은 소리로 열려요."),
+                    ("되돌리기", "노브 하나, 끌기 하나가 한 단계. 찹도 되돌려요."),
+                    ("큰 소리 규칙", "갑자기 큰 소리는 가장 심각한 버그로 다뤄요. 원인을 고치고 테스트로 막았어요."),
+                    ("안전 리미터", "평소 소리를 바꾸는 리미터는 없어요. 맨 끝의 안전 리미터(세이프 · 빈티지 · 끔)는 고를 수 있어요."),
+                    ("한국어 · 영어", "화면 전체가 두 언어예요. 낮과 밤, 엔진마다 스킨도 바뀌어요."),
                 ],
-                "quote": "",
             },
         ],
     },
     "en": {
         "title": "Shaped by hand, one decision at a time",
-        "lead": "flipper is not a copy of today's samplers. It was built by fixing, one at a time, the things that got in "
-                "the way of making beats. These are those decisions.",
-        "quote_by": "maker's note",
+        "lead": "flipper is not a copy of today's samplers. It was built by settling, one at a time, the things that got "
+                "in the way of making beats.",
+        "prev": "Previous card", "next": "Next card",
         "parts": [
             {
-                "key": "chop", "shot": "feature_lazy",
-                "title": "Chop",
+                "key": "chop", "shot": "feature_lazy", "title": "Chop",
                 "lead": "Take one part of a sample and chop it until it sounds new. This is what flipper tries to do best.",
-                "points": [
-                    "Four ways: hits (move the sensitivity and it re-chops at once), beats (1/16 to a bar), lazy chop and the die.",
-                    "Lazy chop: it plays, you tap a pad or any key, it cuts there. Tap a little early and it finds the hit "
-                    "from 80 ms before to 60 ms after; on real drum loops 90–100 % of taps land on their hit.",
-                    "Lit pad: only the next slice's pad lights up and cuts, as on the old machines.",
-                    "The die: a new chop on every roll. Drag to set the chaos, 0–100 %: 0 % picks only clear hits, evenly; "
-                    "100 % is pure chance.",
-                    "Skip: a count-in or a breath is left out, not cut out. The file is untouched and it can come back any time.",
-                    "Up to 64 slices, and only five settings each: pitch, reverse, level, fade in, fade out.",
+                "cards": [
+                    ("Hits", "The hits are found once when the sample opens; move the sensitivity and it re-chops at once. A new sample comes in chopped at 50 %."),
+                    ("Beats", "Every 1/16, 1/8, 1/4, 1/2 or bar, at the sample's tempo."),
+                    ("Lazy chop", "It plays; tap a pad or any key and it cuts there. Slice 1 starts at the start. The whole take is one undo."),
+                    ("Early taps land", "It finds the hit from 80 ms before your tap to 60 ms after. On real drum loops 90–100 % of taps land on their hit."),
+                    ("Lit pad", "Only the next slice's pad lights up and cuts, for playing it the old machines' way."),
+                    ("The die", "A new chop on every roll. Locked markers and skipped parts stay; the rest is chopped anew."),
+                    ("Chaos", "Drag the die, 0–100 %. 0 % picks only clear hits, evenly; past 50 % chance creeps in; 100 % is pure chance. The pips show it."),
+                    ("By hand", "Double-click to add a marker (it snaps to a nearby hit), drag to move, drag across to pick several and delete. Alt: no snap."),
+                    ("Lock", "A locked marker stays where it is through every re-chop."),
+                    ("Skip", "A count-in or a breath is left out, not cut out. The slices after it move up; the file is untouched, so it can come back any time."),
+                    ("Start and end", "Push and pull each slice's start and end in ms; 0 is always 'as chopped'. With the magnet on, they land on a zero crossing within 10 ms."),
+                    ("Only five", "Up to 64 slices, each with pitch, reverse, level, fade in and fade out. Nothing more. Fades start at 0."),
+                    ("No clicks", "Every sound starts and ends on a 0.1 ms edge, so cutting mid-wave never ticks."),
                 ],
-                "quote": "There was no sampler with a lazy chop. That's part of why I'm making this.",
             },
             {
-                "key": "keys", "shot": "feature_repitch",
-                "title": "Key and tempo",
+                "key": "keys", "shot": "feature_repitch", "title": "Key and tempo", "tempo": True,
                 "lead": "Key and speed belong to the whole sample, not to each pad, so one sample can become a different track.",
-                "points": [
-                    "Repitch: like the old samplers, pitch it down and it slows down and darkens. No digital artefacts.",
-                    "Keep tempo: the tempo stays and only the key moves. The sound is baked ahead, and you hear it at once while it bakes.",
-                    "Pitch it down and it tells you the tempo you land on. Type the BPM you want and it tells you the "
-                    "semitones and cents. The sum producers used to do by ear against a metronome.",
-                    "One DAW tempo key matches the song's tempo.",
-                    "The key chip shows the sample's key and the key it sounds in with the key knob (e.g. Am → Gm).",
+                "cards": [
+                    ("Repitch", "Like the old samplers: pitch it down and it slows down and darkens. No stretching, so no digital artefacts."),
+                    ("Keep tempo", "The tempo stays, only the key moves. The sound is baked ahead, and you hear it at once while it bakes."),
+                    ("Tempo maths", "Pitch it down and it shows the tempo you land on. Type the BPM you want and it gives the semitones and cents."),
+                    ("DAW tempo", "One key matches the song's tempo: the key in repitch, the speed in keep tempo."),
+                    ("Key chip", "The sample's key and the key it sounds in with the key knob, e.g. Am → Gm, and how many cents it is off tune."),
+                    ("Crisp", "Keep tempo stretches between the hits, each on its own, and keeps every hit's attack. On for beats, off for melodies."),
+                    ("Loop or one-shot", "Each sample is a loop (with a tempo) or a one-shot. The first guess comes from the file name and length; you can change it."),
                 ],
-                "tempo": True,
-                "quote": "",
             },
             {
-                "key": "play", "shot": "feature_melody",
-                "title": "Play",
+                "key": "play", "shot": "feature_melody", "title": "Play",
                 "lead": "The sampler moves like one deck. The pads don't each go their own way.",
-                "points": [
-                    "16 or 32 pads, with pages up to 64 slices. Pad 1 is C3.",
-                    "Mono (the default): a new pad cuts the last sound in 5 ms, like a chop played on one deck. Poly: sounds overlap.",
-                    "While held / whole slice: as long as you hold it, or on to the next marker. Either way a slice stops at its own end.",
-                    "Melody: one slice across the keys, by semitone or in one of eight scales (major, minor, dorian, "
-                    "phrygian, mixolydian, harmonic minor, major and minor pentatonic). With the white-keys layout, every scale plays like C major.",
-                    "The root isn't stuck on C3: move it, or right-click a key to make it the root.",
+                "cards": [
+                    ("Pads", "16 or 32, with pages up to 64 slices. Pad 1 is C3."),
+                    ("Mono", "The default: a new pad cuts the last sound in 5 ms, like a chop played on one deck."),
+                    ("Poly", "Sounds overlap, for chords in melody mode."),
+                    ("While held", "It sounds as long as you hold it, and stops at the slice's own end."),
+                    ("Whole slice", "One hit plays it through to the next marker."),
+                    ("Melody", "One slice across the keys: by semitone, or major, minor, dorian, phrygian, mixolydian, harmonic minor, major and minor pentatonic."),
+                    ("White keys", "Pick it and every scale plays like C major on the white keys. 'Every key' is for pad controllers."),
+                    ("Root", "Not stuck on C3: move it with ‹ ›, or right-click a key to make it the root."),
+                    ("128 keys", "The screen keyboard holds every MIDI note. Scroll, zoom, and a click sends the real note."),
+                    ("Sustain", "The sustain pedal works in melody mode."),
+                    ("Panic", "The header key, or MIDI CC 120 and 123, fades every sound out in 5 ms."),
                 ],
-                "quote": "A diatonic scale is easier when you play it on a keyboard.",
             },
             {
-                "key": "sample", "shot": "feature_channels",
-                "title": "Bring a sample in",
-                "lead": "Drop a file, or record the DAW's sound straight in.",
-                "points": [
-                    "Record: another track (side-chain) or flipper's own output (resample). Now or from the next bar; "
-                    "until you stop, or 1, 2, 4 or 8 bars.",
-                    "Channel select: stereo, left, right, mid or side. Mid keeps what sits in the centre, side keeps what is spread wide.",
-                    "Whole sample gain: one sample's level, after the engine and before the fx. Normalize sets it.",
-                    "File names in any language open.",
+                "key": "sample", "shot": "feature_channels", "title": "Bring a sample in",
+                "lead": "Drop a file, or record the DAW's sound straight in as a sample.",
+                "cards": [
+                    ("Record", "Another track (side-chain) or flipper's own output (resample) becomes the new sample."),
+                    ("When, how long", "Now, or from the next bar's first beat. Until you stop, or 1, 2, 4 or 8 bars at the DAW's tempo."),
+                    ("Channel select", "Stereo, left, right, mid or side. Mid = (L+R)/2, side = (L−R)/2. Never louder than the source."),
+                    ("Whole sample gain", "One sample's level, after the engine and before the fx. Normalize sets it."),
+                    ("Any file name", "File names in any language open."),
                 ],
-                "quote": "",
             },
             {
-                "key": "deck", "shot": "feature_fx",
-                "title": "fx and the turntable",
-                "lead": "The fx screen has the effect rack, and a turntable that plays the chopped range like a record.",
-                "points": [
-                    "Ten rack slots: filter, punch, distort, crush, tape, chorus, noise, echo, space, all. All off at first; "
-                    "turn a knob up and it comes on. An off slot uses no CPU.",
-                    "Echoes and wobbles follow the DAW's beat, so a bounce sounds as it was heard.",
-                    "fx pads: effects that last while you hold them.",
-                    "The record: 33⅓ rpm. Grab it with the mouse or a controller and scratch. Hand moves are smoothed, so the needle never jumps.",
-                    "Scratch patterns: baby, chirp, transformer, flare and more. 16 keys pick the slice; harder hits push further.",
-                    "Follow the song: when the DAW plays, the record starts from its cue, in time.",
+                "key": "rack", "shot": "feature_fx", "title": "fx rack",
+                "lead": "Ten slots in the order the sound runs. All off at first; turn a knob up and it comes on. An off slot uses no CPU.",
+                "cards": [
+                    ("Filter", "Our own: LP, BP or HP, 12 or 24 dB, resonance. Clean, or a ladder that saturates a little. First in the rack or last."),
+                    ("Punch", "A one-knob compressor of our own, in feedback or classic."),
+                    ("Distort", "Five kinds: soft, tube, clip, fold, and our own fuzz. Runs 2× oversampled."),
+                    ("Crush", "Lowers the sample rate and cuts the bits, in steps or smooth."),
+                    ("Tape", "One knob of tape. Its flux is the small changes that keep tape alive."),
+                    ("Chorus", "An ensemble chorus: speed, range, mix."),
+                    ("Noise", "Dust, hiss and crackle, only while a sample sounds, so no noise is left in the gaps."),
+                    ("Echo", "Tape, digital (ping-pong too) or grain. Times in beats: 1/16 to a bar, dotted and triplet."),
+                    ("Space", "Five reverbs, from a small room to a huge space, with pre-delay and stereo width."),
+                    ("All", "The whole rack at once: input (a clipper), width, tone, output, fx on and off."),
+                    ("fx pads", "16 that act while held: red cut, yellow stutter, teal tape (stop, back, half, reverse), blue throw (LP, HP, echo, crush)."),
+                    ("On the beat", "fx pads kick in now, on the next 1/16 or the next beat. Echoes and wobbles follow the DAW's beat, so a bounce sounds as heard."),
+                    ("Where it comes from", "Punch, filter, fuzz, bits, hiss, crackle and the digital and grain echoes are our own. The rest are Airwindows (MIT) models."),
                 ],
-                "quote": "",
             },
             {
-                "key": "drum", "shot": "feature_drum",
-                "title": "Drums",
+                "key": "deck", "shot": "feature_scratch", "title": "Turntable",
+                "lead": "Spin and scratch the chopped range like a record, in the sound of the engine you picked.",
+                "cards": [
+                    ("The record", "33⅓ rpm, one turn = 1.8 s. Repitch, keep tempo and the old-machine engines each read it their own way."),
+                    ("The hand", "Grab it with the mouse or a controller. The record moves only as far as your hand, so the needle never jumps, and moves are smoothed."),
+                    ("Slipmat", "Grabbed, it stops within a few ms; let go, it catches the platter within 25 ms."),
+                    ("Motor", "Start and stop times for ▶ ■: at once, or slowing down like a tape."),
+                    ("Fader", "A curve from smooth (for mixing) to sharp (for scratching), with the cut-in and a reversed setting."),
+                    ("Scratch patterns", "Baby, chirp, transformer, flare and more. Hold to scratch the slice on the record in that pattern."),
+                    ("16 keys", "16 keys pick slices 1–16 to scratch; harder hits push further. They start on the next 1/16."),
+                    ("Follow the song", "When the DAW plays, the record runs from its cue in time with the song, and finds its way back after you take over."),
+                    ("Controllers", "An endless knob is a jog, a strip is the hand, the pitch wheel pushes and pulls. MIDI learn works it out."),
+                    ("Automation", "The record, the hand and the fader are DAW parameters, so scratches end up in the bounce as played."),
+                ],
+            },
+            {
+                "key": "drum", "shot": "feature_drum", "title": "Drums",
                 "lead": "A screen for building a kit from 16 one-shots, inside the same plug-in as the sampler.",
-                "points": [
-                    "Each cell: its own engine (clean, grey, black, purple), level, pan, pitch ±24, fades, choke group 1–4.",
-                    "16 outputs: send any cell to its own DAW track.",
-                    "Echo and space: each cell sets only how much it sends; one heavy effect runs for all (CPU).",
-                    "MIDI channel 10 from C1 plays cells 1–16. The zones are laid out so they never clash with the sampler's pads.",
-                    "Save as a kit file (.flipkit) and open it in another project. Drop several files at once and they fill in order.",
+                "cards": [
+                    ("16 cells", "Drop a file in. Drop several and they fill in order from that cell."),
+                    ("An engine each", "clean, grey, black or purple, per cell."),
+                    ("Per cell", "Level, pan, pitch ±24, fade in and out. All automatable in the DAW."),
+                    ("Choke", "Groups 1–4: hit one and the last in its group stops, like open and closed hats."),
+                    ("16 outputs", "Send any cell to its own DAW track. Output 1 runs through the fx rack."),
+                    ("Echo and space", "Each cell sets only how much it sends; one heavy effect runs for all (CPU)."),
+                    ("Key zones", "Cells from C6, or from C1 on MIDI channel 10, laid out never to clash with the sampler's pads."),
+                    ("Kit files", "A .flipkit holds the samples and settings. Opened in another project, only the kit comes in."),
                 ],
-                "quote": "",
             },
             {
-                "key": "out", "shot": "feature_midi",
-                "title": "Out, and safe",
+                "key": "out", "shot": "feature_midi", "title": "Out, and safe",
                 "lead": "What you make goes straight to the DAW, and nothing suddenly gets loud.",
-                "points": [
-                    "Chop to MIDI: a clip that plays each slice at the moment the loop reaches it, dragged onto a DAW track. "
-                    "Start from the sample's own groove.",
-                    "Bounce = live: the same sound at block sizes from 1 to 4096, real time or offline.",
-                    "MIDI learn: every control you perform with can be learned.",
-                    "One .flip file holds the sample, the chop and the settings.",
-                    "A sudden loud sound is treated as the worst bug: the causes are fixed and tests guard them. No limiter colours "
-                    "the everyday sound; the safety limiter at the very end (safe, vintage, off) is your choice.",
+                "cards": [
+                    ("Chop to MIDI", "A clip that plays each slice at the moment the loop reaches it, dragged onto a DAW track. Start from the sample's own groove."),
+                    ("Bounce = live", "The same sound at block sizes from 1 to 4096, real time or offline."),
+                    ("MIDI learn", "Every control you perform with can be learned, as held or as a toggle."),
+                    (".flip files", "The sample, the chop and the settings in one file. Older flips open sounding the same."),
+                    ("Undo", "One step per knob turn or drag, chops included."),
+                    ("The loudness rule", "A sudden loud sound is treated as the worst bug: the causes are fixed and tests guard them."),
+                    ("Safety limiter", "No limiter colours the everyday sound. The safety limiter at the very end (safe, vintage, off) is your choice."),
+                    ("Korean and English", "The whole screen in both. Day and night, and a skin for each engine."),
                 ],
-                "quote": "",
             },
         ],
     },
@@ -573,22 +617,32 @@ DEEP = {
 
 
 def deep_block(lang: str, t: dict) -> str:
-    """The long read: one row per part, a picture and what it does (the tempo calculator inside key and tempo)."""
+    """The long read: per part a picture and its words, then its features as cards to turn (the tempo calculator
+    sits under key and tempo's words)."""
     d = DEEP[lang]
     rows = []
     for i, part in enumerate(d["parts"]):
-        points = "".join(f"<li>{E(p)}</li>" for p in part["points"])
-        quote = (f'<blockquote class="deep__quote"><p>“{E(part["quote"])}”</p><cite>{E(d["quote_by"])}</cite></blockquote>'
-                 if part["quote"] else "")
+        count = len(part["cards"])
+        cards = "".join(
+            f'<li class="fcard"><p class="fcard__n">{n + 1:02d} / {count:02d}</p><h4>{E(name)}</h4><p>{E(text)}</p></li>'
+            for n, (name, text) in enumerate(part["cards"]))
         tool = tempo_block(t) if part.get("tempo") else ""
         rows.append(f"""
-          <article class="deep__part{' deep__part--flip' if i % 2 else ''}" id="more-{part['key']}" data-reveal>
-            <div class="deep__shot card">{shot(part['shot'], lang, part['title'])}</div>
-            <div class="deep__body">
-              <p class="deep__n">{i + 1:02d}</p>
-              <h3>{E(part['title'])}</h3>
-              <p class="deep__lead">{E(part['lead'])}</p>
-              <ul class="deep__points">{points}</ul>{quote}{tool}
+          <article class="deep__part" id="more-{part['key']}" data-reveal>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">{i + 1:02d}</p>
+                <h3>{E(part['title'])}</h3>
+                <p class="deep__lead">{E(part['lead'])}</p>{tool}
+              </div>
+              <div class="deep__shot card">{shot(part['shot'], lang, part['title'])}</div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="{E(part['title'])}">{cards}</ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="{E(d['prev'])}">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="{E(d['next'])}">→</button>
+              </div>
             </div>
           </article>""")
     return f"""

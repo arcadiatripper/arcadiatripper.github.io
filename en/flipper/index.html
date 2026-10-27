@@ -187,14 +187,14 @@
               <div class="engine__shot"><img class="shot shot--day" src="/assets/images/flipper/engine_grey_en.webp" width="960" height="639" alt="grey" loading="lazy"><img class="shot shot--night" src="/assets/images/flipper/engine_grey_night_en.webp" width="960" height="639" alt="grey" loading="lazy"></div>
               <div class="engine__body">
                 <p class="engine__plate">GREY · 12-BIT · 40 kHz</p>
-                <p class="engine__text">The other legendary late-80s sampler. Tight and warm.</p><p class="engine__how">Little is published about it, so these are estimates: its 12-bit storage, how it changes pitch, the output filter&#x27;s shape and the noise level. Recordings of a real unit will tune them.</p>
+                <p class="engine__text">The other legendary late-80s sampler. Tight and warm.</p><p class="engine__how">Little is published about it, so these are estimates: its 12-bit storage, how it changes pitch, the output filter&#x27;s shape and the noise level.</p>
               </div>
             </div>
             <div class="engine" role="tabpanel" id="engine-purple" aria-labelledby="engine-tab-purple" hidden>
               <div class="engine__shot"><img class="shot shot--day" src="/assets/images/flipper/engine_purple_en.webp" width="960" height="639" alt="purple" loading="lazy"><img class="shot shot--night" src="/assets/images/flipper/engine_purple_night_en.webp" width="960" height="639" alt="purple" loading="lazy"></div>
               <div class="engine__body">
                 <p class="engine__plate">PURPLE · 4-BIT · 32 kHz</p>
-                <p class="engine__text">An early-90s console&#x27;s sound chip. Round and hazy.</p><p class="engine__how">The chip&#x27;s maths (BRR decoding, gaussian interpolation, 32,040 Hz) matches the open-source emulator ares bit for bit, across 7,300 test cases. The board&#x27;s filter follows the schematic. The one estimate: the encoder that turns a sample into the chip&#x27;s format.</p>
+                <p class="engine__text">An early-90s console&#x27;s sound chip. Round and hazy.</p><p class="engine__how">The chip&#x27;s maths (BRR decoding, gaussian interpolation, 32,040 Hz) matches the open-source emulator ares bit for bit, across 7,300 test cases. The board&#x27;s filter follows the schematic.</p>
               </div>
             </div>
         </div>
@@ -203,24 +203,31 @@
       <section class="band band--deep" id="more" aria-labelledby="more-title">
         <div class="shell">
 
-          <header class="heading heading--center" data-reveal><h2 id="more-title">Shaped by hand, one decision at a time</h2><p>flipper is not a copy of today&#x27;s samplers. It was built by fixing, one at a time, the things that got in the way of making beats. These are those decisions.</p></header>
+          <header class="heading heading--center" data-reveal><h2 id="more-title">Shaped by hand, one decision at a time</h2><p>flipper is not a copy of today&#x27;s samplers. It was built by settling, one at a time, the things that got in the way of making beats.</p></header>
           <div class="deep">
           <article class="deep__part" id="more-chop" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_lazy_en.webp" width="960" height="639" alt="Chop" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">01</p>
-              <h3>Chop</h3>
-              <p class="deep__lead">Take one part of a sample and chop it until it sounds new. This is what flipper tries to do best.</p>
-              <ul class="deep__points"><li>Four ways: hits (move the sensitivity and it re-chops at once), beats (1/16 to a bar), lazy chop and the die.</li><li>Lazy chop: it plays, you tap a pad or any key, it cuts there. Tap a little early and it finds the hit from 80 ms before to 60 ms after; on real drum loops 90–100 % of taps land on their hit.</li><li>Lit pad: only the next slice&#x27;s pad lights up and cuts, as on the old machines.</li><li>The die: a new chop on every roll. Drag to set the chaos, 0–100 %: 0 % picks only clear hits, evenly; 100 % is pure chance.</li><li>Skip: a count-in or a breath is left out, not cut out. The file is untouched and it can come back any time.</li><li>Up to 64 slices, and only five settings each: pitch, reverse, level, fade in, fade out.</li></ul><blockquote class="deep__quote"><p>“There was no sampler with a lazy chop. That&#x27;s part of why I&#x27;m making this.”</p><cite>maker&#x27;s note</cite></blockquote>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">01</p>
+                <h3>Chop</h3>
+                <p class="deep__lead">Take one part of a sample and chop it until it sounds new. This is what flipper tries to do best.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_lazy_en.webp" width="960" height="639" alt="Chop" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="Chop"><li class="fcard"><p class="fcard__n">01 / 13</p><h4>Hits</h4><p>The hits are found once when the sample opens; move the sensitivity and it re-chops at once. A new sample comes in chopped at 50 %.</p></li><li class="fcard"><p class="fcard__n">02 / 13</p><h4>Beats</h4><p>Every 1/16, 1/8, 1/4, 1/2 or bar, at the sample&#x27;s tempo.</p></li><li class="fcard"><p class="fcard__n">03 / 13</p><h4>Lazy chop</h4><p>It plays; tap a pad or any key and it cuts there. Slice 1 starts at the start. The whole take is one undo.</p></li><li class="fcard"><p class="fcard__n">04 / 13</p><h4>Early taps land</h4><p>It finds the hit from 80 ms before your tap to 60 ms after. On real drum loops 90–100 % of taps land on their hit.</p></li><li class="fcard"><p class="fcard__n">05 / 13</p><h4>Lit pad</h4><p>Only the next slice&#x27;s pad lights up and cuts, for playing it the old machines&#x27; way.</p></li><li class="fcard"><p class="fcard__n">06 / 13</p><h4>The die</h4><p>A new chop on every roll. Locked markers and skipped parts stay; the rest is chopped anew.</p></li><li class="fcard"><p class="fcard__n">07 / 13</p><h4>Chaos</h4><p>Drag the die, 0–100 %. 0 % picks only clear hits, evenly; past 50 % chance creeps in; 100 % is pure chance. The pips show it.</p></li><li class="fcard"><p class="fcard__n">08 / 13</p><h4>By hand</h4><p>Double-click to add a marker (it snaps to a nearby hit), drag to move, drag across to pick several and delete. Alt: no snap.</p></li><li class="fcard"><p class="fcard__n">09 / 13</p><h4>Lock</h4><p>A locked marker stays where it is through every re-chop.</p></li><li class="fcard"><p class="fcard__n">10 / 13</p><h4>Skip</h4><p>A count-in or a breath is left out, not cut out. The slices after it move up; the file is untouched, so it can come back any time.</p></li><li class="fcard"><p class="fcard__n">11 / 13</p><h4>Start and end</h4><p>Push and pull each slice&#x27;s start and end in ms; 0 is always &#x27;as chopped&#x27;. With the magnet on, they land on a zero crossing within 10 ms.</p></li><li class="fcard"><p class="fcard__n">12 / 13</p><h4>Only five</h4><p>Up to 64 slices, each with pitch, reverse, level, fade in and fade out. Nothing more. Fades start at 0.</p></li><li class="fcard"><p class="fcard__n">13 / 13</p><h4>No clicks</h4><p>Every sound starts and ends on a 0.1 ms edge, so cutting mid-wave never ticks.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="Previous card">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="Next card">→</button>
+              </div>
             </div>
           </article>
-          <article class="deep__part deep__part--flip" id="more-keys" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_repitch_en.webp" width="960" height="639" alt="Key and tempo" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">02</p>
-              <h3>Key and tempo</h3>
-              <p class="deep__lead">Key and speed belong to the whole sample, not to each pad, so one sample can become a different track.</p>
-              <ul class="deep__points"><li>Repitch: like the old samplers, pitch it down and it slows down and darkens. No digital artefacts.</li><li>Keep tempo: the tempo stays and only the key moves. The sound is baked ahead, and you hear it at once while it bakes.</li><li>Pitch it down and it tells you the tempo you land on. Type the BPM you want and it tells you the semitones and cents. The sum producers used to do by ear against a metronome.</li><li>One DAW tempo key matches the song&#x27;s tempo.</li><li>The key chip shows the sample&#x27;s key and the key it sounds in with the key knob (e.g. Am → Gm).</li></ul>
+          <article class="deep__part" id="more-keys" data-reveal>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">02</p>
+                <h3>Key and tempo</h3>
+                <p class="deep__lead">Key and speed belong to the whole sample, not to each pad, so one sample can become a different track.</p>
           <div class="tempo card" data-tempo>
             <div class="tempo__row">
               <label class="field">
@@ -247,51 +254,117 @@
               </div>
             </div>
           </div>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_repitch_en.webp" width="960" height="639" alt="Key and tempo" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="Key and tempo"><li class="fcard"><p class="fcard__n">01 / 07</p><h4>Repitch</h4><p>Like the old samplers: pitch it down and it slows down and darkens. No stretching, so no digital artefacts.</p></li><li class="fcard"><p class="fcard__n">02 / 07</p><h4>Keep tempo</h4><p>The tempo stays, only the key moves. The sound is baked ahead, and you hear it at once while it bakes.</p></li><li class="fcard"><p class="fcard__n">03 / 07</p><h4>Tempo maths</h4><p>Pitch it down and it shows the tempo you land on. Type the BPM you want and it gives the semitones and cents.</p></li><li class="fcard"><p class="fcard__n">04 / 07</p><h4>DAW tempo</h4><p>One key matches the song&#x27;s tempo: the key in repitch, the speed in keep tempo.</p></li><li class="fcard"><p class="fcard__n">05 / 07</p><h4>Key chip</h4><p>The sample&#x27;s key and the key it sounds in with the key knob, e.g. Am → Gm, and how many cents it is off tune.</p></li><li class="fcard"><p class="fcard__n">06 / 07</p><h4>Crisp</h4><p>Keep tempo stretches between the hits, each on its own, and keeps every hit&#x27;s attack. On for beats, off for melodies.</p></li><li class="fcard"><p class="fcard__n">07 / 07</p><h4>Loop or one-shot</h4><p>Each sample is a loop (with a tempo) or a one-shot. The first guess comes from the file name and length; you can change it.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="Previous card">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="Next card">→</button>
+              </div>
             </div>
           </article>
           <article class="deep__part" id="more-play" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_melody_en.webp" width="960" height="639" alt="Play" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">03</p>
-              <h3>Play</h3>
-              <p class="deep__lead">The sampler moves like one deck. The pads don&#x27;t each go their own way.</p>
-              <ul class="deep__points"><li>16 or 32 pads, with pages up to 64 slices. Pad 1 is C3.</li><li>Mono (the default): a new pad cuts the last sound in 5 ms, like a chop played on one deck. Poly: sounds overlap.</li><li>While held / whole slice: as long as you hold it, or on to the next marker. Either way a slice stops at its own end.</li><li>Melody: one slice across the keys, by semitone or in one of eight scales (major, minor, dorian, phrygian, mixolydian, harmonic minor, major and minor pentatonic). With the white-keys layout, every scale plays like C major.</li><li>The root isn&#x27;t stuck on C3: move it, or right-click a key to make it the root.</li></ul><blockquote class="deep__quote"><p>“A diatonic scale is easier when you play it on a keyboard.”</p><cite>maker&#x27;s note</cite></blockquote>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">03</p>
+                <h3>Play</h3>
+                <p class="deep__lead">The sampler moves like one deck. The pads don&#x27;t each go their own way.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_melody_en.webp" width="960" height="639" alt="Play" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="Play"><li class="fcard"><p class="fcard__n">01 / 11</p><h4>Pads</h4><p>16 or 32, with pages up to 64 slices. Pad 1 is C3.</p></li><li class="fcard"><p class="fcard__n">02 / 11</p><h4>Mono</h4><p>The default: a new pad cuts the last sound in 5 ms, like a chop played on one deck.</p></li><li class="fcard"><p class="fcard__n">03 / 11</p><h4>Poly</h4><p>Sounds overlap, for chords in melody mode.</p></li><li class="fcard"><p class="fcard__n">04 / 11</p><h4>While held</h4><p>It sounds as long as you hold it, and stops at the slice&#x27;s own end.</p></li><li class="fcard"><p class="fcard__n">05 / 11</p><h4>Whole slice</h4><p>One hit plays it through to the next marker.</p></li><li class="fcard"><p class="fcard__n">06 / 11</p><h4>Melody</h4><p>One slice across the keys: by semitone, or major, minor, dorian, phrygian, mixolydian, harmonic minor, major and minor pentatonic.</p></li><li class="fcard"><p class="fcard__n">07 / 11</p><h4>White keys</h4><p>Pick it and every scale plays like C major on the white keys. &#x27;Every key&#x27; is for pad controllers.</p></li><li class="fcard"><p class="fcard__n">08 / 11</p><h4>Root</h4><p>Not stuck on C3: move it with ‹ ›, or right-click a key to make it the root.</p></li><li class="fcard"><p class="fcard__n">09 / 11</p><h4>128 keys</h4><p>The screen keyboard holds every MIDI note. Scroll, zoom, and a click sends the real note.</p></li><li class="fcard"><p class="fcard__n">10 / 11</p><h4>Sustain</h4><p>The sustain pedal works in melody mode.</p></li><li class="fcard"><p class="fcard__n">11 / 11</p><h4>Panic</h4><p>The header key, or MIDI CC 120 and 123, fades every sound out in 5 ms.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="Previous card">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="Next card">→</button>
+              </div>
             </div>
           </article>
-          <article class="deep__part deep__part--flip" id="more-sample" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_channels_en.webp" width="960" height="639" alt="Bring a sample in" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">04</p>
-              <h3>Bring a sample in</h3>
-              <p class="deep__lead">Drop a file, or record the DAW&#x27;s sound straight in.</p>
-              <ul class="deep__points"><li>Record: another track (side-chain) or flipper&#x27;s own output (resample). Now or from the next bar; until you stop, or 1, 2, 4 or 8 bars.</li><li>Channel select: stereo, left, right, mid or side. Mid keeps what sits in the centre, side keeps what is spread wide.</li><li>Whole sample gain: one sample&#x27;s level, after the engine and before the fx. Normalize sets it.</li><li>File names in any language open.</li></ul>
+          <article class="deep__part" id="more-sample" data-reveal>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">04</p>
+                <h3>Bring a sample in</h3>
+                <p class="deep__lead">Drop a file, or record the DAW&#x27;s sound straight in as a sample.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_channels_en.webp" width="960" height="639" alt="Bring a sample in" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="Bring a sample in"><li class="fcard"><p class="fcard__n">01 / 05</p><h4>Record</h4><p>Another track (side-chain) or flipper&#x27;s own output (resample) becomes the new sample.</p></li><li class="fcard"><p class="fcard__n">02 / 05</p><h4>When, how long</h4><p>Now, or from the next bar&#x27;s first beat. Until you stop, or 1, 2, 4 or 8 bars at the DAW&#x27;s tempo.</p></li><li class="fcard"><p class="fcard__n">03 / 05</p><h4>Channel select</h4><p>Stereo, left, right, mid or side. Mid = (L+R)/2, side = (L−R)/2. Never louder than the source.</p></li><li class="fcard"><p class="fcard__n">04 / 05</p><h4>Whole sample gain</h4><p>One sample&#x27;s level, after the engine and before the fx. Normalize sets it.</p></li><li class="fcard"><p class="fcard__n">05 / 05</p><h4>Any file name</h4><p>File names in any language open.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="Previous card">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="Next card">→</button>
+              </div>
+            </div>
+          </article>
+          <article class="deep__part" id="more-rack" data-reveal>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">05</p>
+                <h3>fx rack</h3>
+                <p class="deep__lead">Ten slots in the order the sound runs. All off at first; turn a knob up and it comes on. An off slot uses no CPU.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_fx_en.webp" width="960" height="639" alt="fx rack" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="fx rack"><li class="fcard"><p class="fcard__n">01 / 13</p><h4>Filter</h4><p>Our own: LP, BP or HP, 12 or 24 dB, resonance. Clean, or a ladder that saturates a little. First in the rack or last.</p></li><li class="fcard"><p class="fcard__n">02 / 13</p><h4>Punch</h4><p>A one-knob compressor of our own, in feedback or classic.</p></li><li class="fcard"><p class="fcard__n">03 / 13</p><h4>Distort</h4><p>Five kinds: soft, tube, clip, fold, and our own fuzz. Runs 2× oversampled.</p></li><li class="fcard"><p class="fcard__n">04 / 13</p><h4>Crush</h4><p>Lowers the sample rate and cuts the bits, in steps or smooth.</p></li><li class="fcard"><p class="fcard__n">05 / 13</p><h4>Tape</h4><p>One knob of tape. Its flux is the small changes that keep tape alive.</p></li><li class="fcard"><p class="fcard__n">06 / 13</p><h4>Chorus</h4><p>An ensemble chorus: speed, range, mix.</p></li><li class="fcard"><p class="fcard__n">07 / 13</p><h4>Noise</h4><p>Dust, hiss and crackle, only while a sample sounds, so no noise is left in the gaps.</p></li><li class="fcard"><p class="fcard__n">08 / 13</p><h4>Echo</h4><p>Tape, digital (ping-pong too) or grain. Times in beats: 1/16 to a bar, dotted and triplet.</p></li><li class="fcard"><p class="fcard__n">09 / 13</p><h4>Space</h4><p>Five reverbs, from a small room to a huge space, with pre-delay and stereo width.</p></li><li class="fcard"><p class="fcard__n">10 / 13</p><h4>All</h4><p>The whole rack at once: input (a clipper), width, tone, output, fx on and off.</p></li><li class="fcard"><p class="fcard__n">11 / 13</p><h4>fx pads</h4><p>16 that act while held: red cut, yellow stutter, teal tape (stop, back, half, reverse), blue throw (LP, HP, echo, crush).</p></li><li class="fcard"><p class="fcard__n">12 / 13</p><h4>On the beat</h4><p>fx pads kick in now, on the next 1/16 or the next beat. Echoes and wobbles follow the DAW&#x27;s beat, so a bounce sounds as heard.</p></li><li class="fcard"><p class="fcard__n">13 / 13</p><h4>Where it comes from</h4><p>Punch, filter, fuzz, bits, hiss, crackle and the digital and grain echoes are our own. The rest are Airwindows (MIT) models.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="Previous card">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="Next card">→</button>
+              </div>
             </div>
           </article>
           <article class="deep__part" id="more-deck" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_fx_en.webp" width="960" height="639" alt="fx and the turntable" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">05</p>
-              <h3>fx and the turntable</h3>
-              <p class="deep__lead">The fx screen has the effect rack, and a turntable that plays the chopped range like a record.</p>
-              <ul class="deep__points"><li>Ten rack slots: filter, punch, distort, crush, tape, chorus, noise, echo, space, all. All off at first; turn a knob up and it comes on. An off slot uses no CPU.</li><li>Echoes and wobbles follow the DAW&#x27;s beat, so a bounce sounds as it was heard.</li><li>fx pads: effects that last while you hold them.</li><li>The record: 33⅓ rpm. Grab it with the mouse or a controller and scratch. Hand moves are smoothed, so the needle never jumps.</li><li>Scratch patterns: baby, chirp, transformer, flare and more. 16 keys pick the slice; harder hits push further.</li><li>Follow the song: when the DAW plays, the record starts from its cue, in time.</li></ul>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">06</p>
+                <h3>Turntable</h3>
+                <p class="deep__lead">Spin and scratch the chopped range like a record, in the sound of the engine you picked.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_scratch_en.webp" width="960" height="639" alt="Turntable" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="Turntable"><li class="fcard"><p class="fcard__n">01 / 10</p><h4>The record</h4><p>33⅓ rpm, one turn = 1.8 s. Repitch, keep tempo and the old-machine engines each read it their own way.</p></li><li class="fcard"><p class="fcard__n">02 / 10</p><h4>The hand</h4><p>Grab it with the mouse or a controller. The record moves only as far as your hand, so the needle never jumps, and moves are smoothed.</p></li><li class="fcard"><p class="fcard__n">03 / 10</p><h4>Slipmat</h4><p>Grabbed, it stops within a few ms; let go, it catches the platter within 25 ms.</p></li><li class="fcard"><p class="fcard__n">04 / 10</p><h4>Motor</h4><p>Start and stop times for ▶ ■: at once, or slowing down like a tape.</p></li><li class="fcard"><p class="fcard__n">05 / 10</p><h4>Fader</h4><p>A curve from smooth (for mixing) to sharp (for scratching), with the cut-in and a reversed setting.</p></li><li class="fcard"><p class="fcard__n">06 / 10</p><h4>Scratch patterns</h4><p>Baby, chirp, transformer, flare and more. Hold to scratch the slice on the record in that pattern.</p></li><li class="fcard"><p class="fcard__n">07 / 10</p><h4>16 keys</h4><p>16 keys pick slices 1–16 to scratch; harder hits push further. They start on the next 1/16.</p></li><li class="fcard"><p class="fcard__n">08 / 10</p><h4>Follow the song</h4><p>When the DAW plays, the record runs from its cue in time with the song, and finds its way back after you take over.</p></li><li class="fcard"><p class="fcard__n">09 / 10</p><h4>Controllers</h4><p>An endless knob is a jog, a strip is the hand, the pitch wheel pushes and pulls. MIDI learn works it out.</p></li><li class="fcard"><p class="fcard__n">10 / 10</p><h4>Automation</h4><p>The record, the hand and the fader are DAW parameters, so scratches end up in the bounce as played.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="Previous card">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="Next card">→</button>
+              </div>
             </div>
           </article>
-          <article class="deep__part deep__part--flip" id="more-drum" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_drum_en.webp" width="960" height="639" alt="Drums" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">06</p>
-              <h3>Drums</h3>
-              <p class="deep__lead">A screen for building a kit from 16 one-shots, inside the same plug-in as the sampler.</p>
-              <ul class="deep__points"><li>Each cell: its own engine (clean, grey, black, purple), level, pan, pitch ±24, fades, choke group 1–4.</li><li>16 outputs: send any cell to its own DAW track.</li><li>Echo and space: each cell sets only how much it sends; one heavy effect runs for all (CPU).</li><li>MIDI channel 10 from C1 plays cells 1–16. The zones are laid out so they never clash with the sampler&#x27;s pads.</li><li>Save as a kit file (.flipkit) and open it in another project. Drop several files at once and they fill in order.</li></ul>
+          <article class="deep__part" id="more-drum" data-reveal>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">07</p>
+                <h3>Drums</h3>
+                <p class="deep__lead">A screen for building a kit from 16 one-shots, inside the same plug-in as the sampler.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_drum_en.webp" width="960" height="639" alt="Drums" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="Drums"><li class="fcard"><p class="fcard__n">01 / 08</p><h4>16 cells</h4><p>Drop a file in. Drop several and they fill in order from that cell.</p></li><li class="fcard"><p class="fcard__n">02 / 08</p><h4>An engine each</h4><p>clean, grey, black or purple, per cell.</p></li><li class="fcard"><p class="fcard__n">03 / 08</p><h4>Per cell</h4><p>Level, pan, pitch ±24, fade in and out. All automatable in the DAW.</p></li><li class="fcard"><p class="fcard__n">04 / 08</p><h4>Choke</h4><p>Groups 1–4: hit one and the last in its group stops, like open and closed hats.</p></li><li class="fcard"><p class="fcard__n">05 / 08</p><h4>16 outputs</h4><p>Send any cell to its own DAW track. Output 1 runs through the fx rack.</p></li><li class="fcard"><p class="fcard__n">06 / 08</p><h4>Echo and space</h4><p>Each cell sets only how much it sends; one heavy effect runs for all (CPU).</p></li><li class="fcard"><p class="fcard__n">07 / 08</p><h4>Key zones</h4><p>Cells from C6, or from C1 on MIDI channel 10, laid out never to clash with the sampler&#x27;s pads.</p></li><li class="fcard"><p class="fcard__n">08 / 08</p><h4>Kit files</h4><p>A .flipkit holds the samples and settings. Opened in another project, only the kit comes in.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="Previous card">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="Next card">→</button>
+              </div>
             </div>
           </article>
           <article class="deep__part" id="more-out" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_midi_en.webp" width="960" height="639" alt="Out, and safe" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">07</p>
-              <h3>Out, and safe</h3>
-              <p class="deep__lead">What you make goes straight to the DAW, and nothing suddenly gets loud.</p>
-              <ul class="deep__points"><li>Chop to MIDI: a clip that plays each slice at the moment the loop reaches it, dragged onto a DAW track. Start from the sample&#x27;s own groove.</li><li>Bounce = live: the same sound at block sizes from 1 to 4096, real time or offline.</li><li>MIDI learn: every control you perform with can be learned.</li><li>One .flip file holds the sample, the chop and the settings.</li><li>A sudden loud sound is treated as the worst bug: the causes are fixed and tests guard them. No limiter colours the everyday sound; the safety limiter at the very end (safe, vintage, off) is your choice.</li></ul>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">08</p>
+                <h3>Out, and safe</h3>
+                <p class="deep__lead">What you make goes straight to the DAW, and nothing suddenly gets loud.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_midi_en.webp" width="960" height="639" alt="Out, and safe" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="Out, and safe"><li class="fcard"><p class="fcard__n">01 / 08</p><h4>Chop to MIDI</h4><p>A clip that plays each slice at the moment the loop reaches it, dragged onto a DAW track. Start from the sample&#x27;s own groove.</p></li><li class="fcard"><p class="fcard__n">02 / 08</p><h4>Bounce = live</h4><p>The same sound at block sizes from 1 to 4096, real time or offline.</p></li><li class="fcard"><p class="fcard__n">03 / 08</p><h4>MIDI learn</h4><p>Every control you perform with can be learned, as held or as a toggle.</p></li><li class="fcard"><p class="fcard__n">04 / 08</p><h4>.flip files</h4><p>The sample, the chop and the settings in one file. Older flips open sounding the same.</p></li><li class="fcard"><p class="fcard__n">05 / 08</p><h4>Undo</h4><p>One step per knob turn or drag, chops included.</p></li><li class="fcard"><p class="fcard__n">06 / 08</p><h4>The loudness rule</h4><p>A sudden loud sound is treated as the worst bug: the causes are fixed and tests guard them.</p></li><li class="fcard"><p class="fcard__n">07 / 08</p><h4>Safety limiter</h4><p>No limiter colours the everyday sound. The safety limiter at the very end (safe, vintage, off) is your choice.</p></li><li class="fcard"><p class="fcard__n">08 / 08</p><h4>Korean and English</h4><p>The whole screen in both. Day and night, and a skin for each engine.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="Previous card">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="Next card">→</button>
+              </div>
             </div>
           </article>
           </div>

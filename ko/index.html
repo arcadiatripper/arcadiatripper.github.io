@@ -188,14 +188,14 @@
               <div class="engine__shot"><img class="shot shot--day" src="/assets/images/flipper/engine_grey_ko.webp" width="960" height="639" alt="grey" loading="lazy"><img class="shot shot--night" src="/assets/images/flipper/engine_grey_night_ko.webp" width="960" height="639" alt="grey" loading="lazy"></div>
               <div class="engine__body">
                 <p class="engine__plate">GREY · 12-BIT · 40 kHz</p>
-                <p class="engine__text">80년대 후반의 또 다른 전설적인 샘플러. 단단하고 따뜻하게.</p><p class="engine__how">공개된 자료가 적어서 추정한 곳이 있어요: 12비트로 담는 방식, 음정을 바꾸는 방식, 출력 필터의 모양, 잡음 크기. 실제 기계 녹음으로 맞춰 갈 거예요.</p>
+                <p class="engine__text">80년대 후반의 또 다른 전설적인 샘플러. 단단하고 따뜻하게.</p><p class="engine__how">공개된 자료가 적어서 추정한 곳이 있어요: 12비트로 담는 방식, 음정을 바꾸는 방식, 출력 필터의 모양, 잡음 크기.</p>
               </div>
             </div>
             <div class="engine" role="tabpanel" id="engine-purple" aria-labelledby="engine-tab-purple" hidden>
               <div class="engine__shot"><img class="shot shot--day" src="/assets/images/flipper/engine_purple_ko.webp" width="960" height="639" alt="purple" loading="lazy"><img class="shot shot--night" src="/assets/images/flipper/engine_purple_night_ko.webp" width="960" height="639" alt="purple" loading="lazy"></div>
               <div class="engine__body">
                 <p class="engine__plate">PURPLE · 4-BIT · 32 kHz</p>
-                <p class="engine__text">90년대 초 게임기의 소리 칩. 동글고 먹먹하게.</p><p class="engine__how">칩의 계산(BRR 디코딩, 가우스 보간, 32,040 Hz)은 오픈소스 에뮬레이터 ares와 7,300가지 경우를 비교해 비트 하나까지 같아요. 보드의 필터는 회로도대로예요. 추정은 샘플을 칩의 형식으로 바꾸는 인코더 하나예요.</p>
+                <p class="engine__text">90년대 초 게임기의 소리 칩. 동글고 먹먹하게.</p><p class="engine__how">칩의 계산(BRR 디코딩, 가우스 보간, 32,040 Hz)은 오픈소스 에뮬레이터 ares와 7,300가지 경우를 비교해 비트 하나까지 같아요. 보드의 필터는 회로도대로예요.</p>
               </div>
             </div>
         </div>
@@ -204,24 +204,31 @@
       <section class="band band--deep" id="more" aria-labelledby="more-title">
         <div class="shell">
 
-          <header class="heading heading--center" data-reveal><h2 id="more-title">하나하나, 직접 다듬었어요</h2><p>요즘 나오는 샘플러를 따라 만든 게 아니에요. 비트를 만들면서 걸리던 것들을 하나씩 정해서 만들었어요. 아래는 그 결정들이에요.</p></header>
+          <header class="heading heading--center" data-reveal><h2 id="more-title">하나하나, 직접 다듬었어요</h2><p>요즘 나오는 샘플러를 따라 만든 게 아니에요. 비트를 만들면서 걸리던 것들을 하나씩 정해서 만들었어요.</p></header>
           <div class="deep">
           <article class="deep__part" id="more-chop" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_lazy_ko.webp" width="960" height="639" alt="자르기" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">01</p>
-              <h3>자르기</h3>
-              <p class="deep__lead">샘플 한 부분을 잘라 새 소리처럼 들리게 하는 것. flipper가 가장 잘하려는 일이에요.</p>
-              <ul class="deep__points"><li>네 가지 방법: 타격 찾기(감도를 움직이면 바로 다시 잘림), 박자(1/16부터 한 마디), 레이지 찹, 주사위.</li><li>레이지 찹: 재생하면서 패드든 건반이든 치면 그 자리에서 잘려요. 박보다 조금 일찍 쳐도 80 ms 앞부터 60 ms 뒤까지의 타격을 찾아 붙여서, 실제 드럼 루프에서 탭의 90–100 %가 제자리에 붙어요.</li><li>불 켜진 패드 방식: 다음 조각의 패드만 불이 들어오고, 그 패드를 눌러야 잘려요. 옛 기계처럼.</li><li>주사위: 굴릴 때마다 새 찹. 끌어서 혼돈을 0–100 %로 정해요. 0 %는 뚜렷한 타격만 고르게, 100 %는 완전히 마음대로.</li><li>건너뛰기: 카운트인이나 숨소리는 지우지 않고 빼 둬요. 파일은 그대로고, 언제든 되돌릴 수 있어요.</li><li>최대 64조각. 조각마다 설정은 다섯 개뿐이에요: 음높이, 리버스, 볼륨, 페이드 인, 페이드 아웃.</li></ul><blockquote class="deep__quote"><p>“레이지찹 기능이 있는 샘플러가 없어서 이걸 만들고 있는 거기도 하거든.”</p><cite>만든 사람의 메모</cite></blockquote>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">01</p>
+                <h3>자르기</h3>
+                <p class="deep__lead">샘플 한 부분을 잘라 새 소리처럼 들리게 하는 것. flipper가 가장 잘하려는 일이에요.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_lazy_ko.webp" width="960" height="639" alt="자르기" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="자르기"><li class="fcard"><p class="fcard__n">01 / 13</p><h4>타격 찾기</h4><p>샘플을 열 때 타격을 한 번 찾아 두고, 감도를 움직이면 다시 분석하지 않고 바로 다시 잘라요. 새 샘플은 50 %로 잘려서 들어와요.</p></li><li class="fcard"><p class="fcard__n">02 / 13</p><h4>박자</h4><p>1/16, 1/8, 1/4, 1/2, 한 마디마다. 샘플의 템포를 따라요.</p></li><li class="fcard"><p class="fcard__n">03 / 13</p><h4>레이지 찹</h4><p>재생하면서 패드든 건반이든 치면 그 자리에서 잘려요. 1번 조각은 시작에서 바로 시작해요. 전체가 되돌리기 한 번이에요.</p></li><li class="fcard"><p class="fcard__n">04 / 13</p><h4>일찍 쳐도 제자리</h4><p>탭보다 80 ms 앞부터 60 ms 뒤까지의 타격을 찾아 붙여요. 실제 드럼 루프에서 탭의 90–100 %가 제 타격에 붙어요.</p></li><li class="fcard"><p class="fcard__n">05 / 13</p><h4>불 켜진 패드</h4><p>다음 조각의 패드만 불이 들어오고, 그 패드를 눌러야 잘려요. 옛 기계처럼 치고 싶을 때.</p></li><li class="fcard"><p class="fcard__n">06 / 13</p><h4>주사위</h4><p>굴릴 때마다 새 찹이에요. 잠근 마커와 건너뛴 부분은 그대로 두고 나머지만 새로 잘라요.</p></li><li class="fcard"><p class="fcard__n">07 / 13</p><h4>혼돈</h4><p>주사위를 끌어서 0–100 %. 0 %는 뚜렷한 타격만 고르게, 50 %부터는 아무 데나 섞이고, 100 %는 완전히 마음대로예요. 주사위 눈이 혼돈을 보여줘요.</p></li><li class="fcard"><p class="fcard__n">08 / 13</p><h4>손으로</h4><p>더블클릭으로 마커를 더하고(가까운 타격에 붙음), 끌어서 옮기고, 드래그로 여러 개를 골라 지워요. alt를 누르면 붙지 않아요.</p></li><li class="fcard"><p class="fcard__n">09 / 13</p><h4>잠금</h4><p>잠근 마커는 다시 잘라도 그 자리에 남아요.</p></li><li class="fcard"><p class="fcard__n">10 / 13</p><h4>건너뛰기</h4><p>카운트인이나 숨소리는 지우지 않고 빼 둬요. 뒤 조각이 한 칸씩 당겨지고, 파일은 그대로라 언제든 되돌려요.</p></li><li class="fcard"><p class="fcard__n">11 / 13</p><h4>시작과 끝</h4><p>조각마다 시작과 끝을 ms로 밀고 당겨요. 0은 언제나 &#x27;자른 그대로&#x27;. 자석을 켜면 10 ms 안의 0 교차점에 붙어요.</p></li><li class="fcard"><p class="fcard__n">12 / 13</p><h4>다섯 가지만</h4><p>최대 64조각. 조각마다 설정은 음높이, 리버스, 볼륨, 페이드 인, 페이드 아웃뿐이에요. 페이드는 0에서 시작해요.</p></li><li class="fcard"><p class="fcard__n">13 / 13</p><h4>클릭 없이</h4><p>모든 소리의 시작과 끝에 0.1 ms 가장자리를 둬서, 파형 중간을 잘라도 &#x27;틱&#x27; 소리가 나지 않아요.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="이전 카드">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="다음 카드">→</button>
+              </div>
             </div>
           </article>
-          <article class="deep__part deep__part--flip" id="more-keys" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_repitch_ko.webp" width="960" height="639" alt="키와 템포" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">02</p>
-              <h3>키와 템포</h3>
-              <p class="deep__lead">키와 속도는 패드마다가 아니라 샘플 하나에 있어요. 샘플 하나를 통째로 다른 곡처럼 만들기 위해서예요.</p>
-              <ul class="deep__points"><li>리피치: 옛 샘플러처럼 키를 내리면 느려지고 어두워져요. 디지털 잡음이 생기지 않아요.</li><li>템포 유지: 템포는 그대로 두고 키만 바꿔요. 소리는 미리 구워 두고, 굽는 동안에도 바로 들려요.</li><li>키를 내리면 몇 BPM이 되는지 알려주고, 반대로 원하는 BPM을 치면 몇 반음 몇 센트를 내리면 되는지 알려줘요. 메트로놈에 귀로 맞추던 계산이에요.</li><li>DAW 템포 키 하나로 지금 곡의 템포에 맞춰요.</li><li>키 칩: 샘플의 키와, 지금 키 노브로 들리는 키를 같이 보여줘요(예: Am → Gm).</li></ul>
+          <article class="deep__part" id="more-keys" data-reveal>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">02</p>
+                <h3>키와 템포</h3>
+                <p class="deep__lead">키와 속도는 패드마다가 아니라 샘플 하나에 있어요. 샘플 하나를 통째로 다른 곡처럼 만들기 위해서예요.</p>
           <div class="tempo card" data-tempo>
             <div class="tempo__row">
               <label class="field">
@@ -248,51 +255,117 @@
               </div>
             </div>
           </div>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_repitch_ko.webp" width="960" height="639" alt="키와 템포" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="키와 템포"><li class="fcard"><p class="fcard__n">01 / 07</p><h4>리피치</h4><p>옛 샘플러처럼 키를 내리면 느려지고 어두워져요. 늘이기를 하지 않아서 디지털 잡음이 없어요.</p></li><li class="fcard"><p class="fcard__n">02 / 07</p><h4>템포 유지</h4><p>템포는 그대로 두고 키만. 소리는 미리 구워 두고, 굽는 동안에도 바로 들려요.</p></li><li class="fcard"><p class="fcard__n">03 / 07</p><h4>템포 계산</h4><p>키를 내리면 몇 BPM이 되는지 보여줘요. 원하는 BPM을 치면 몇 반음 몇 센트를 내리면 되는지 알려줘요.</p></li><li class="fcard"><p class="fcard__n">04 / 07</p><h4>DAW 템포</h4><p>키 하나로 지금 곡의 템포에 맞춰요. 리피치에선 키를, 템포 유지에선 속도를 맞춰요.</p></li><li class="fcard"><p class="fcard__n">05 / 07</p><h4>키 칩</h4><p>샘플의 키와, 지금 키 노브로 들리는 키를 같이 보여줘요. 예: Am → Gm. 튜닝이 몇 센트 어긋났는지도요.</p></li><li class="fcard"><p class="fcard__n">06 / 07</p><h4>또렷하게</h4><p>템포 유지로 늘릴 때 타격과 타격 사이를 따로 늘리고, 타격의 앞부분은 원래 소리를 남겨요. 비트에 켜고, 멜로디엔 꺼요.</p></li><li class="fcard"><p class="fcard__n">07 / 07</p><h4>루프와 원샷</h4><p>샘플마다 루프(템포 있음)인지 원샷인지. 파일 이름과 길이로 먼저 짐작하고, 바꿀 수 있어요.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="이전 카드">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="다음 카드">→</button>
+              </div>
             </div>
           </article>
           <article class="deep__part" id="more-play" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_melody_ko.webp" width="960" height="639" alt="연주" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">03</p>
-              <h3>연주</h3>
-              <p class="deep__lead">샘플러는 덱 하나처럼 움직여요. 패드마다 따로 놀지 않아요.</p>
-              <ul class="deep__points"><li>패드 16개나 32개, 페이지를 넘겨 64조각까지. 패드 1번이 C3이에요.</li><li>모노(기본): 새 패드가 앞 소리를 5 ms 만에 끊어요. 덱 하나로 찹을 연주하듯이. 폴리: 소리가 겹쳐요.</li><li>누르는 동안 / 슬라이스 전체: 누른 만큼만, 또는 다음 마커까지 끝까지. 어느 쪽이든 조각은 자기 끝에서 멈춰요.</li><li>멜로디: 한 조각을 건반에 깔아요. 반음씩, 또는 스케일 여덟 가지(장조, 단조, 도리안, 프리지안, 믹솔리디안, 화성 단조, 장 · 단 펜타토닉). 흰 건반 배치를 고르면 어느 스케일이든 C장조처럼 쳐요.</li><li>원키는 C3에 묶여 있지 않아요. 옮기거나, 건반을 오른쪽 클릭해 그 건반을 원키로.</li></ul><blockquote class="deep__quote"><p>“키보드 연주할 때 온음계가 편하거든.”</p><cite>만든 사람의 메모</cite></blockquote>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">03</p>
+                <h3>연주</h3>
+                <p class="deep__lead">샘플러는 덱 하나처럼 움직여요. 패드마다 따로 놀지 않아요.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_melody_ko.webp" width="960" height="639" alt="연주" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="연주"><li class="fcard"><p class="fcard__n">01 / 11</p><h4>패드</h4><p>16개나 32개, 페이지를 넘겨 64조각까지. 패드 1번이 C3이에요.</p></li><li class="fcard"><p class="fcard__n">02 / 11</p><h4>모노</h4><p>기본이에요. 새 패드가 앞 소리를 5 ms 만에 끊어요. 덱 하나로 찹을 연주하듯이.</p></li><li class="fcard"><p class="fcard__n">03 / 11</p><h4>폴리</h4><p>소리가 겹쳐요. 멜로디에서 화음을 칠 때.</p></li><li class="fcard"><p class="fcard__n">04 / 11</p><h4>누르는 동안</h4><p>누른 만큼만 울려요. 조각은 자기 끝에서 멈춰요.</p></li><li class="fcard"><p class="fcard__n">05 / 11</p><h4>슬라이스 전체</h4><p>한 번 치면 다음 마커까지 끝까지 울려요.</p></li><li class="fcard"><p class="fcard__n">06 / 11</p><h4>멜로디</h4><p>한 조각을 건반에 깔아요. 반음씩, 또는 장조, 단조, 도리안, 프리지안, 믹솔리디안, 화성 단조, 장 · 단 펜타토닉.</p></li><li class="fcard"><p class="fcard__n">07 / 11</p><h4>흰 건반 배치</h4><p>고르면 어느 스케일이든 C장조처럼 흰 건반으로 쳐요. 패드 컨트롤러엔 &#x27;모든 건반&#x27;.</p></li><li class="fcard"><p class="fcard__n">08 / 11</p><h4>원키</h4><p>C3에 묶여 있지 않아요. ‹ ›로 옮기거나, 건반을 오른쪽 클릭하면 그 건반이 원키예요.</p></li><li class="fcard"><p class="fcard__n">09 / 11</p><h4>128건반</h4><p>화면 건반은 MIDI 음 전부. 휠로 넘기고, 확대하고, 누르면 진짜 MIDI 음을 보내요.</p></li><li class="fcard"><p class="fcard__n">10 / 11</p><h4>서스테인</h4><p>멜로디에서 서스테인 페달이 돼요.</p></li><li class="fcard"><p class="fcard__n">11 / 11</p><h4>패닉</h4><p>머리줄 키나 MIDI CC 120 · 123으로 모든 소리를 5 ms 만에 꺼요.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="이전 카드">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="다음 카드">→</button>
+              </div>
             </div>
           </article>
-          <article class="deep__part deep__part--flip" id="more-sample" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_channels_ko.webp" width="960" height="639" alt="샘플 담기" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">04</p>
-              <h3>샘플 담기</h3>
-              <p class="deep__lead">샘플은 파일을 끌어 놓거나, DAW의 소리를 바로 녹음해서 들어와요.</p>
-              <ul class="deep__points"><li>녹음: 다른 트랙(사이드체인)이나 flipper 자신의 출력(리샘플). 바로 또는 다음 마디부터, 멈출 때까지 또는 1 · 2 · 4 · 8마디.</li><li>채널 고르기: 스테레오, 왼쪽, 오른쪽, 가운데, 양옆. 가운데를 고르면 가운데에 있는 소리가, 양옆을 고르면 넓게 퍼진 소리가 남아요.</li><li>전체 샘플 게인: 엔진 뒤, fx 앞에서 샘플 하나의 크기를 맞춰요. 노멀라이즈도 여기로.</li><li>어느 나라 말의 파일 이름이든 열려요.</li></ul>
+          <article class="deep__part" id="more-sample" data-reveal>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">04</p>
+                <h3>샘플 담기</h3>
+                <p class="deep__lead">파일을 끌어 놓거나, DAW의 소리를 바로 녹음해서 샘플로 써요.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_channels_ko.webp" width="960" height="639" alt="샘플 담기" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="샘플 담기"><li class="fcard"><p class="fcard__n">01 / 05</p><h4>녹음</h4><p>다른 트랙(사이드체인)이나 flipper 자신의 출력(리샘플)을 받아 새 샘플로.</p></li><li class="fcard"><p class="fcard__n">02 / 05</p><h4>언제, 얼마나</h4><p>바로 또는 다음 마디 첫 박부터. 멈출 때까지 또는 1 · 2 · 4 · 8마디(DAW 템포 기준).</p></li><li class="fcard"><p class="fcard__n">03 / 05</p><h4>채널 고르기</h4><p>스테레오, 왼쪽, 오른쪽, 가운데, 양옆. 가운데 = (L+R)/2, 양옆 = (L−R)/2. 원래보다 커지지 않아요.</p></li><li class="fcard"><p class="fcard__n">04 / 05</p><h4>전체 샘플 게인</h4><p>엔진 뒤, fx 앞에서 샘플 하나의 크기를 맞춰요. 노멀라이즈도 여기로.</p></li><li class="fcard"><p class="fcard__n">05 / 05</p><h4>어떤 파일 이름이든</h4><p>어느 나라 말의 파일 이름이든 열려요.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="이전 카드">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="다음 카드">→</button>
+              </div>
+            </div>
+          </article>
+          <article class="deep__part" id="more-rack" data-reveal>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">05</p>
+                <h3>fx 랙</h3>
+                <p class="deep__lead">열 칸이 소리 순서대로 이어져요. 처음엔 다 꺼져 있고, 노브를 올리면 켜져요. 꺼진 칸은 CPU를 쓰지 않아요.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_fx_ko.webp" width="960" height="639" alt="fx 랙" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="fx 랙"><li class="fcard"><p class="fcard__n">01 / 13</p><h4>필터</h4><p>직접 만든 필터. LP · BP · HP, 12 또는 24 dB, 레조넌스. 깨끗하게 또는 살짝 찌그러지는 래더. 랙 맨 앞이나 맨 끝.</p></li><li class="fcard"><p class="fcard__n">02 / 13</p><h4>펀치</h4><p>노브 하나짜리 컴프레서. 직접 만들었고, 피드백과 클래식 두 가지예요.</p></li><li class="fcard"><p class="fcard__n">03 / 13</p><h4>디스토트</h4><p>다섯 가지: soft, tube, clip, fold, 그리고 직접 만든 fuzz. 2배 오버샘플로 돌아요.</p></li><li class="fcard"><p class="fcard__n">04 / 13</p><h4>크러시</h4><p>샘플레이트를 낮추고 비트를 깎아요. 계단처럼, 또는 부드럽게.</p></li><li class="fcard"><p class="fcard__n">05 / 13</p><h4>테이프</h4><p>테이프에 녹음한 듯한 노브 하나. &#x27;흔들림&#x27;은 테이프를 살아 있게 하는 작은 변화예요.</p></li><li class="fcard"><p class="fcard__n">06 / 13</p><h4>코러스</h4><p>앙상블 코러스. 빠르기, 폭, 섞기.</p></li><li class="fcard"><p class="fcard__n">07 / 13</p><h4>노이즈</h4><p>먼지, 히스, 크래클. 샘플이 울리는 동안만 나서, 조용한 곳에 잡음이 남지 않아요.</p></li><li class="fcard"><p class="fcard__n">08 / 13</p><h4>에코</h4><p>테이프, 디지털(핑퐁 포함), 그레인. 시간은 박자(1/16–한 마디, 점 · 셋잇단).</p></li><li class="fcard"><p class="fcard__n">09 / 13</p><h4>스페이스</h4><p>리버브 다섯 가지(작은 방부터 넓은 공간까지). 프리딜레이와 스테레오 폭.</p></li><li class="fcard"><p class="fcard__n">10 / 13</p><h4>전체</h4><p>랙 전체를 한 번에. 입력(클리퍼), 폭, 톤, 출력, fx 켜고 끄기.</p></li><li class="fcard"><p class="fcard__n">11 / 13</p><h4>fx 패드</h4><p>누르는 동안 걸리는 16개. 빨강 컷, 노랑 스터터, 청록 테이프(멈춤 · 뒤로 · 반속 · 거꾸로), 파랑 던지기(LP · HP · 에코 · 크러시).</p></li><li class="fcard"><p class="fcard__n">12 / 13</p><h4>박자에 맞게</h4><p>fx 패드는 바로, 다음 1/16, 다음 박 중에 시작해요. 에코와 흔들림은 DAW의 박을 따라서, 바운스해도 들은 그대로예요.</p></li><li class="fcard"><p class="fcard__n">13 / 13</p><h4>어디서 왔나</h4><p>펀치, 필터, fuzz, 비트, 히스, 크래클, 디지털 · 그레인 에코는 직접 만들었어요. 나머지는 Airwindows(MIT) 모델이에요.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="이전 카드">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="다음 카드">→</button>
+              </div>
             </div>
           </article>
           <article class="deep__part" id="more-deck" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_fx_ko.webp" width="960" height="639" alt="fx와 턴테이블" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">05</p>
-              <h3>fx와 턴테이블</h3>
-              <p class="deep__lead">fx 화면에는 이펙트 랙과, 자른 구간을 판처럼 돌리는 턴테이블이 있어요.</p>
-              <ul class="deep__points"><li>랙 열 칸: 필터, 펀치, 디스토트, 크러시, 테이프, 코러스, 노이즈, 에코, 스페이스, 전체. 처음엔 다 꺼져 있고, 노브를 올리면 켜져요. 꺼진 칸은 CPU를 쓰지 않아요.</li><li>에코와 흔들림은 DAW의 박을 따라가서, 바운스해도 들은 그대로예요.</li><li>fx 패드: 누르는 동안만 걸리는 효과.</li><li>판: 33⅓ rpm. 마우스나 컨트롤러로 잡아서 긁어요. 손 움직임은 부드럽게 이어져서, 바늘이 튀지 않아요.</li><li>스크래치 패턴: 베이비, 처프, 트랜스, 플레어 등. 건반 16개로 조각을 골라 긁고, 세게 칠수록 멀리 밀어요.</li><li>곡 따라 돌기: DAW를 재생하면 판도 큐부터 곡에 맞춰 돌아요.</li></ul>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">06</p>
+                <h3>턴테이블</h3>
+                <p class="deep__lead">자른 구간을 판처럼 돌리고 긁어요. 지금 엔진의 소리 그대로예요.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_scratch_ko.webp" width="960" height="639" alt="턴테이블" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="턴테이블"><li class="fcard"><p class="fcard__n">01 / 10</p><h4>판</h4><p>33⅓ rpm, 한 바퀴에 1.8초. 리피치, 템포 유지, 옛 기계 엔진 모두 자기 방식대로 읽어요.</p></li><li class="fcard"><p class="fcard__n">02 / 10</p><h4>손</h4><p>마우스나 컨트롤러로 잡아요. 손이 움직인 만큼만 판이 움직여서 바늘이 튀지 않고, 움직임은 부드럽게 이어져요.</p></li><li class="fcard"><p class="fcard__n">03 / 10</p><h4>슬립매트</h4><p>잡으면 몇 ms 안에 서고, 놓으면 25 ms 안에 판 속도를 따라잡아요.</p></li><li class="fcard"><p class="fcard__n">04 / 10</p><h4>모터</h4><p>▶ ■의 시작과 멈춤 시간. 바로, 또는 테이프처럼 천천히 서요.</p></li><li class="fcard"><p class="fcard__n">05 / 10</p><h4>페이더</h4><p>부드럽게(믹스용)부터 날카롭게(스크래치용)까지 곡선. 소리가 열리는 지점과 거꾸로도 골라요.</p></li><li class="fcard"><p class="fcard__n">06 / 10</p><h4>스크래치 패턴</h4><p>베이비, 처프, 트랜스, 플레어 등. 누르는 동안 판에 올린 조각을 그 패턴으로 긁어요.</p></li><li class="fcard"><p class="fcard__n">07 / 10</p><h4>16건반</h4><p>건반 16개가 조각 1–16을 골라 긁어요. 세게 칠수록 멀리 밀어요. 다음 16분음표에서 시작해요.</p></li><li class="fcard"><p class="fcard__n">08 / 10</p><h4>곡 따라 돌기</h4><p>DAW를 재생하면 판이 큐부터 곡에 맞춰 돌아요. 잠깐 떼어 놓아도 다시 곡 자리로 돌아와요.</p></li><li class="fcard"><p class="fcard__n">09 / 10</p><h4>컨트롤러</h4><p>끝없이 도는 노브는 조그, 스트립은 손 위치, 피치 휠은 밀고 당기기. MIDI 지정할 때 알아서 맞춰요.</p></li><li class="fcard"><p class="fcard__n">10 / 10</p><h4>오토메이션</h4><p>판, 손, 페이더가 DAW 파라미터라서, 긁은 것까지 바운스에 그대로 들어가요.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="이전 카드">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="다음 카드">→</button>
+              </div>
             </div>
           </article>
-          <article class="deep__part deep__part--flip" id="more-drum" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_drum_ko.webp" width="960" height="639" alt="드럼" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">06</p>
-              <h3>드럼</h3>
-              <p class="deep__lead">원샷 16개로 킷을 짜는 화면이에요. 샘플러와 같은 플러그인 안에 있어요.</p>
-              <ul class="deep__points"><li>셀마다 엔진(clean · grey · black · purple), 볼륨, 팬, 음높이 ±24, 페이드, 초크 그룹 1–4.</li><li>출력 16개: 셀마다 DAW의 다른 트랙으로 보낼 수 있어요.</li><li>에코와 스페이스는 셀마다 보내는 양만 정하고, 무거운 이펙트는 하나만 돌려요(CPU).</li><li>MIDI 채널 10의 C1부터 셀 1–16. 샘플러 패드와 겹치지 않게 구역이 나뉘어 있어요.</li><li>킷 파일(.flipkit)로 저장하고 다른 프로젝트에서 열어요. 파일 여러 개를 한 번에 끌어 놓으면 차례로 채워져요.</li></ul>
+          <article class="deep__part" id="more-drum" data-reveal>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">07</p>
+                <h3>드럼</h3>
+                <p class="deep__lead">원샷 16개로 킷을 짜는 화면이에요. 샘플러와 같은 플러그인 안에 있어요.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_drum_ko.webp" width="960" height="639" alt="드럼" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="드럼"><li class="fcard"><p class="fcard__n">01 / 08</p><h4>셀 16개</h4><p>파일을 끌어 놓으면 들어가요. 여러 개를 놓으면 그 셀부터 차례로 채워요.</p></li><li class="fcard"><p class="fcard__n">02 / 08</p><h4>셀마다 엔진</h4><p>clean, grey, black, purple을 셀마다 따로.</p></li><li class="fcard"><p class="fcard__n">03 / 08</p><h4>셀마다 조절</h4><p>볼륨, 팬, 음높이 ±24, 페이드 인 · 아웃. 모두 DAW 오토메이션이 돼요.</p></li><li class="fcard"><p class="fcard__n">04 / 08</p><h4>초크</h4><p>그룹 1–4. 같은 그룹을 치면 앞 소리가 멈춰요. 오픈 · 클로즈 하이햇처럼.</p></li><li class="fcard"><p class="fcard__n">05 / 08</p><h4>출력 16개</h4><p>셀마다 DAW의 다른 트랙으로 보내요. 1번은 fx 랙을 거쳐요.</p></li><li class="fcard"><p class="fcard__n">06 / 08</p><h4>에코 · 스페이스</h4><p>셀마다 보내는 양만 정하고, 무거운 이펙트는 하나만 돌려요(CPU).</p></li><li class="fcard"><p class="fcard__n">07 / 08</p><h4>건반 구역</h4><p>셀은 C6부터, MIDI 채널 10이면 C1부터. 샘플러 패드와 겹치지 않게 나뉘어 있어요.</p></li><li class="fcard"><p class="fcard__n">08 / 08</p><h4>킷 파일</h4><p>.flipkit에 샘플과 설정을 함께. 다른 프로젝트에서 열면 킷만 들어와요.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="이전 카드">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="다음 카드">→</button>
+              </div>
             </div>
           </article>
           <article class="deep__part" id="more-out" data-reveal>
-            <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_midi_ko.webp" width="960" height="639" alt="내보내기와 안전" loading="lazy"></div>
-            <div class="deep__body">
-              <p class="deep__n">07</p>
-              <h3>내보내기와 안전</h3>
-              <p class="deep__lead">만든 것은 그대로 DAW로 가고, 갑자기 큰 소리는 나지 않게 했어요.</p>
-              <ul class="deep__points"><li>찹을 MIDI로: 루프가 각 조각에 닿는 순간 그대로 MIDI 클립을 만들어, DAW 트랙에 끌어 놓아요. 원래 그루브에서 시작해요.</li><li>바운스 = 연주: 블록 크기 1부터 4096까지, 실시간이든 오프라인이든 같은 소리예요.</li><li>MIDI 지정: 연주에 쓰는 컨트롤은 모두 MIDI로 지정할 수 있어요.</li><li>.flip 파일 하나에 샘플과 찹, 설정이 다 들어가요.</li><li>갑자기 큰 소리를 가장 심각한 버그로 다뤄요. 원인을 고치고 테스트로 막았어요. 평소 소리를 바꾸는 리미터는 넣지 않았고, 맨 끝의 안전 리미터(세이프 · 빈티지 · 끔)는 고를 수 있어요.</li></ul>
+            <div class="deep__top">
+              <div class="deep__body">
+                <p class="deep__n">08</p>
+                <h3>내보내기와 안전</h3>
+                <p class="deep__lead">만든 것은 그대로 DAW로 가고, 갑자기 큰 소리는 나지 않게 했어요.</p>
+              </div>
+              <div class="deep__shot card"><img class="shot" src="/assets/images/flipper/feature_midi_ko.webp" width="960" height="639" alt="내보내기와 안전" loading="lazy"></div>
+            </div>
+            <div class="fcards" data-cards>
+              <ul class="fcards__track" data-cards-track tabindex="0" aria-label="내보내기와 안전"><li class="fcard"><p class="fcard__n">01 / 08</p><h4>찹을 MIDI로</h4><p>루프가 각 조각에 닿는 순간 그대로 MIDI 클립을 만들어 DAW 트랙에 끌어 놓아요. 원래 그루브에서 시작해요.</p></li><li class="fcard"><p class="fcard__n">02 / 08</p><h4>바운스 = 연주</h4><p>블록 크기 1부터 4096까지, 실시간이든 오프라인이든 같은 소리예요.</p></li><li class="fcard"><p class="fcard__n">03 / 08</p><h4>MIDI 지정</h4><p>연주에 쓰는 컨트롤은 모두 MIDI로 지정해요. 누르는 동안 / 눌러서 켜고 끄기도 골라요.</p></li><li class="fcard"><p class="fcard__n">04 / 08</p><h4>.flip 파일</h4><p>샘플, 찹, 설정을 파일 하나에. 예전 판의 flip도 같은 소리로 열려요.</p></li><li class="fcard"><p class="fcard__n">05 / 08</p><h4>되돌리기</h4><p>노브 하나, 끌기 하나가 한 단계. 찹도 되돌려요.</p></li><li class="fcard"><p class="fcard__n">06 / 08</p><h4>큰 소리 규칙</h4><p>갑자기 큰 소리는 가장 심각한 버그로 다뤄요. 원인을 고치고 테스트로 막았어요.</p></li><li class="fcard"><p class="fcard__n">07 / 08</p><h4>안전 리미터</h4><p>평소 소리를 바꾸는 리미터는 없어요. 맨 끝의 안전 리미터(세이프 · 빈티지 · 끔)는 고를 수 있어요.</p></li><li class="fcard"><p class="fcard__n">08 / 08</p><h4>한국어 · 영어</h4><p>화면 전체가 두 언어예요. 낮과 밤, 엔진마다 스킨도 바뀌어요.</p></li></ul>
+              <div class="fcards__keys">
+                <button type="button" class="slides__arrow" data-cards-prev aria-label="이전 카드">←</button>
+                <button type="button" class="slides__arrow" data-cards-next aria-label="다음 카드">→</button>
+              </div>
             </div>
           </article>
           </div>

@@ -131,4 +131,24 @@
     [bpm, key, target].forEach((input) => input.addEventListener('input', update));
     update();
   });
+
+  // The long read's cards: the arrows turn by one card; swiping or scrolling the row works too.
+  document.querySelectorAll('[data-cards]').forEach((box) => {
+    const track = box.querySelector('[data-cards-track]');
+    const prev = box.querySelector('[data-cards-prev]');
+    const next = box.querySelector('[data-cards-next]');
+    const step = () => {
+      const card = track.firstElementChild;
+      return card ? card.getBoundingClientRect().width + 16 : track.clientWidth;
+    };
+    const mark = () => {
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    };
+    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+    track.addEventListener('scroll', () => requestAnimationFrame(mark), { passive: true });
+    window.addEventListener('resize', mark);
+    mark();
+  });
 })();
