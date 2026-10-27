@@ -155,3 +155,28 @@
     mark();
   });
 })();
+
+// the long read's parts fold: shut at first on a phone, open on a computer; folding a long part brings its title back
+(() => {
+  const keys = document.querySelectorAll('[data-fold]');
+  if (!keys.length) return;
+  const phone = window.matchMedia('(max-width: 720px)').matches;
+  const set = (key, open) => {
+    const body = document.getElementById(key.getAttribute('aria-controls'));
+    if (!body) return;
+    body.hidden = !open;
+    key.setAttribute('aria-expanded', String(open));
+    key.textContent = open ? key.dataset.shut : key.dataset.open;
+  };
+  keys.forEach((key) => {
+    set(key, !phone);
+    key.addEventListener('click', () => {
+      const open = key.getAttribute('aria-expanded') !== 'true';
+      set(key, open);
+      if (!open) {
+        const part = key.closest('.deep__part');
+        if (part && part.getBoundingClientRect().top < 0) part.scrollIntoView({ block: 'start' });
+      }
+    });
+  });
+})();

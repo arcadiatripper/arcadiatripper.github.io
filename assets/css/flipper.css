@@ -1444,3 +1444,35 @@ h2.heading,
 .slide--feature .slide__tool .tempo {
   margin: 0;
 }
+
+/* each part folds: shut on a phone at first, open on a computer, the same key on both */
+.deep__fold {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 10px 18px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--ink);
+}
+
+.deep__fold::after {
+  content: "▴";
+  font-size: 12px;
+}
+
+.deep__fold[aria-expanded="false"]::after {
+  content: "▾";
+}
+
+.deep__fold:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--ink);
+}

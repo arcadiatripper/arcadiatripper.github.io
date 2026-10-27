@@ -406,6 +406,9 @@ def deep_block(lang: str, t: dict) -> str:
     d = DEEP[lang]
     rows = []
     for i, part in enumerate(PARTS):
+        n = len(part["features"])
+        fold_open = f"기능 {n}개 보기" if lang == "ko" else f"Show {n} features"
+        fold_shut = "접기" if lang == "ko" else "Fold"
         rows.append(f"""
           <article class="deep__part" id="more-{part['key']}" data-reveal>
             <div class="deep__top deep__top--alone">
@@ -413,9 +416,12 @@ def deep_block(lang: str, t: dict) -> str:
                 <p class="deep__n">{i + 1:02d}</p>
                 <h3>{E(part['title'][lang])}</h3>
                 <p class="deep__lead">{E(part['lead'][lang])}</p>
+                <button type="button" class="deep__fold" aria-expanded="true" aria-controls="feat-{part['key']}" data-fold
+                        data-open="{E(fold_open)}" data-shut="{E(fold_shut)}">{E(fold_shut)}</button>
               </div>
             </div>
-            {features_block(lang, t, part)}
+            <div class="deep__features" id="feat-{part['key']}" data-fold-body>{features_block(lang, t, part)}
+            </div>
           </article>""")
     return f"""
           <header class="heading heading--center" data-reveal><h2 id="more-title">{E(d['title'])}</h2><p>{E(d['lead'])}</p></header>
