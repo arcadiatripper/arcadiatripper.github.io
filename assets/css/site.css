@@ -101,6 +101,21 @@ iframe:focus-visible {
   backdrop-filter: blur(12px);
 }
 
+/* under the site-wide bar (global.css) the page's own bar sticks just below it */
+.gnav ~ .site-header {
+  top: 58px;
+}
+
+html:has(.gnav) {
+  scroll-padding-top: 146px;
+}
+
+@media (max-width: 560px) {
+  .gnav ~ .site-header {
+    top: 54px;
+  }
+}
+
 .site-header__inner {
   display: flex;
   min-height: 66px;

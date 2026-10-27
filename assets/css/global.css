@@ -1,0 +1,143 @@
+/* The bar at the top of every page (flipper, artist, later plug-ins): same place, size and words everywhere.
+   Each page sets --gnav-bg, --gnav-ink and --gnav-line so the bar sits on its own colour. */
+
+.gnav {
+  --gnav-bg: rgb(251 251 248 / 94%);
+  --gnav-ink: #1d0a71;
+  --gnav-line: #d5d4dd;
+  --gnav-font: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  position: sticky;
+  z-index: 60;
+  top: 0;
+  border-bottom: 1px solid var(--gnav-line);
+  background: var(--gnav-bg);
+  color: var(--gnav-ink);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.gnav__inner {
+  display: flex;
+  max-width: 1100px;
+  min-height: 58px;
+  margin: 0 auto;
+  padding: 0 26px;
+  align-items: center;
+  gap: 28px;
+}
+
+.gnav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.gnav__home {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--gnav-font);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.gnav__home img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.gnav__links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-right: auto;
+  font-family: var(--gnav-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.gnav__links a,
+.gnav__lang a {
+  border-bottom: 1px solid transparent;
+  transition: border-color 150ms ease, opacity 150ms ease;
+}
+
+.gnav__links a:hover,
+.gnav__links a[aria-current="page"] {
+  border-bottom-color: currentColor;
+}
+
+.gnav__lang {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--gnav-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.gnav__lang a[aria-current="true"] {
+  border-bottom-color: currentColor;
+}
+
+.gnav__lang a:not([aria-current="true"]) {
+  opacity: 0.55;
+}
+
+.gnav__lang a:hover {
+  opacity: 1;
+}
+
+.gnav a:focus-visible {
+  outline: 3px solid #dc2626;
+  outline-offset: 4px;
+}
+
+/* "English version →" for visitors whose browser is in English (shown by global.js, never a redirect) */
+.lang-hint {
+  display: none;
+  border-bottom: 1px solid var(--gnav-line);
+  background: var(--gnav-bg);
+  color: var(--gnav-ink);
+  font-family: var(--gnav-font);
+  font-size: 12px;
+  text-align: center;
+}
+
+.lang-hint.is-shown {
+  display: block;
+}
+
+.lang-hint a {
+  display: inline-block;
+  padding: 8px 12px;
+  color: inherit;
+}
+
+.lang-hint button {
+  margin-left: 4px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .gnav__inner {
+    min-height: 54px;
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .gnav__home span {
+    display: none;
+  }
+
+  .gnav__links {
+    gap: 16px;
+  }
+}

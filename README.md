@@ -1,11 +1,26 @@
 # 레네 RENÉ / arcadiatripper
 
-레네 RENÉ의 음악, 글, 가이드를 모은 정적 개인 홈페이지입니다.
+레네 RENÉ(tripper)의 플러그인과 음악, 글, 가이드를 모은 정적 홈페이지입니다.
+
+## 주소
+
+| 한국어 | English | 내용 |
+|---|---|---|
+| `/` | `/en/` | 지금은 flipper 소개 (플러그인이 둘이 되면 플러그인 카드를 고르는 첫 화면) |
+| `/flipper/` | `/en/flipper/` | flipper 소개 |
+| `/artist/` | `/en/artist/` | 아티스트 포트폴리오 (예전 첫 화면) |
+| `/koala-sampler-kr-manual/` | | Koala Sampler 한국어 가이드 (별도 저장소) |
+
+- 예전 첫 화면의 `#discography` 같은 주소는 첫 화면이 `/artist/#discography`로 넘겨 줍니다.
+- 맨 위 막대(`assets/css/global.css`, `assets/js/global.js`)는 모든 페이지에서 같은 자리, 같은 말을 씁니다.
+- flipper 페이지 네 개는 `tools/build_flipper.py`가 한 틀과 한국어 · 영어 문구로 만듭니다. 문구를 바꾸면 `python3 tools/build_flipper.py`를 다시 돌리고 결과를 커밋합니다. 베타 공개 날에는 그 파일의 `RELEASED`를 `True`로, 소개 영상이 나오면 `VIDEO_ID`를 채웁니다.
+- flipper 화면 그림(`assets/images/flipper/`)은 flipper 저장소의 `flipper_snapshot`으로 뽑습니다. 글꼴(`assets/fonts/flipper-ui/`)은 플러그인의 "flipper ui"(Fredoka + 나눔스퀘어라운드)와 스킨 글꼴을 웹용으로 줄인 것이며 SIL OFL 1.1입니다.
+- flipper 코드 저장소에서는 GitHub Pages를 켜지 않습니다. 켜면 그 저장소가 `arcadiatripper.com/flipper` 주소를 차지합니다.
 
 - 공개 주소: <https://arcadiatripper.com/>
 - 기술 구성: HTML, CSS, 최소한의 JavaScript
 - 배포 방식: GitHub Pages에서 저장소 루트의 정적 파일을 직접 제공
-- 글꼴: LINE Seed Sans KR (SIL Open Font License 1.1)
+- 글꼴: LINE Seed Sans KR (아티스트 페이지), flipper ui · Barlow · DotGothic16 · Jersey 15 (flipper 페이지), 모두 SIL Open Font License 1.1
 
 ## 로컬 확인
 
