@@ -77,12 +77,12 @@ PARTS = [
               ("주사위와 혼돈", [
                   "주사위를 누를 때마다 새 찹이 떨어져요. 슬라이스 개수, 잠근 마커, 스킵한 부분은 그대로 두고 나머지만 새로 잘라요.",
                   "주사위를 끌면 혼돈이 0–100 %로 바뀌고, 주사위 눈이 그만큼 늘어요. 눈 하나는 가장 센 타격만 골라 고르게 자르고, 눈 여섯은 아무 데나 잘라요. 50 %를 넘으면 타격이 아닌 자리도 섞이기 시작해요.",
-                  "어느 경우든 두 슬라이스가 너무 붙지 않게(고른 슬라이스 길이의 4분의 1, 최대 50 ms) 떨어뜨려요.",
+                  "어느 경우든 두 슬라이스가 너무 붙지 않게 떨어뜨려요.",
               ]),
               ("The die and its chaos", [
                   "Every press drops a new chop. The slice count, locked markers and skipped parts stay; the rest is chopped anew.",
                   "Drag the die to set the chaos, 0–100 %, and its pips follow: one pip keeps to the strongest hits, fairly evenly; six cut anywhere. Past 50 % places that aren't hits creep in.",
-                  "Either way no two slices land too close (a quarter of an even slice, at most 50 ms).",
+                  "Either way no two slices land too close.",
               ])),
             F("hand", ("zoomed", TOP),
               ("손으로 다듬기", [
@@ -118,12 +118,12 @@ PARTS = [
             F("slice", ("edit", (0, 0.135, 1, 0.62)),
               ("슬라이스마다 다섯 가지", [
                   "최대 64슬라이스까지 잘라요. 슬라이스마다 설정은 음높이(반음, Shift로 센트), 리버스, 볼륨, 페이드 인, 페이드 아웃 다섯 개뿐이에요. 샘플러이지 신시사이저가 아니라서, 필요한 것만 남겼어요.",
-                  "페이드는 0 ms에서 시작해요. 들어 보고 이상할 때만 만지는 값이라서요. 대신 모든 소리의 시작과 끝에 0.1 ms 가장자리를 둬서, 파형 중간을 잘라도 클릭이 나지 않아요.",
+                  "페이드는 0 ms에서 시작해요. 들어 보고 이상할 때만 만지는 값이라서요. 대신 모든 소리의 시작과 끝을 아주 짧게 다듬어서, 파형 중간을 잘라도 클릭이 나지 않아요.",
                   "'전체'를 누르면 노브가 모든 슬라이스를 한꺼번에 바꿔요. 패드를 Shift로 누르면 범위, Ctrl(⌘)로 누르면 하나씩 더 골라서 그 슬라이스들만 같이 바꿔요.",
               ]),
               ("Five settings per slice", [
                   "Up to 64 slices, each with five settings and nothing more: pitch (semitones, shift for cents), reverse, level, fade in and fade out. It's a sampler, not a synth, so only what's needed stayed.",
-                  "Fades start at 0 ms, because you touch them only when something sounds wrong. Instead every sound starts and ends on a 0.1 ms edge, so cutting mid-wave never clicks.",
+                  "Fades start at 0 ms, because you touch them only when something sounds wrong. Instead every sound starts and ends with a tiny edge, so cutting mid-wave never clicks.",
                   "Press 'all' and the knobs change every slice at once. Shift-click pads for a range, cmd-click for one more, and only those change together.",
               ])),
             F("truncate", ("hits", (0, 0.09, 1, 0.53)),
@@ -147,33 +147,33 @@ PARTS = [
             F("repitch", ("repitch", TOP_ROW),
               ("리피치", [
                   "옛 샘플러처럼 읽는 속도만 바꿔요. 키를 내리면 느려지고 어두워지고, 올리면 빨라지고 밝아져요. 소리를 늘이지 않아서 디지털 잡음이 생기지 않아요. 새 샘플은 리피치로 시작해요.",
-                  "clean 엔진은 속도에 맞춰 걸러 내는 주파수가 같이 움직이는 sinc 보간으로 읽어요. 한 옥타브 올려도 접혀 들어오는 잡음이 −85 dB예요.",
+                  "clean 엔진은 키를 많이 올려도 날카로운 잡음이 끼지 않게, 속도에 맞춰 높은 소리를 걸러 내며 읽어요.",
                   "grey, black, purple은 그 기계가 읽던 방식 그대로(샘플을 건너뛰고 되풀이하는 등) 일부러 거칠게 읽어요. 엔진 이야기는 아래 '엔진' 칸에 있어요.",
               ]),
               ("Repitch", [
                   "Like an old sampler, only the reading speed changes: pitch it down and it slows down and darkens, up and it speeds up and brightens. Nothing is stretched, so there are no digital artefacts. A new sample starts in repitch.",
-                  "clean reads through a sinc interpolator whose cutoff follows the speed: an octave up, what folds back sits at −85 dB.",
+                  "clean filters the top as it reads faster, so even far up no harsh noise creeps in.",
                   "grey, black and purple read the way their machine did (skipping and repeating samples and so on), rough on purpose. The engines have their own section below.",
               ])),
             F("keep", ("keep", TOP_ROW),
               ("템포 유지", [
                   "길이와 높이를 따로 움직여요. 템포는 그대로 두고 키만, 또는 키는 그대로 두고 템포만 바꿔요.",
-                  "늘이는 데는 두 가지를 써요. Rubber Band R3는 음높이 오차 0센트, 타격 앞에 번지는 소리가 −26 ~ −37 dB로 가장 깨끗하지만 무거워요. Signalsmith Stretch는 오차 5센트 안이고 실시간의 약 50배로 빨라요.",
+                  "늘이는 데는 두 가지를 써요. Rubber Band R3는 가장 깨끗하지만 무겁고, Signalsmith Stretch는 조금 덜 깨끗하지만 아주 빨라요.",
                   "직접 들어 보고 정했어요. 키만 바꿀 땐 둘이 비슷했고, 템포만 바꿀 땐 R3가 확실히 자연스러웠어요. 그래서 들리는 소리는 R3로 만들어요.",
               ]),
               ("Keep tempo", [
                   "Length and pitch move apart: keep the tempo and move the key, or keep the key and move the tempo.",
-                  "Two stretchers do it. Rubber Band R3: 0 cents pitch error, pre-echo on hits at −26 to −37 dB, the cleanest but heavy. Signalsmith Stretch: within 5 cents, about 50× real time.",
+                  "Two stretchers do it: Rubber Band R3, the cleanest but heavy, and Signalsmith Stretch, a touch less clean but very fast.",
                   "We picked by ear: on key-only changes the two sounded close, on tempo-only changes R3 was clearly more natural. So what you hear is made with R3.",
               ])),
             F("bake", ("settings", (0.5, 0.13, 0.97, 0.6)),
               ("미리 굽기", [
-                  "키나 속도를 바꾸면 뒤에서 R3로 구워 두고(4초짜리 찹이 약 0.5초), 다음에 칠 때부터 구운 소리를 읽어요. 굽기 전과 노브를 돌리는 동안은 Signalsmith가 바로 들려줘요.",
+                  "키나 속도를 바꾸면 뒤에서 R3로 구워 두고, 다음에 칠 때부터 구운 소리를 읽어요. 굽기 전과 노브를 돌리는 동안은 Signalsmith가 바로 들려줘요.",
                   "64슬라이스를 하나씩 굽지 않고 자른 구간 전체를 한 번 구워요. 그래서 마커를 옮겨도 다시 구울 필요가 없어요. 음높이를 따로 바꾼 슬라이스만 따로 구워요. 바운스도 같은 구운 소리를 읽어서, 들은 그대로 나가요.",
                   "속도와 키가 테이프처럼 같이 움직이면 늘일 게 없으니 리피치 길로 읽어서 더 가벼워요. 컴퓨터가 버거우면 설정의 '고품질 타임 스트레치'를 끄면 돼요. 끄면 Signalsmith로 구워서 더 가볍고 빨라요.",
               ]),
               ("Baked ahead", [
-                  "Change the key or speed and R3 bakes it in the background (a 4 s chop in about 0.5 s); the next hit plays the bake. Before that, and while a knob turns, Signalsmith plays at once.",
+                  "Change the key or speed and R3 bakes it in the background; the next hit plays the bake. Before that, and while a knob turns, Signalsmith plays at once.",
                   "Not 64 bakes for 64 slices: the whole chopped range bakes once, so moving markers needs no new bake. Only slices with their own pitch bake apart. The bounce reads the same bake, so it sounds as heard.",
                   "When speed and key move together like tape there is nothing to stretch, so it reads the repitch way, lighter. If the computer struggles, turn 'high-quality time stretch' off in the settings: it bakes with Signalsmith, lighter and faster.",
               ])),
