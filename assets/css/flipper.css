@@ -288,8 +288,40 @@ p {
   text-align: center;
 }
 
-.hero .label {
-  margin-bottom: 14px;
+/* FREE · OPEN SOURCE first: that it is free and open is the point */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.badges li {
+  padding: 5px 14px 4px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: var(--pick);
+  box-shadow: 0 2px 0 var(--shadow);
+  color: var(--pick-text);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.badges li:last-child {
+  background: var(--card);
+  color: var(--ink);
+}
+
+.hero__slogan {
+  margin-top: 12px;
+  color: var(--soft);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
 }
 
 .hero .get {
@@ -297,8 +329,8 @@ p {
 }
 
 .hero__lead {
-  margin-top: 18px;
-  font-size: clamp(28px, 3.6vw, 40px);
+  margin-top: 20px;
+  font-size: clamp(30px, 4.6vw, 52px);
   font-weight: 800;
   line-height: 1.25;
 }
@@ -378,50 +410,6 @@ h2.heading,
   font-weight: 800;
   line-height: 1.2;
   text-wrap: balance;
-}
-
-/* chop it, flip it, tap it: three steps in order */
-.steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.step {
-  padding: 28px 26px 30px;
-  border: var(--border) solid var(--line);
-  border-radius: var(--radius);
-  background: var(--card);
-  box-shadow: 0 4px 0 var(--shadow);
-  text-align: center;
-}
-
-.step__n {
-  display: inline-grid;
-  width: 40px;
-  height: 40px;
-  place-items: center;
-  border: 2px solid var(--line);
-  border-radius: 50%;
-  background: var(--pick);
-  box-shadow: 0 2px 0 var(--shadow);
-  color: var(--pick-text);
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.step h3 {
-  margin-top: 14px;
-  font-size: 28px;
-  font-weight: 800;
-}
-
-.step p {
-  margin-top: 6px;
-  color: var(--soft);
 }
 
 /* the main features: one picture and one line each, turned like pages */
@@ -1106,10 +1094,6 @@ h2.heading,
 
   .tempo__row--reverse {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-
-  .steps {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .hero__shell {

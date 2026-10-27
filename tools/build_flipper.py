@@ -39,8 +39,8 @@ T = {
     "ko": {
         "lang": "ko",
         "locale": "ko_KR",
-        "title": "flipper — 자르고, 뒤집고, 두드리는 무료 샘플러",
-        "description": "샘플 하나로 오래 노는 사람을 위한 무료 오픈소스 샘플러 플러그인. Mac · Windows, AU · VST3.",
+        "title": "flipper — 모두를 위한 무료 샘플러 플러그인",
+        "description": "모두를 위한 무료 오픈소스 샘플러 플러그인. Chop it. Flip it. Cook it. Mac · Windows, AU · VST3.",
         "skip": "본문으로 바로가기",
         "nav_label": "사이트 메뉴",
         "lang_label": "언어",
@@ -49,9 +49,9 @@ T = {
         "night": "밤",
         "lang_hint": "English version",
         "lang_hint_close": "닫기",
-        "kicker": "FREE · OPEN SOURCE · BETA",
-        "lead": "자르고, 뒤집고, 두드리는 샘플러.",
-        "sub": "샘플 하나로 오래 노는 사람을 위한 무료 플러그인.",
+        "badges": ["FREE", "OPEN SOURCE", "BETA"],
+        "lead": "모두를 위한 무료 샘플러 플러그인.",
+        "slogan": "Chop it. Flip it. Cook it.",
         "meta": ["Mac · Windows", "AU · VST3", "한국어 · English"],
         "get_mac": "Mac용 받기",
         "get_win": "Windows용 받기",
@@ -60,12 +60,6 @@ T = {
         "free_note": "돈도, 가입도 필요 없어요.",
         "video_title": "flipper 소개 영상",
         "video_soon": "소개 영상 준비 중",
-        "steps_title": "자르고, 뒤집고, 두드리고",
-        "steps": [
-            ("자르고", "들으면서 톡톡 치면 그 자리가 잘려요."),
-            ("뒤집고", "조각을 섞고, 키를 내리고, 판을 긁어요."),
-            ("두드리고", "패드로 치고, 건반으로 멜로디를 쳐요."),
-        ],
         "screens_title": "화면은 세 개",
         "screens": [
             ("sampler", "샘플러", "샘플 하나를 잘라서 연주해요."),
@@ -126,15 +120,15 @@ T = {
         "built_with": "JUCE, Rubber Band, Signalsmith Stretch, Airwindows, FLAC, Ogg Vorbis, Opus로 만들었어요.",
         "fonts": "글꼴: Fredoka, 나눔스퀘어라운드, Barlow, DotGothic16, Jersey 15 · SIL OFL 1.1",
         "made_by": "레네 RENÉ가 만들었어요",
-        "foot_line": "샘플 하나로 오래 노는 사람을 위한 무료 샘플러.",
+        "foot_line": "모두를 위한 무료 샘플러 플러그인.",
         "foot_links": "LINKS",
         "foot_notes": "MADE WITH",
     },
     "en": {
         "lang": "en",
         "locale": "en_US",
-        "title": "flipper — a free sampler to chop, flip and tap",
-        "description": "A free, open-source sampler plug-in for people who can play with one sample all day. Mac · Windows, AU · VST3.",
+        "title": "flipper — a free sampler plug-in for everyone",
+        "description": "A free, open-source sampler plug-in for everyone. Chop it. Flip it. Cook it. Mac · Windows, AU · VST3.",
         "skip": "Skip to content",
         "nav_label": "Site menu",
         "lang_label": "Language",
@@ -143,9 +137,9 @@ T = {
         "night": "night",
         "lang_hint": "",
         "lang_hint_close": "",
-        "kicker": "FREE · OPEN SOURCE · BETA",
-        "lead": "Chop it, flip it, tap it.",
-        "sub": "A free sampler for people who can play with one sample all day.",
+        "badges": ["FREE", "OPEN SOURCE", "BETA"],
+        "lead": "A free sampler plug-in for everyone.",
+        "slogan": "Chop it. Flip it. Cook it.",
         "meta": ["Mac · Windows", "AU · VST3", "English · 한국어"],
         "get_mac": "Get it for Mac",
         "get_win": "Get it for Windows",
@@ -154,12 +148,6 @@ T = {
         "free_note": "No money, no sign-up.",
         "video_title": "flipper intro video",
         "video_soon": "Intro video coming soon",
-        "steps_title": "Chop it, flip it, tap it",
-        "steps": [
-            ("Chop", "Tap along while it plays; it chops right there."),
-            ("Flip", "Shuffle the slices, pitch them down, scratch the record."),
-            ("Tap", "Play them on pads, or as a melody on the keys."),
-        ],
         "screens_title": "Three screens",
         "screens": [
             ("sampler", "sampler", "Chop one sample and play it."),
@@ -220,7 +208,7 @@ T = {
         "built_with": "Built with JUCE, Rubber Band, Signalsmith Stretch, Airwindows, FLAC, Ogg Vorbis and Opus.",
         "fonts": "Fonts: Fredoka, NanumSquareRound, Barlow, DotGothic16, Jersey 15 · SIL OFL 1.1",
         "made_by": "Made by RENÉ (레네)",
-        "foot_line": "A free sampler for people who can play with one sample all day.",
+        "foot_line": "A free sampler plug-in for everyone.",
         "foot_links": "LINKS",
         "foot_notes": "MADE WITH",
     },
@@ -280,13 +268,6 @@ def shot(name: str, lang: str, alt: str, link: bool = False, eager: bool = False
         img += (f'<img class="shot shot--night" src="/assets/images/flipper/{night}" width="960" height="639"'
                 f' alt="{E(alt)}" loading="lazy">')
     return f'<a class="zoom" href="/assets/images/flipper/{day}">{img}</a>' if link else img
-
-
-def steps_block(t: dict) -> str:
-    return "".join(
-        f'<li class="step" data-reveal><span class="step__n" aria-hidden="true">{n}</span><h3>{E(name)}</h3><p>{E(text)}</p></li>'
-        for n, (name, text) in enumerate(t["steps"], 1)
-    )
 
 
 def slides_block(lang: str, t: dict) -> str:
@@ -438,10 +419,10 @@ CHOOSER = """<!doctype html>
 
 CHOOSERS = {
     "": ("flipper — 무료 샘플러 · free sampler plug-in",
-         "자르고, 뒤집고, 두드리는 무료 오픈소스 샘플러. Chop it, flip it, play it: a free open-source sampler.",
+         "모두를 위한 무료 오픈소스 샘플러 플러그인. A free, open-source sampler plug-in for everyone. Chop it. Flip it. Cook it.",
          "flipper/og-flipper.png"),
     "flipper/": ("flipper — 무료 샘플러 · free sampler plug-in",
-                 "자르고, 뒤집고, 두드리는 무료 오픈소스 샘플러. Chop it, flip it, play it: a free open-source sampler.",
+                 "모두를 위한 무료 오픈소스 샘플러 플러그인. A free, open-source sampler plug-in for everyone. Chop it. Flip it. Cook it.",
                  "flipper/og-flipper.png"),
     "artist/": ("레네 RENÉ / arcadiatripper", "Music, guides and playlists by 레네 (tripper).", "og-arcadiatripper.jpg"),
 }
@@ -564,20 +545,13 @@ def page(lang: str, home: bool) -> str:
     <main id="main-content">
       <section class="hero" id="top">
         <div class="shell hero__shell">
-          <p class="label">{E(t['kicker'])}</p>
+          <ul class="badges">{''.join(f'<li>{E(b)}</li>' for b in t['badges'])}</ul>
           <h1 class="logo">flipper<i>.</i></h1>
           <p class="hero__lead">{E(t['lead'])}</p>
-          <p class="hero__sub">{E(t['sub'])}</p>
+          <p class="hero__slogan" lang="en">{E(t['slogan'])}</p>
 {download_block(t)}
 {video_block(lang, t)}
           <ul class="hero__meta">{meta}</ul>
-        </div>
-      </section>
-
-      <section class="band" id="steps" aria-labelledby="steps-title">
-        <div class="shell">
-          <h2 class="heading heading--center" id="steps-title" data-reveal>{E(t['steps_title'])}</h2>
-          <ol class="steps">{steps_block(t)}</ol>
         </div>
       </section>
 
