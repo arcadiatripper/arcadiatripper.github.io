@@ -632,6 +632,121 @@ DEEP = {
 }
 
 
+CHOP_FEATURES = {
+    "ko": [
+        ("hits", "타격 찾기", [
+            "샘플을 열면 flipper가 소리가 '탁' 하고 시작되는 자리(타격)를 전부 한 번에 찾아 둬요. 새 샘플은 감도 50 %로 바로 잘려서 들어와서, 열자마자 패드로 칠 수 있어요.",
+            "'슬라이스 개수' 노브를 돌리면 다시 분석하지 않고 그 자리에서 다시 잘라요. 노브를 올리면 약한 타격까지, 내리면 뚜렷한 타격만 남아요. 1번 조각은 늘 구간의 시작에 있고, 너무 많으면 가장 센 타격부터 채워요.",
+        ]),
+        ("grid", "박자로 자르기", [
+            "'그리드'를 고르면 샘플의 템포에 맞춰 1/16, 1/8, 1/4, 1/2, 한 마디마다 잘라요. 드럼 루프를 정박으로 나누거나, 패드 하나에 한 박씩 놓고 싶을 때 써요.",
+            "템포가 없는 샘플은 같은 길이로 나눠요. 건너뛴 부분은 다시 잘라도 그대로 남아요.",
+        ]),
+        ("lazy", "레이지 찹", [
+            "'레이지'를 누르면 구간이 재생되고, 듣다가 원하는 순간에 패드든 건반이든 아무거나 치면 그 자리에서 잘려요. 1번 조각은 시작에서 바로 시작하고, 칠 때마다 다음 조각이 시작돼요. 구간이 끝나거나 멈춤을 누르면 끝나요.",
+            "사람은 박보다 조금 일찍 치기도, 늦게 치기도 해요. 그래서 친 순간보다 80 ms 앞부터 60 ms 뒤까지에서 가장 그럴듯한 타격을 찾아 붙여요. 실제 드럼 루프로 시험했을 때 탭의 90–100 %가 제 타격에 붙었어요. 10 ms 안에 두 번 친 건 한 번으로 봐요.",
+            "레이지 찹 한 번이 통째로 되돌리기 한 단계예요. 마음에 안 들면 한 번 되돌리고 다시 치면 돼요.",
+        ]),
+        ("lit", "불 켜진 패드로 치기", [
+            "설정에서 '불 켜진 패드'를 고르면, 다음 조각의 패드에만 불이 들어오고 그 패드를 눌러야 잘려요. 다른 패드와 건반은 아무 일도 하지 않아요.",
+            "아무 키나 치는 대신 옛 기계처럼 패드를 차례로 짚어 가며 자르고 싶을 때예요. 멜로디 모드에서는 어느 건반이든 받아요.",
+        ]),
+        ("dice", "주사위와 혼돈", [
+            "주사위를 누를 때마다 새 찹이 떨어져요. 주사위가 굴러가고, 새 찹이 놓이면 빛이 패드를 한 번 훑어요. 조각 수, 잠근 마커, 건너뛴 부분, 1번 조각의 자리는 그대로 두고 나머지만 새로 잘라요.",
+            "주사위를 끌면 혼돈이 0–100 %로 바뀌고, 주사위 눈이 그만큼 늘어요. 0 %는 가장 뚜렷한 타격만 골라 고르게 자르고, 50 %까지는 약한 타격도 섞여요. 50 %를 넘으면 타격이 아닌 아무 데나 섞이기 시작해서, 100 %는 완전히 마음대로예요.",
+            "어느 경우든 두 조각이 너무 붙지 않게(고른 조각 길이의 4분의 1, 최대 50 ms) 떨어뜨려요. 한 번 굴린 것은 되돌리기 한 번으로 돌아가요.",
+        ]),
+        ("hand", "손으로 다듬기", [
+            "파형을 더블클릭하면 마커가 생기고, 8픽셀 안의 타격에 붙어요. alt를 누르면 정확히 그 자리에. 마커를 더블클릭하면 지워지고, 끌어서 옮기고, 빈 곳을 끌어 여러 개를 골라 지울 수 있어요.",
+            "휠이나 핀치로 마우스 자리를 중심으로 확대하고, 아래 막대로 넘겨요. 오른쪽 클릭에는 지우기, 잠그기, 구간 시작 · 끝을 여기로, 샘플 전체, 맞춰 보기가 있어요.",
+            "잠근 마커는 타격 · 그리드 · 레이지 · 주사위로 다시 잘라도 그 자리에 남아요. 꼭 지키고 싶은 자리를 잠가 두고 나머지만 다시 자르는 식으로 써요.",
+        ]),
+        ("skip", "건너뛰기", [
+            "카운트인, 숨소리, 쓰기 싫은 한 마디처럼 패드에 두고 싶지 않은 부분은 지우지 않고 '건너뛰기'로 빼 둬요. 빗금으로 보이고, 뒤 조각들이 한 칸씩 당겨져서 패드와 MIDI 음도 따라 움직여요.",
+            "샘플 파일은 손대지 않아서, 언제든 되돌릴 수 있어요. 다시 잘라도 건너뛴 부분은 그대로 남고, 그 안에 새 조각이 생기지 않아요.",
+        ]),
+        ("trims", "시작과 끝", [
+            "조각마다 시작과 끝을 ms 단위로 밀고 당겨요. 0은 언제나 '자른 그대로'라서, 얼마나 옮겼는지 바로 보여요.",
+            "끝을 −로 당기면 꼬리가 잘리고 빗금으로 보여요. +로 밀면 다음 마커를 넘어 이어서 울려요. 다음 조각은 그대로예요(설정에서 다음 조각 시작과 같이 움직이게 바꿀 수 있어요).",
+            "자석을 켜면 10 ms 안의 0 교차점에 붙어서 '틱' 소리가 나지 않아요. 여러 조각을 골라 한꺼번에 같은 만큼 옮길 수도 있어요.",
+        ]),
+        ("slice", "조각마다 다섯 가지", [
+            "최대 64조각. 조각마다 설정은 음높이(반음, shift로 센트), 리버스, 볼륨, 페이드 인, 페이드 아웃 다섯 개뿐이에요. 샘플러이지 신시사이저가 아니라서, 필요한 것만 남겼어요.",
+            "페이드는 0 ms에서 시작해요. 들어 보고 이상할 때만 만지는 값이라서요. 대신 모든 소리의 시작과 끝에 0.1 ms 가장자리를 둬서, 파형 중간을 잘라도 클릭이 나지 않아요.",
+            "'전체'를 누르거나 여러 조각을 고르면 같은 만큼 한꺼번에 바뀌어요. 모든 바꿈은 노브 하나, 끌기 하나가 되돌리기 한 단계예요.",
+        ]),
+    ],
+    "en": [
+        ("hits", "Hits", [
+            "When a sample opens, flipper finds every place a sound kicks in (a hit) in one go. A new sample comes in already chopped at 50 %, so you can play the pads straight away.",
+            "Turn the slices knob and it re-chops on the spot without analysing again: up for weaker hits too, down for only the clear ones. Slice 1 always sits at the range's start; when there are too many, the strongest hits come first.",
+        ]),
+        ("grid", "Beats", [
+            "Pick grid and it chops every 1/16, 1/8, 1/4, 1/2 or bar at the sample's tempo: for a drum loop split on the grid, or one beat per pad.",
+            "A sample without a tempo is cut into equal parts. Skipped parts stay where they are through a re-chop.",
+        ]),
+        ("lazy", "Lazy chop", [
+            "Press lazy and the range plays; whenever you like, hit any pad or key and it cuts there. Slice 1 starts at the start, and each hit starts the next slice. It ends with the range or when you press stop.",
+            "People tap a little early as often as a little late, so it looks from 80 ms before your tap to 60 ms after for the hit you most likely meant. On real drum loops 90–100 % of taps landed on their hit. Two taps within 10 ms count as one.",
+            "A whole lazy chop is one undo step: don't like it, undo once and tap again.",
+        ]),
+        ("lit", "The lit pad", [
+            "Choose 'lit pad' in the settings and only the next slice's pad lights up; that pad cuts, other pads and keys do nothing.",
+            "For chopping the old machines' way, pad after pad, instead of any key. Melody mode still takes any key.",
+        ]),
+        ("dice", "The die and its chaos", [
+            "Every press drops a new chop: the die tumbles, the chop lands, and a band of light sweeps the pads. The slice count, locked markers, skipped parts and slice 1's place stay; the rest is chopped anew.",
+            "Drag the die to set the chaos, 0–100 %, and its pips follow. 0 % picks only the clearest hits, fairly evenly; up to 50 % weaker hits join in; past 50 % places that aren't hits creep in, and 100 % is pure chance.",
+            "Either way no two slices land too close (a quarter of an even slice, at most 50 ms). Each roll is one undo step back.",
+        ]),
+        ("hand", "By hand", [
+            "Double-click the waveform for a marker; it snaps to a hit within 8 px (alt: exactly there). Double-click a marker to delete it, drag to move it, drag across empty space to pick several and delete.",
+            "Wheel or pinch zooms around the mouse, the bar below scrolls. Right-click for delete, lock, range start or end here, the whole sample and zoom to fit.",
+            "A locked marker stays put through every re-chop (hits, grid, lazy, the die): lock the places you want to keep and re-chop the rest.",
+        ]),
+        ("skip", "Skip", [
+            "A count-in, a breath, a bar you don't want: leave it out with skip instead of cutting it out. It shows hatched, the slices after it move up one, and the pads and MIDI notes follow.",
+            "The sample file is never touched, so it can come back any time. Re-chops leave skipped parts as they are, and no new slice lands inside one.",
+        ]),
+        ("trims", "Start and end", [
+            "Push and pull each slice's start and end in ms. 0 is always 'as chopped', so you can see how far you moved it.",
+            "Pull the end below 0 and the tail is trimmed, shown hatched; push it above 0 and the slice plays on past the next marker. The next slice stays where it is (a setting links it to the next slice's start instead).",
+            "With the magnet on, they land on a zero crossing within 10 ms, so no clicks. Pick several slices to move them all by the same amount.",
+        ]),
+        ("slice", "Five settings per slice", [
+            "Up to 64 slices, each with five settings and nothing more: pitch (semitones, shift for cents), reverse, level, fade in and fade out. It's a sampler, not a synth, so only what's needed stayed.",
+            "Fades start at 0 ms, because you touch them only when something sounds wrong. Instead every sound starts and ends on a 0.1 ms edge, so cutting mid-wave never clicks.",
+            "Press 'all' or pick several slices to change them together. Every knob turn or drag is one undo step.",
+        ]),
+    ],
+}
+
+
+def features_block(lang: str, key: str, title: str, items) -> str:
+    """One part's features as slides: per feature its own picture of the plug-in and a few paragraphs."""
+    slides, dots = [], []
+    count = len(items)
+    for i, (fkey, name, paras) in enumerate(items):
+        body = "".join(f"<p>{E(p)}</p>" for p in paras)
+        slides.append(f"""
+              <li class="slide slide--feature" id="{key}-{fkey}" aria-roledescription="slide" aria-label="{i + 1} / {count}">
+                <div class="slide__shot card">{shot(f'feat_{fkey}', lang, name)}</div>
+                <div class="slide__body"><p class="slide__n">{i + 1:02d} / {count:02d}</p><h4>{E(name)}</h4><div class="slide__text">{body}</div></div>
+              </li>""")
+        dots.append(f'<button type="button" class="slides__dot" aria-label="{E(name)}" data-slide-to="{i}"></button>')
+    t = T[lang]
+    return f"""
+            <div class="slides slides--features" data-slides aria-roledescription="carousel" aria-label="{E(title)}">
+              <ul class="slides__track" data-slides-track tabindex="0">{''.join(slides)}
+              </ul>
+              <div class="slides__controls">
+                <button type="button" class="slides__arrow" data-slides-prev aria-label="{E(t['slides_prev'])}">←</button>
+                <div class="slides__dots">{''.join(dots)}</div>
+                <button type="button" class="slides__arrow" data-slides-next aria-label="{E(t['slides_next'])}">→</button>
+              </div>
+            </div>"""
+
+
 def deep_block(lang: str, t: dict) -> str:
     """The long read: per part a picture and its words, then its features as cards to turn (the tempo calculator
     sits under key and tempo's words)."""
@@ -639,27 +754,29 @@ def deep_block(lang: str, t: dict) -> str:
     rows = []
     for i, part in enumerate(d["parts"]):
         count = len(part["cards"])
+        features = CHOP_FEATURES[lang] if part["key"] == "chop" else None
         cards = "".join(
             f'<li class="fcard"><p class="fcard__n">{n + 1:02d} / {count:02d}</p><h4>{E(name)}</h4><p>{E(text)}</p></li>'
             for n, (name, text) in enumerate(part["cards"]))
         tool = tempo_block(t) if part.get("tempo") else ""
-        rows.append(f"""
-          <article class="deep__part" id="more-{part['key']}" data-reveal>
-            <div class="deep__top">
-              <div class="deep__body">
-                <p class="deep__n">{i + 1:02d}</p>
-                <h3>{E(part['title'])}</h3>
-                <p class="deep__lead">{E(part['lead'])}</p>{tool}
-              </div>
-              <div class="deep__shot card">{shot(part['shot'], lang, part['title'])}</div>
-            </div>
-            <div class="fcards" data-cards>
+        cards_html = f"""<div class="fcards" data-cards>
               <ul class="fcards__track" data-cards-track tabindex="0" aria-label="{E(part['title'])}">{cards}</ul>
               <div class="fcards__keys">
                 <button type="button" class="slides__arrow" data-cards-prev aria-label="{E(d['prev'])}">←</button>
                 <button type="button" class="slides__arrow" data-cards-next aria-label="{E(d['next'])}">→</button>
               </div>
+            </div>"""
+        rows.append(f"""
+          <article class="deep__part" id="more-{part['key']}" data-reveal>
+            <div class="deep__top{' deep__top--alone' if features else ''}">
+              <div class="deep__body">
+                <p class="deep__n">{i + 1:02d}</p>
+                <h3>{E(part['title'])}</h3>
+                <p class="deep__lead">{E(part['lead'])}</p>{tool}
+              </div>
+              {'' if features else f'<div class="deep__shot card">{shot(part["shot"], lang, part["title"])}</div>'}
             </div>
+            {features_block(lang, part['key'], part['title'], features) if features else cards_html}
           </article>""")
     return f"""
           <header class="heading heading--center" data-reveal><h2 id="more-title">{E(d['title'])}</h2><p>{E(d['lead'])}</p></header>

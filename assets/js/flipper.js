@@ -137,16 +137,19 @@
     const track = box.querySelector('[data-cards-track]');
     const prev = box.querySelector('[data-cards-prev]');
     const next = box.querySelector('[data-cards-next]');
-    const step = () => {
-      const card = track.firstElementChild;
-      return card ? card.getBoundingClientRect().width + 16 : track.clientWidth;
-    };
     const mark = () => {
       prev.disabled = track.scrollLeft <= 2;
       next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
     };
-    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-    next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+    // to the card the arrow points at, by its place in the row (scrollBy can stop short under scroll snapping)
+    const turn = (by) => {
+      const cards = [...track.children];
+      const now = cards.findIndex((card) => card.offsetLeft >= track.scrollLeft - 4);
+      const to = Math.max(0, Math.min(cards.length - 1, (now < 0 ? 0 : now) + by));
+      track.scrollTo({ left: cards[to].offsetLeft, behavior: 'smooth' });
+    };
+    prev.addEventListener('click', () => turn(-1));
+    next.addEventListener('click', () => turn(1));
     track.addEventListener('scroll', () => requestAnimationFrame(mark), { passive: true });
     window.addEventListener('resize', mark);
     mark();
