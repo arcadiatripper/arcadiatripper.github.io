@@ -1215,3 +1215,141 @@ h2.heading,
   background: var(--card);
   color: var(--ink);
 }
+
+/* the long read: one row per part, the picture and the words taking turns left and right */
+.deep {
+  display: grid;
+  gap: 88px;
+  margin-top: 56px;
+}
+
+.deep__part {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.deep__part--flip .deep__shot {
+  order: 2;
+}
+
+.deep__shot {
+  position: sticky;
+  top: 96px;
+  overflow: hidden;
+  background: var(--well);
+}
+
+.deep__body {
+  min-width: 0;
+}
+
+.deep__n {
+  color: var(--soft);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.deep__body h3 {
+  margin-top: 6px;
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.deep__lead {
+  margin-top: 12px;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.deep__points {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deep__points li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--soft);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.deep__points li::before {
+  position: absolute;
+  top: 0.62em;
+  left: 2px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--line);
+  border-radius: 3px;
+  background: var(--pick);
+  content: "";
+}
+
+.deep__quote {
+  margin: 22px 0 0;
+  padding: 16px 20px;
+  border: var(--border) solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  box-shadow: 0 3px 0 var(--shadow);
+}
+
+.deep__quote p {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.deep__quote cite {
+  display: block;
+  margin-top: 6px;
+  color: var(--soft);
+  font-size: 13px;
+  font-style: normal;
+}
+
+.deep__body .tempo {
+  margin-top: 24px;
+}
+
+.deep__body .tempo__row {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.deep__body .tempo__row .field--wide {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.deep__body .tempo__row--reverse {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+@media (max-width: 960px) {
+  .deep {
+    gap: 64px;
+  }
+
+  .deep__part {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .deep__part--flip .deep__shot {
+    order: 0;
+  }
+
+  .deep__shot {
+    position: static;
+  }
+}

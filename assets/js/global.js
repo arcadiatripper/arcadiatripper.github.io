@@ -102,21 +102,3 @@
   });
   show();
 })();
-
-(() => {
-  // The pixel icons sit on whole device pixels, as in the plug-in (a half-pixel place blurs their 2 px cells).
-  const snap = () => document.querySelectorAll('.px-icon').forEach((icon) => {
-    icon.style.transform = '';
-    const box = icon.getBoundingClientRect();
-    if (!box.width) return;
-    const dpr = window.devicePixelRatio || 1;
-    const dx = Math.round(box.left * dpr) / dpr - box.left;
-    const dy = Math.round(box.top * dpr) / dpr - box.top;
-    if (dx || dy) icon.style.transform = `translate(${dx}px, ${dy}px)`;
-  });
-  window.addEventListener('resize', snap);
-  window.addEventListener('load', snap);
-  if (document.fonts) document.fonts.ready.then(snap);
-  document.addEventListener('click', () => requestAnimationFrame(snap));
-  snap();
-})();

@@ -263,12 +263,12 @@
   box-shadow: none;
 }
 
-.night-key .px-icon--sun,
-.night-key[aria-pressed="true"] .px-icon--moon {
+.night-key .dn-icon--sun,
+.night-key[aria-pressed="true"] .dn-icon--moon {
   display: none;
 }
 
-.night-key[aria-pressed="true"] .px-icon--sun {
+.night-key[aria-pressed="true"] .dn-icon--sun {
   display: block;
 }
 
@@ -305,8 +305,8 @@
   transition: none !important;
 }
 
-/* the plug-in's pixel icons (sun, moon) */
-.px-icon {
+/* the plug-in's sun and moon */
+.dn-icon {
   display: block;
   fill: currentColor;
 }
