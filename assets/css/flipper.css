@@ -1434,3 +1434,13 @@ h2.heading,
     font-size: 16px;
   }
 }
+
+/* the tempo calculator stands in for a feature's picture */
+.slide--feature .slide__tool {
+  width: 100%;
+  max-width: 760px;
+}
+
+.slide--feature .slide__tool .tempo {
+  margin: 0;
+}
