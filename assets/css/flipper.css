@@ -1408,3 +1408,29 @@ h2.heading,
     text-align: left;
   }
 }
+
+/* on a phone a part's features are read down the page, not turned: every picture opens full size on a tap */
+@media (max-width: 720px) {
+  .slides--features .slides__track {
+    flex-direction: column;
+    gap: 44px;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .slides--features .slide {
+    flex: none;
+  }
+
+  .slides--features .slides__controls {
+    display: none;
+  }
+
+  .slide--feature .slide__shot img {
+    max-height: none;
+  }
+
+  .slide--feature .slide__text {
+    font-size: 16px;
+  }
+}

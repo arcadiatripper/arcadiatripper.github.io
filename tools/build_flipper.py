@@ -730,7 +730,7 @@ def features_block(lang: str, key: str, title: str, items) -> str:
         body = "".join(f"<p>{E(p)}</p>" for p in paras)
         slides.append(f"""
               <li class="slide slide--feature" id="{key}-{fkey}" aria-roledescription="slide" aria-label="{i + 1} / {count}">
-                <div class="slide__shot card">{shot(f'feat_{fkey}', lang, name)}</div>
+                <div class="slide__shot card">{shot(f'feat_{fkey}', lang, name, link=True)}</div>
                 <div class="slide__body"><p class="slide__n">{i + 1:02d} / {count:02d}</p><h4>{E(name)}</h4><div class="slide__text">{body}</div></div>
               </li>""")
         dots.append(f'<button type="button" class="slides__dot" aria-label="{E(name)}" data-slide-to="{i}"></button>')
