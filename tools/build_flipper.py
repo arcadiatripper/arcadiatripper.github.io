@@ -600,6 +600,7 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
         theme_keys = f"""
         <div class="gnav__theme">{night_key(t, "data-theme-toggle")}</div>"""
     return f"""    <header class="gnav">
+      <canvas class="gnav__dots" aria-hidden="true"></canvas>
       <div class="gnav__inner">
         <a class="gnav__home" href="{prefix}/" aria-label="tripper">{TRIPPER_LOGO}</a>
         <nav class="gnav__links" aria-label="{E(t['nav_label'])}">
