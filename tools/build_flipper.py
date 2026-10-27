@@ -69,7 +69,7 @@ T = {
         "engines_title": "엔진을 바꾸면, 옷도 바뀌어요",
         "engines_sub": "전설적인 샘플러 두 대와 90년대 게임기 소리 칩을, 회로까지 따라 만들었어요.",
         "engines": [
-            ("clean", "clean", "샘플 그대로. 늘여도 맑게.", "CLEAN · THE SAMPLE AS IT IS", ""),
+            ("clean", "clean", "얼마나 늘여도 맑게.", "CLEAN · THE SAMPLE AS IT IS", ""),
             ("black", "black", "80년대 후반의 전설적인 샘플러. 거칠고 묵직하게.", "BLACK · 12-BIT · 26 kHz",
              "회로도대로 만들었어요. 12비트로 담는 방식, 샘플을 건너뛰고 되풀이하는 음정, 출력마다 다른 필터, 움직이는 필터까지. "
              "움직이는 필터는 실제 기계의 녹음과 비교해 맞췄어요."),
@@ -171,7 +171,7 @@ T = {
         "engines_title": "Change the engine, change the look",
         "engines_sub": "Two legendary samplers and an early-90s console's sound chip, modelled down to the circuits.",
         "engines": [
-            ("clean", "clean", "The sample as it is. Clear however far you stretch it.", "CLEAN · THE SAMPLE AS IT IS", ""),
+            ("clean", "clean", "Clear however far you stretch it.", "CLEAN · THE SAMPLE AS IT IS", ""),
             ("black", "black", "The legendary late-80s sampler. Gritty and heavy.", "BLACK · 12-BIT · 26 kHz",
              "Built to the schematics: how it stores 12 bits, pitch by skipping and repeating samples, a different filter "
              "on each output, and the moving filter, which was checked against recordings of a real unit."),
