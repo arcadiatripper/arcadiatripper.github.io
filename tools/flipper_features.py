@@ -31,7 +31,7 @@ PARTS = [
         "key": "chop",
         "title": {"ko": "자르기", "en": "Chop"},
         "lead": {
-            "ko": "샘플 한 부분을 잘라 새 소리처럼 들리게 하는 것. flipper가 가장 잘하려는 일이에요.",
+            "ko": "샘플 한 부분을 잘라 새 소리처럼 들리게 하는 일이에요. flipper가 가장 잘하려는 일이에요.",
             "en": "Take one part of a sample and chop it until it sounds new. This is what flipper tries to do best.",
         },
         "features": [
@@ -59,12 +59,10 @@ PARTS = [
               ("레이지 찹", [
                   "'레이지'를 누르면 구간이 재생되고, 듣다가 원하는 순간에 패드든 건반이든 아무거나 치면 그 자리에서 잘려요. 1번 슬라이스는 시작에서 바로 시작하고, 칠 때마다 다음 슬라이스가 시작돼요. 구간이 끝나거나 멈춤을 누르면 끝나요.",
                   "사람은 박보다 조금 일찍 치기도, 늦게 치기도 해요. 그래서 친 순간보다 80 ms 앞부터 60 ms 뒤까지에서 가장 그럴듯한 타격을 찾아 붙여요. 실제 드럼 루프로 시험했을 때 탭의 90–100 %가 제 타격에 붙었어요. 10 ms 안에 두 번 친 건 한 번으로 봐요.",
-                  "레이지 찹 한 번이 통째로 되돌리기 한 단계예요. 마음에 안 들면 한 번 되돌리고 다시 치면 돼요.",
               ]),
               ("Lazy chop", [
                   "Press lazy and the range plays; whenever you like, hit any pad or key and it cuts there. Slice 1 starts at the start, and each hit starts the next slice. It ends with the range or when you press stop.",
                   "People tap a little early as often as a little late, so it looks from 80 ms before your tap to 60 ms after for the hit you most likely meant. On real drum loops 90–100 % of taps landed on their hit. Two taps within 10 ms count as one.",
-                  "A whole lazy chop is one undo step: don't like it, undo once and tap again.",
               ])),
             F("lit", ("lit", (0, 0.135, 1, 1)),
               ("불 켜진 패드로 치기", [
@@ -77,34 +75,34 @@ PARTS = [
               ])),
             F("dice", ("dice", (0, 0.08, 1, 0.53)),
               ("주사위와 혼돈", [
-                  "주사위를 누를 때마다 새 찹이 떨어져요. 주사위가 굴러가고, 새 찹이 놓이면 빛이 패드를 한 번 훑어요. 슬라이스 개수, 잠근 마커, 스킵한 부분은 그대로 두고 나머지만 새로 잘라요.",
+                  "주사위를 누를 때마다 새 찹이 떨어져요. 슬라이스 개수, 잠근 마커, 스킵한 부분은 그대로 두고 나머지만 새로 잘라요.",
                   "주사위를 끌면 혼돈이 0–100 %로 바뀌고, 주사위 눈이 그만큼 늘어요. 눈 하나는 가장 센 타격만 골라 고르게 자르고, 눈 여섯은 아무 데나 잘라요. 50 %를 넘으면 타격이 아닌 자리도 섞이기 시작해요.",
-                  "어느 경우든 두 슬라이스가 너무 붙지 않게(고른 슬라이스 길이의 4분의 1, 최대 50 ms) 떨어뜨려요. 한 번 굴린 것은 되돌리기 한 번으로 돌아가요.",
+                  "어느 경우든 두 슬라이스가 너무 붙지 않게(고른 슬라이스 길이의 4분의 1, 최대 50 ms) 떨어뜨려요.",
               ]),
               ("The die and its chaos", [
-                  "Every press drops a new chop: the die tumbles, the chop lands, and a band of light sweeps the pads. The slice count, locked markers and skipped parts stay; the rest is chopped anew.",
+                  "Every press drops a new chop. The slice count, locked markers and skipped parts stay; the rest is chopped anew.",
                   "Drag the die to set the chaos, 0–100 %, and its pips follow: one pip keeps to the strongest hits, fairly evenly; six cut anywhere. Past 50 % places that aren't hits creep in.",
-                  "Either way no two slices land too close (a quarter of an even slice, at most 50 ms). Each roll is one undo step back.",
+                  "Either way no two slices land too close (a quarter of an even slice, at most 50 ms).",
               ])),
             F("hand", ("zoomed", TOP),
               ("손으로 다듬기", [
-                  "파형을 더블클릭하면 마커가 생기고, 가까운 타격에 붙어요. Alt를 누르면 자석 없이 정확히 그 자리에. 마커를 더블클릭하면 지워지고, 끌어서 옮기고, Shift나 Ctrl(⌘)로 여러 개를 골라 지우기 키로 한꺼번에 지울 수 있어요.",
+                  "파형을 더블클릭하면 마커가 생기고, 가까운 타격에 붙어요. Alt를 누르면 자석 없이 정확히 그 자리에 생겨요. 마커를 더블클릭하면 지워지고, 끌어서 옮기고, Shift나 Ctrl(⌘)로 여러 개를 골라 지우기 키로 한꺼번에 지울 수 있어요.",
                   "휠이나 핀치로 마우스 자리를 중심으로 확대하고, Shift + 휠이나 아래 막대로 옆으로 넘겨요. 막대를 더블클릭하면 샘플 전체예요. 확대해 둔 동안은 파형이 재생 자리를 따라가요.",
-                  "잠근 마커는 타격 · 그리드 · 레이지 · 주사위로 다시 잘라도 그 자리에 남아요. 꼭 지키고 싶은 자리를 잠가 두고 나머지만 다시 자르는 식으로 써요.",
+                  "잠근 마커는 타격 · 그리드 · 레이지 · 주사위로 다시 잘라도 그 자리에 남아요.",
               ]),
               ("By hand", [
                   "Double-click the waveform for a marker; it snaps to a nearby hit (alt: no magnet, exactly there). Double-click a marker to delete it, drag to move it, shift- or cmd-click to pick several and delete them with the delete key.",
                   "Scroll or pinch zooms around the mouse; shift + scroll or the bar below moves along, and a double-click on the bar shows the whole sample. Zoomed in, the waveform follows the playhead.",
-                  "A locked marker stays put through every re-chop (hits, grid, lazy, the die): lock the places you want to keep and re-chop the rest.",
+                  "A locked marker stays put through every re-chop (hits, grid, lazy, the die).",
               ])),
             F("skip", ("skip", (0, 0.135, 1, 0.6)),
               ("스킵", [
                   "카운트인, 숨소리, 쓰기 싫은 한 마디처럼 패드에 두고 싶지 않은 부분은 지우지 않고 '스킵'으로 빼 둬요. 빗금으로 보이고, 뒤 슬라이스들이 한 칸씩 당겨져서 패드와 MIDI 음도 따라 움직여요.",
-                  "샘플 파일은 손대지 않아서, 언제든 되돌릴 수 있어요. 다시 잘라도 스킵한 부분은 그대로 남고, 그 안에 새 슬라이스가 생기지 않아요. 파형을 오른쪽 클릭해도 같아요.",
+                  "다시 잘라도 스킵한 부분은 그대로 남고, 그 안에 새 슬라이스가 생기지 않아요. 파형을 오른쪽 클릭해도 같아요.",
               ]),
               ("Skip", [
                   "A count-in, a breath, a bar you don't want: leave it out with skip instead of cutting it out. It shows hatched, the slices after it move up one, and the pads and MIDI notes follow.",
-                  "The sample file is never touched, so it can come back any time. Re-chops leave skipped parts as they are, and no new slice lands inside one. A right-click on the waveform does the same.",
+                  "Re-chops leave skipped parts as they are, and no new slice lands inside one. A right-click on the waveform does the same.",
               ])),
             F("trims", ("trims", (0, 0.135, 1, 0.6)),
               ("시작과 끝", [
@@ -119,23 +117,21 @@ PARTS = [
               ])),
             F("slice", ("edit", (0, 0.135, 1, 0.62)),
               ("슬라이스마다 다섯 가지", [
-                  "최대 64슬라이스. 슬라이스마다 설정은 음높이(반음, Shift로 센트), 리버스, 볼륨, 페이드 인, 페이드 아웃 다섯 개뿐이에요. 샘플러이지 신시사이저가 아니라서, 필요한 것만 남겼어요.",
+                  "최대 64슬라이스까지 잘라요. 슬라이스마다 설정은 음높이(반음, Shift로 센트), 리버스, 볼륨, 페이드 인, 페이드 아웃 다섯 개뿐이에요. 샘플러이지 신시사이저가 아니라서, 필요한 것만 남겼어요.",
                   "페이드는 0 ms에서 시작해요. 들어 보고 이상할 때만 만지는 값이라서요. 대신 모든 소리의 시작과 끝에 0.1 ms 가장자리를 둬서, 파형 중간을 잘라도 클릭이 나지 않아요.",
-                  "'전체'를 누르면 노브가 모든 슬라이스를 한꺼번에 바꿔요. 패드를 Shift로 누르면 범위, Ctrl(⌘)로 누르면 하나씩 더 골라서 그 슬라이스들만 같이 바꿔요. 노브 하나, 끌기 하나가 되돌리기 한 단계예요.",
+                  "'전체'를 누르면 노브가 모든 슬라이스를 한꺼번에 바꿔요. 패드를 Shift로 누르면 범위, Ctrl(⌘)로 누르면 하나씩 더 골라서 그 슬라이스들만 같이 바꿔요.",
               ]),
               ("Five settings per slice", [
                   "Up to 64 slices, each with five settings and nothing more: pitch (semitones, shift for cents), reverse, level, fade in and fade out. It's a sampler, not a synth, so only what's needed stayed.",
                   "Fades start at 0 ms, because you touch them only when something sounds wrong. Instead every sound starts and ends on a 0.1 ms edge, so cutting mid-wave never clicks.",
-                  "Press 'all' and the knobs change every slice at once. Shift-click pads for a range, cmd-click for one more, and only those change together. Every knob turn or drag is one undo step.",
+                  "Press 'all' and the knobs change every slice at once. Shift-click pads for a range, cmd-click for one more, and only those change together.",
               ])),
             F("truncate", ("hits", (0, 0.09, 1, 0.53)),
               ("잘라내기", [
                   "자르기 줄의 가위 키는 S부터 E까지만 남기고 샘플의 나머지를 잘라 내요. 긴 곡에서 네 마디만 쓸 때, 프로젝트와 플립 파일이 그만큼 가벼워져요.",
-                  "원래 파일은 그대로이고, 되돌리기로 언제든 돌아와요.",
               ]),
               ("Truncate", [
                   "The scissors key in the chop row keeps only S to E and cuts the rest of the sample away. Using four bars of a long song, the project and the flip get that much lighter.",
-                  "The file itself stays as it is, and undo brings it back.",
               ])),
         ],
     },
@@ -193,11 +189,11 @@ PARTS = [
             F("keyknob", ("typing", (0.3, 0, 0.85, 0.3)),
               ("키와 속도 노브", [
                   "키는 반음씩 끌고, Shift를 누르고 끌면 센트예요. 더블클릭하면 0으로 돌아가고, 숫자를 누르면 '−3 20'처럼 반음과 센트를 바로 쳐 넣어요.",
-                  "속도는 ×0.750처럼 배속으로 보여요. 리피치에서는 키와 속도가 같이 움직이고, 템포 유지에서는 따로 움직여요.",
+                  "속도는 ×0.750처럼 배속으로 보여요.",
               ]),
               ("The key and speed knobs", [
                   "Drag the key by semitones, shift + drag for cents. A double-click takes it back to 0; click the number and type semitones and cents at once, like '-3 20'.",
-                  "Speed reads as a factor, like ×0.750. In repitch key and speed move together; in keep tempo they move apart.",
+                  "Speed reads as a factor, like ×0.750.",
               ])),
             F("tempo", ("dawtempo", (0.3, 0, 1, 0.36)),
               ("샘플의 템포", [
@@ -210,21 +206,21 @@ PARTS = [
               ])),
             F("calc", None,
               ("템포 계산", [
-                  "키를 내리면 템포가 몇이 되는지, 원하는 템포가 되려면 키를 얼마나 내리면 되는지. 리피치에선 이게 늘 같이 움직여서, 미리 알아 두면 편해요. 위 계산기를 직접 움직여 보세요.",
+                  "리피치에서 키를 내리면 템포가 몇이 되는지, 원하는 템포가 되려면 키를 얼마나 내리면 되는지 위 계산기로 바로 봐요.",
                   "플러그인 안에서는 BPM 칸에 원하는 템포를 치면 키가 그 템포에 맞춰 움직여요. 'DAW 템포'를 켜면 지금 곡의 템포에 맞춰요. 리피치에선 키를, 템포 유지에선 속도를 맞춰요.",
               ]),
               ("Tempo maths", [
-                  "Pitch it down and the tempo changes with it; to land on a tempo you want, how far down? In repitch these always move together, so it helps to know. Try the calculator above.",
+                  "In repitch, the calculator above shows the tempo a key lands on, and how far down to go for the tempo you want.",
                   "In the plug-in, type the tempo you want into the BPM field and the key moves to land on it. Turn 'DAW tempo' on and it follows the song's tempo: the key in repitch, the speed in keep tempo.",
               ]), tool="tempo"),
             F("kind", ("kind", TOP_ROW),
               ("루프와 원샷", [
                   "샘플마다 루프인지 원샷인지 정해요. 루프는 템포가 있고 DAW 템포를 따라갈 수 있어요. 원샷은 템포가 없어요.",
-                  "파일 이름과 길이로 먼저 짐작하고, 틀리면 바로 바꿀 수 있어요.",
+                  "처음엔 파일 이름과 길이로 짐작해요.",
               ]),
               ("Loop or one-shot", [
                   "Each sample is a loop or a one-shot. A loop has a tempo and can follow the DAW's; a one-shot has none.",
-                  "The first guess comes from the file name and length, and you can change it right away.",
+                  "The first guess comes from the file name and length.",
               ])),
             F("keychip", ("keyhelp", (0.3, 0, 1, 0.32)),
               ("키 찾기", [
@@ -264,7 +260,7 @@ PARTS = [
         "features": [
             F("pads", ("pads16", PADS),
               ("패드", [
-                  "한 페이지에 패드 16개(8 × 2)나 32개(8 × 4). 페이지를 넘기면 64슬라이스까지 쳐요. 패드 1번이 C3이고, 패드마다 음 이름이 적혀 있어요.",
+                  "한 페이지에 패드가 16개(8 × 2)나 32개(8 × 4) 있어요. 페이지를 넘기면 64슬라이스까지 쳐요. 패드 1번이 C3이고, 패드마다 음 이름이 적혀 있어요.",
                   "패드를 누르면 소리가 나고 그 슬라이스가 골라져요. Shift나 Ctrl(⌘)로 누르면 소리 없이 여러 개를 골라 한꺼번에 바꿔요.",
               ]),
               ("Pads", [
@@ -290,15 +286,15 @@ PARTS = [
             F("padplays", ("padplays", PADS),
               ("누르는 동안과 슬라이스 전체", [
                   "'누르는 동안'은 누른 만큼만 울리고, 놓으면 멈춰요. 오래 눌러도 슬라이스 끝에서 멈춰요.",
-                  "'슬라이스 전체'는 한 번 치면 다음 마커까지 끝까지 울려요. 짧게 톡 쳐도 슬라이스 하나가 다 나와요.",
+                  "'슬라이스 전체'는 한 번 치면 다음 마커까지 끝까지 울려요.",
               ]),
               ("While held and whole slice", [
                   "While held sounds as long as you hold it and stops when you let go, and at the slice's end even if you keep holding.",
-                  "Whole slice plays through to the next marker from one hit, however short the tap.",
+                  "Whole slice plays through to the next marker from one hit.",
               ])),
             F("playas", ("playas", PADS),
               ("연주 방법", [
-                  "패드는 슬라이스 하나에 패드 하나. 멜로디는 슬라이스 하나를 건반 전체에 깔아요. 스크래치는 패드마다 자기 슬라이스를 판에 올려 긁어요. fx 건반은 패드 1번 자리부터의 음이 fx 패드 16개를 쳐요.",
+                  "'패드'는 슬라이스 하나를 패드 하나에 놓아요. '멜로디'는 슬라이스 하나를 건반 전체에 깔아요. 스크래치는 패드마다 자기 슬라이스를 판에 올려 긁어요. fx 건반은 패드 1번 자리부터의 음이 fx 패드 16개를 쳐요.",
                   "키스위치: 가장 낮은 음들(기본 C-2부터 넷)이 연주 방법을 바꿔요. 소리는 내지 않아서, DAW 클립 안에서 곡 중간에 패드와 멜로디를 오갈 수 있어요.",
               ]),
               ("Play as", [
@@ -307,7 +303,7 @@ PARTS = [
               ])),
             F("melody", ("melody", PADS),
               ("멜로디", [
-                  "슬라이스 하나를 건반에 깔아서 음을 연주해요. 반음씩, 또는 메이저, 마이너, 하모닉 마이너, 메이저 펜타토닉, 마이너 펜타토닉, 도리안, 프리지안, 믹솔리디안으로.",
+                  "슬라이스 하나를 건반에 깔아서 음을 연주해요. 반음씩 칠 수도 있고, 메이저, 마이너, 하모닉 마이너, 메이저 펜타토닉, 마이너 펜타토닉, 도리안, 프리지안, 믹솔리디안 중에서 골라도 돼요.",
                   "화면 건반은 MIDI 음 128개 전부예요. 건반을 따라 끌면 음이 이어지고, 휠로 넘기고, Ctrl(⌘) + 휠이나 핀치로 확대해요. 누르면 진짜 MIDI 음을 보내요. 서스테인 페달도 받아요.",
               ]),
               ("Melody", [
@@ -326,29 +322,27 @@ PARTS = [
             F("root", ("root", PADS),
               ("원키 옮기기", [
                   "원래 높이로 소리 나는 건반(원키)은 C3에 묶여 있지 않아요. ‹ ›로 옮기거나, 건반을 오른쪽 클릭하면 그 건반이 원키가 돼요.",
-                  "건반을 확대하면 원키 둘레가 크게 보여서, 마우스로 치기 편해요.",
               ]),
               ("Move the root", [
                   "The key that plays the slice at its own pitch (the root) isn't stuck on C3: move it with ‹ ›, or right-click a key to make it the root.",
-                  "Zoom the keyboard and the keys around the root get big enough to play with the mouse.",
               ])),
             F("colours", ("colours", (0, 0, 1, 1)),
               ("패드 색", [
                   "기본은 '소리 따라'예요. 슬라이스마다 소리가 밝을수록 밝은 색, 어두울수록 짙은 색으로 칠해서, 보기만 해도 하이햇과 킥이 갈려요. 연못도 같은 색으로 움직여요.",
-                  "'16색'은 패드마다 정해진 16가지 색이에요. 설정에서 바꿔요.",
+                  "'16색'은 패드마다 정해진 16가지 색이에요.",
               ]),
               ("Pad colours", [
                   "'by sound' is the default: the brighter a slice sounds, the brighter its colour, so hats and kicks tell apart at a glance. The pond moves in the same colours.",
-                  "'16 colours' gives each pad one of 16 fixed colours. Change it in the settings.",
+                  "'16 colours' gives each pad one of 16 fixed colours.",
               ])),
             F("velocity", ("settings", (0.5, 0.13, 0.97, 0.36)),
               ("벨로시티", [
                   "패드를 얼마나 세게 쳤는지를 소리 크기로 어떻게 바꿀지 골라요. '그대로'가 기본이에요.",
-                  "'부드럽게'는 살살 쳐도 크게, '세게'는 세게 쳐야 크게, '늘 같게'는 어떻게 쳐도 같은 크기예요. 패드 컨트롤러마다 손맛이 달라서 넣었어요.",
+                  "'부드럽게'는 살살 쳐도 크게, '세게'는 세게 쳐야 크게, '늘 같게'는 어떻게 쳐도 같은 크기예요.",
               ]),
               ("Velocity", [
                   "How hard you hit becomes how loud it plays; 'as played' is the default.",
-                  "'soft' makes light hits louder, 'hard' saves loud for hard hits, 'always full' plays every hit the same. Pad controllers all feel different, so it's a choice.",
+                  "'soft' makes light hits louder, 'hard' saves loud for hard hits, 'always full' plays every hit the same.",
               ])),
         ],
     },
@@ -383,7 +377,7 @@ PARTS = [
               ])),
             F("channels", ("@feature_channels", None),
               ("채널 고르기", [
-                  "스테레오 샘플에서 어느 채널을 쓸지 골라요. 스테레오, 왼쪽, 오른쪽, 가운데, 양옆. 가운데는 (L+R)/2, 양옆은 (L−R)/2라서 원래보다 커지지 않아요.",
+                  "스테레오 샘플에서 스테레오, 왼쪽, 오른쪽, 가운데, 양옆 중 어느 채널을 쓸지 골라요. 가운데는 (L+R)/2, 양옆은 (L−R)/2라서 원래보다 커지지 않아요.",
                   "'oo' 키를 누르면 파형이 왼쪽과 오른쪽 두 줄로 나뉘어 보여요. 한쪽에만 있는 소리, 가운데의 보컬 같은 걸 눈으로 찾고 골라요. 왼쪽, 오른쪽, 가운데, 양옆을 고르면 모노로 나가요.",
               ]),
               ("Channel select", [
@@ -392,30 +386,28 @@ PARTS = [
               ])),
             F("gain", ("hits", (0, 0.53, 0.62, 0.66)),
               ("샘플 게인과 노멀라이즈", [
-                  "샘플 게인은 샘플 하나 전체의 크기예요. 엔진 뒤, fx 앞에 있어서 모든 패드와 판에 같이 걸려요. 더블클릭하면 0 dB.",
-                  "노멀라이즈는 S부터 E까지의 가장 큰 자리가 0 dBFS가 되게 게인을 맞춰요. 파일은 바꾸지 않고, 되돌리기로 돌아와요. 드럼 셀은 셀마다 따로 있어요.",
+                  "샘플 게인은 샘플 하나 전체의 크기예요. 엔진 뒤, fx 앞에 있어서 모든 패드와 판에 같이 걸려요. 더블클릭하면 0 dB로 돌아가요.",
+                  "노멀라이즈는 S부터 E까지의 가장 큰 자리가 0 dBFS가 되게 게인을 맞춰요. 드럼 셀은 셀마다 따로 있어요.",
               ]),
               ("Sample gain and normalize", [
                   "Sample gain is the whole sample's level, after the engine and before the fx, so it reaches every pad and the record. Double-click for 0 dB.",
-                  "Normalize sets the gain so the loudest point from S to E reaches 0 dBFS. The file isn't changed, and undo brings it back. Drum cells have their own.",
+                  "Normalize sets the gain so the loudest point from S to E reaches 0 dBFS. Drum cells have their own.",
               ])),
             F("flips", ("flips", (0, 0, 0.6, 0.55)),
               ("플립 파일", [
                   "샘플, 찹, 설정을 .flip 파일 하나에 담아요. 플립 이름 옆 ‹ ›로 폴더 안의 플립을 차례로 넘기고, 이름을 누르면 저장, 새 이름으로 저장, 열기, 이름 바꾸기, 삭제, 폴더 열기가 있어요.",
-                  "바뀐 게 있으면 이름 옆에 표시가 붙어요. 예전 판에서 만든 플립도 같은 소리로 열려요. 다른 프로젝트에서 같은 찹을 쓸 때 편해요.",
+                  "바뀐 게 있으면 이름 옆에 표시가 붙어요. 예전 판에서 만든 플립도 같은 소리로 열려요.",
               ]),
               ("Flip files", [
                   "The sample, the chop and the settings go into one .flip file. ‹ › by the flip's name steps through the folder's flips; the name opens save, save as, open, rename, delete and the folder.",
-                  "A mark by the name shows unsaved changes. Flips from older versions open sounding the same, handy for taking a chop to another project.",
+                  "A mark by the name shows unsaved changes. Flips from older versions open sounding the same.",
               ])),
             F("standalone", ("standalone", (0, 0, 1, 0.3)),
               ("단독 앱", [
                   "DAW 없이 flipper 하나만 여는 앱도 있어요. DAW가 템포를 알려주지 않으니, 머리줄에 템포 칸이 따로 생겨요.",
-                  "MIDI 컨트롤러를 꽂아 패드를 치고, 샘플을 잘라 보고, 플립으로 저장해 두었다가 DAW에서 그대로 열 수 있어요.",
               ]),
               ("The standalone app", [
                   "There's an app that runs flipper on its own, no DAW. With no DAW to tell the tempo, the header gets a tempo field of its own.",
-                  "Plug in a MIDI controller, chop and play, save a flip, and open it as it is in the DAW later.",
               ])),
         ],
     },
@@ -430,8 +422,8 @@ PARTS = [
         "features": [
             F("slot_filter", ("slot_filter", RACK),
               ("필터", [
-                  "직접 만든 필터예요. 노브를 올리면 LP는 어둡게, HP는 얇게, BP는 좁게. 끝까지 내리면 열려서 꺼진 것과 같아요.",
-                  "12 dB나 24 dB, 레조넌스. '클린'은 정확하게, '래더'는 옛 신시사이저 필터처럼 둥글고 따뜻하게. '맨 앞'은 다른 칸보다 먼저, '끝'은 모든 칸 뒤라서 에코와 스페이스까지 걸러요.",
+                  "직접 만든 필터예요. 노브를 올리면 LP는 어두워지고, HP는 얇아지고, BP는 좁아져요. 끝까지 내리면 열려서 꺼진 것과 같아요.",
+                  "기울기는 12 dB나 24 dB이고, 레조넌스도 있어요. '클린'은 정확하고, '래더'는 옛 신시사이저 필터처럼 둥글고 따뜻해요. '맨 앞'은 다른 칸보다 먼저, '끝'은 모든 칸 뒤라서 에코와 스페이스까지 걸러요.",
               ]),
               ("Filter", [
                   "Our own filter. Turn it up and LP gets darker, HP thinner, BP narrower; all the way down it's open, the same as off.",
@@ -448,8 +440,8 @@ PARTS = [
               ])),
             F("slot_distort", ("slot_distort", RACK),
               ("디스토션", [
-                  "다섯 가지예요. 소프트는 둥글게 소리를 앞으로, 튜브는 달고 두껍게, 퍼즈는 거의 네모로(직접 만들었어요), 클립은 꼭대기를 잘라 단단하고 큰 드럼으로, 폴드는 접어서 금속처럼.",
-                  "톤, 포커스(어느 대역을 찌그러뜨릴지), 믹스, 흔들림. 2배 오버샘플로 돌아서 높은 음에서 지저분한 잡음이 덜 생겨요.",
+                  "다섯 가지예요. 소프트는 둥글게 소리를 앞으로 내고, 튜브는 달고 두꺼워요. 퍼즈는 거의 네모난 소리이고(직접 만들었어요), 클립은 꼭대기를 잘라 드럼을 단단하고 크게 만들어요. 폴드는 꼭대기를 접어서 금속 같은 소리가 나요.",
+                  "톤, 포커스(어느 대역을 찌그러뜨릴지), 믹스, 흔들림을 조절해요. 2배 오버샘플로 돌아서 높은 음에서 지저분한 잡음이 덜 생겨요.",
               ]),
               ("Distort", [
                   "Five kinds: soft (round, brings the sound forward), tube (sweet and thick), fuzz (nearly square, our own), clip (cuts the peaks: hard, loud drums) and fold (folds them back: metallic).",
@@ -458,7 +450,7 @@ PARTS = [
             F("slot_crush", ("slot_crush", RACK),
               ("크러시", [
                   "샘플레이트를 낮추고 비트를 깎아서, 옛 샘플러의 바삭한 소리를 내요.",
-                  "레이트와 비트(예: 8비트), '스텝'은 계단처럼 거칠게, '부드럽게'는 계단 사이를 부드럽게. 믹스와 흔들림.",
+                  "레이트와 비트(예: 8비트)를 정하고, '스텝'은 계단처럼 거칠게, '부드럽게'는 계단 사이를 부드럽게 이어요. 믹스와 흔들림도 있어요.",
               ]),
               ("Crush", [
                   "Fewer samples and fewer bits: the crunchy sound of old samplers.",
@@ -476,16 +468,16 @@ PARTS = [
             F("slot_chorus", ("slot_chorus", RACK),
               ("코러스", [
                   "소리를 몇 겹 복사해서 천천히 움직여요. 넓고 따뜻해져요.",
-                  "속도, 폭, 믹스. 랙의 다른 칸들처럼 노브가 0이면 꺼져요.",
+                  "속도, 폭, 믹스를 조절해요.",
               ]),
               ("Chorus", [
                   "A few copies of the sound, slowly moving: wider and warmer.",
-                  "Speed, range and mix. Like every slot, at 0 it's off.",
+                  "Speed, range and mix.",
               ])),
             F("slot_noise", ("slot_noise", RACK),
               ("노이즈", [
                   "더스트(테이프 먼지), 히스(부드러운 쉬익), 크래클(판의 지글거림)을 소리 밑에 깔아요.",
-                  "샘플이 울리는 동안만 나고, 멈추면 0.15초 안에 사라져요. 슬라이스 사이 조용한 곳에 잡음이 남지 않아요. 톤과 흔들림.",
+                  "샘플이 울리는 동안만 나고, 멈추면 0.15초 안에 사라져요. 그래서 슬라이스 사이 조용한 곳에 잡음이 남지 않아요. 톤과 흔들림도 있어요.",
               ]),
               ("Noise", [
                   "Dust (tape dust), hiss (a soft hiss) or crackle (a record's crackle) under the sound.",
@@ -494,7 +486,7 @@ PARTS = [
             F("slot_echo", ("slot_echo", RACK),
               ("에코", [
                   "세 가지예요. 테이프는 따뜻하게 닳아 가는 반복, 디지털은 깨끗하게(핑퐁을 켜면 왼쪽 오른쪽 번갈아), 그레인은 작게 부서진 조각으로 반복해요.",
-                  "시간은 '싱크'면 박자(1/16부터 한 마디, 점음표 · 셋잇단), 'ms'면 템포와 상관없이 1–2000 ms. 반복 횟수, 톤. 그레인은 조각마다 음높이를 바꾸고(+12면 한 옥타브 위), 거꾸로 돌릴 수도 있어요.",
+                  "시간은 '싱크'면 박자(1/16부터 한 마디, 점음표 · 셋잇단)로, 'ms'면 템포와 상관없이 1–2000 ms로 정해요. 반복 횟수와 톤도 있어요. 그레인은 조각마다 음높이를 바꾸고(+12면 한 옥타브 위), 거꾸로 돌릴 수도 있어요.",
               ]),
               ("Echo", [
                   "Three kinds: tape (warm repeats that wear away), digital (clean; ping-pong sends them left and right in turn) and grain (repeats in small broken pieces).",
@@ -502,8 +494,8 @@ PARTS = [
               ])),
             F("slot_space", ("slot_space", RACK),
               ("스페이스", [
-                  "소리 둘레의 공간이에요. 룸(작은 나무 방), 홀(크고 밝은 홀), 갤럭시(아주 넓고 떠 있는), 라이트(가볍고 산뜻한), 타이니(아주 작은 공간).",
-                  "디케이, 프리딜레이, 스테레오, 흔들림.",
+                  "소리 둘레에 공간을 만들어요. 룸은 작은 나무 방, 홀은 크고 밝은 홀, 갤럭시는 아주 넓고 떠 있는 공간, 라이트는 가볍고 산뜻한 공간, 타이니는 아주 작은 공간이에요.",
+                  "디케이, 프리딜레이, 스테레오, 흔들림을 조절해요.",
               ]),
               ("Space", [
                   "A space around the sound: room (a small wooden room), hall (a big bright hall), galaxy (huge and floating), light (light and airy), tiny (a tiny space).",
@@ -512,7 +504,7 @@ PARTS = [
             F("slot_all", ("slot_all", RACK),
               ("마스터", [
                   "모든 칸이 마지막에 지나는 곳이에요. 노브는 랙 소리를 얼마나 들을지(0 %면 들어온 소리 그대로), 램프는 랙 전체를 켜고 꺼요. 칸들은 자기 램프를 그대로 가지고 있어요.",
-                  "입력(밀어 넣는 양), 너비, 톤, 그리고 리미터. '세이프'는 −0.3 dBFS를 넘을 것만 잡고, '빈티지'는 큰 부분을 눌러 둥글게 만들어요. 입력을 올리면 더 눌려요.",
+                  "입력(밀어 넣는 양), 너비, 톤, 그리고 리미터가 있어요. '세이프'는 −0.3 dBFS를 넘을 것만 잡고, '빈티지'는 큰 부분을 눌러 둥글게 만들어요. 입력을 올리면 더 눌려요.",
               ]),
               ("Master", [
                   "Where every slot ends up. Its knob is how much of the rack you hear (0 %: the sound as it went in); its lamp turns the whole rack on and off, while the slots keep their own lamps.",
@@ -520,8 +512,8 @@ PARTS = [
               ])),
             F("fxpads", ("fxpads", (0.35, 0.38, 1, 1)),
               ("fx 패드", [
-                  "누르고 있는 동안 소리를 바꾸는 패드예요. 청록은 테이프(멈춤, 되감기, 반속도, 리버스), 보라는 에코와 크러시, 초록은 스크래치 패턴(처프, 베이비). 여러 개를 같이 눌러도 되고, 테이프는 마지막에 누른 것이 이겨요.",
-                  "'누르는 동안'과 '켜 두기'(한 번 눌러 켜고, 다시 눌러 끄기). 시작은 바로, 다음 1/16, 다음 박 중에서 골라요. 박에 맞춰 들어가서 바운스해도 들은 그대로예요.",
+                  "누르고 있는 동안 소리를 바꾸는 패드예요. 청록은 테이프(멈춤, 되감기, 반속도, 리버스), 보라는 에코와 크러시, 초록은 스크래치 패턴(처프, 베이비)이에요. 여러 개를 같이 눌러도 되고, 테이프는 마지막에 누른 것이 이겨요.",
+                  "'누르는 동안'이나 '켜 두기'(한 번 눌러 켜고, 다시 눌러 끄기)로 써요. 시작은 바로, 다음 1/16, 다음 박 중에서 골라요. 박에 맞춰 들어가서 바운스해도 들은 그대로예요.",
               ]),
               ("fx pads", [
                   "Pads that change the sound while held: teal for the tape (stop, back, half, reverse), violet for echo and crush, green for the scratch patterns (chirp, baby). Hold several at once; the last tape move wins.",
@@ -529,7 +521,7 @@ PARTS = [
               ])),
             F("strips", ("strips", (0, 0.38, 0.72, 1)),
               ("반복과 필터 스트립", [
-                  "반복 스트립은 손가락이 있는 자리의 길이로 소리를 되풀이해요. 왼쪽 끝이 한 마디, 오른쪽 끝이 1/64. 누른 채 밀면 바로 길이가 바뀌고, 놓으면 계속 재생돼요. 셋잇단을 켜면 1/8T처럼 셋으로 나눠요.",
+                  "반복 스트립은 손가락이 있는 자리의 길이로 소리를 되풀이해요. 왼쪽 끝이 한 마디, 오른쪽 끝이 1/64예요. 누른 채 밀면 바로 길이가 바뀌고, 놓으면 계속 재생돼요. 셋잇단을 켜면 1/8T처럼 셋으로 나눠요.",
                   "필터 스트립은 가운데가 열려 있고, 왼쪽으로 가면 로우패스, 오른쪽으로 가면 하이패스가 닫혀요. 놓으면 다시 열려요. 둘 다 DAW 오토메이션과 MIDI 지정이 돼요.",
               ]),
               ("The repeat and filter strips", [
@@ -548,11 +540,9 @@ PARTS = [
             F("fxsource", ("fxhelp", (0.3, 0.38, 1, 1)),
               ("어디서 왔나", [
                   "펀치, 필터, 퍼즈, 크러시의 비트, 히스, 크래클, 디지털 · 그레인 에코는 직접 만들었어요. 나머지는 Airwindows(MIT)의 모델을 가져와 칸마다 귀로 골랐어요.",
-                  "? 키를 켜고 아무 칸이나 마우스를 올리면 무엇을 하는지 바로 알려줘요.",
               ]),
               ("Where it comes from", [
                   "Punch, the filter, fuzz, crush's bits, hiss, crackle and the digital and grain echoes are our own. The rest are Airwindows (MIT) models, picked for each slot by ear.",
-                  "Turn on the ? key and hover over any slot to see what it does.",
               ])),
         ],
     },
@@ -594,7 +584,7 @@ PARTS = [
               ])),
             F("hold", ("deckhold", DECK),
               ("판 잡기", [
-                  "누르고 있는 동안 판과 패드가 손으로 판을 누른 것처럼 천천히 서요. 놓으면 다시 돌아 올라와요(곡을 따라 도는 중이면 곡 자리로).",
+                  "누르고 있는 동안 판과 패드가 손으로 판을 누른 것처럼 천천히 서요. 놓으면 다시 돌아 올라와요. 곡을 따라 도는 중이었다면 곡 자리로 돌아가요.",
                   "얼마나 빨리 서고 올라올지는 설정의 '판 멈춤 시간'과 '판 시작 시간'이에요. DAW 오토메이션과 MIDI 지정이 돼요.",
               ]),
               ("Hold", [
@@ -603,8 +593,8 @@ PARTS = [
               ])),
             F("fader", ("deckplay", (0, 0.85, 0.75, 1)),
               ("페이더와 커브", [
-                  "페이더는 판 소리를 들려주는 문이에요. 기본은 왼쪽(턴테이블 쪽)이 열림, 오른쪽이 닫힘. 긁으면서 끊으면 처프나 트랜스포머 소리가 나요. 반대로 쓰는 분을 위해 설정에서 뒤집을 수 있어요.",
-                  "커브는 '부드럽게'(믹스용)부터 '날카롭게'(스크래치용, 조금만 움직여도 다 열림)까지. 설정의 '페이더 컷인'은 닫힌 끝에서 얼마나 가까이서 소리가 들어오기 시작할지예요(0.5–8 %).",
+                  "페이더는 판 소리를 들려주는 문이에요. 기본은 왼쪽(턴테이블 쪽)이 열리고 오른쪽이 닫혀요. 긁으면서 끊으면 처프나 트랜스포머 소리가 나요. 반대로 쓰는 분을 위해 설정에서 뒤집을 수 있어요.",
+                  "커브는 '부드럽게'(믹스용)부터 '날카롭게'(스크래치용, 조금만 움직여도 다 열려요)까지 골라요. 설정의 '페이더 컷인'은 닫힌 끝에서 얼마나 가까이서 소리가 들어오기 시작할지예요(0.5–8 %).",
               ]),
               ("The fader and its curve", [
                   "The fader lets the record's sound through: open at the left (the turntable's side), closed at the right by default; cut it while you scratch for chirps and transformers. The settings can reverse it for those who scratch the other way round.",
@@ -612,8 +602,8 @@ PARTS = [
               ])),
             F("patterns", ("pattern", (0, 0, 0.55, 0.7)),
               ("스크래치 패턴", [
-                  "판을 어떻게 긁을지예요. 베이비(밀고 당기기 둘 다 들림), 포워드(밀 때만), 처프, 티어, 트랜스포머, 플레어, 2클릭 플레어, 크랩.",
-                  "길이는 한 번 밀고 당기는 데 1/2박부터 한 마디. 패턴은 DAW의 다음 16분음표에서 시작하고, 세게 칠수록 멀리 밀어요.",
+                  "판을 어떻게 긁을지 정해요. 베이비(밀고 당기기 둘 다 들려요), 포워드(밀 때만 들려요), 처프, 티어, 트랜스포머, 플레어, 2클릭 플레어, 크랩이 있어요.",
+                  "한 번 밀고 당기는 길이는 1/2박부터 한 마디까지예요. 패턴은 DAW의 다음 16분음표에서 시작하고, 세게 칠수록 멀리 밀어요.",
               ]),
               ("Scratch patterns", [
                   "How the record gets scratched: baby (you hear both ways), forward (only the push), chirp, tear, transformer, flare, 2-click flare and crab.",
@@ -640,16 +630,14 @@ PARTS = [
             F("scratching", ("scratching", DECK),
               ("긁는 중", [
                   "패턴이 판을 긁는 동안 플래터와 파형이 같이 움직이고, 파형 상자 위 오른쪽에 지금 상태(패턴 이름, 판 잡는 중, 손으로 긁는 중 …)가 나와요.",
-                  "판을 한 번도 돌리지 않았을 땐 그 자리에 '← 스크래치 →' 안내가 먼저 보여요.",
               ]),
               ("While it scratches", [
                   "While a pattern scratches, the platter and the waveform move with it, and the top right of the waveform box shows what the deck is doing (the pattern's name, held, by hand …).",
-                  "Before the record has ever turned, a '← scratch →' hint sits there instead.",
               ])),
             F("follow", ("deckrest", (0.72, 0.6, 1, 1)),
               ("곡 따라 돌기와 큐", [
                   "'곡 따라 돌기'를 켜면 DAW를 재생할 때 판이 큐부터 곡에 맞춰 돌아요. 손, 패턴, 판 잡기가 잠깐 곡에서 떼어 놓아도, 다시 제 속도가 되면 곡 자리로 돌아와요.",
-                  "'큐 놓기'는 지금 바늘 자리를 큐로 정해요(그때의 마디도 기억해요). '큐로 돌아가기'는 바늘을 바로 큐로 보내요. DAW가 재생하면, 멈추면: 천천히(0.45초에 걸쳐 올라오고 서요) 또는 바로.",
+                  "'큐 놓기'는 지금 바늘 자리를 큐로 정해요(그때의 마디도 기억해요). '큐로 돌아가기'는 바늘을 바로 큐로 보내요. DAW가 재생하거나 멈출 때 판이 천천히(0.45초에 걸쳐) 올라오고 설지, 바로 돌고 설지도 골라요.",
               ]),
               ("Follow the song, and the cue", [
                   "With 'follow the song' on, the record runs from its cue in time with the song whenever the DAW plays. A hand, a pattern or the hold takes it off the song for a moment; back at full speed it's in time again.",
@@ -666,7 +654,7 @@ PARTS = [
               ])),
             F("controllers", ("deckmidi", DECK),
               ("컨트롤러와 오토메이션", [
-                  "플래터를 오른쪽 클릭하면 MIDI 지정: 끝없이 도는 노브는 조그, 터치 스트립은 손 자리, 피치 휠은 밀고 당기기, 패드는 판 잡기. 지정된 컨트롤에는 작은 배지가 붙어요.",
+                  "플래터를 오른쪽 클릭하면 MIDI 지정이에요. 끝없이 도는 노브는 조그, 터치 스트립은 손 자리, 피치 휠은 밀고 당기기, 패드는 판 잡기가 돼요. 지정된 컨트롤에는 작은 배지가 붙어요.",
                   "판, 손, 페이더가 DAW 파라미터라서, 긁은 걸 오토메이션으로 쓰고 나중에 고칠 수 있어요. 바운스에도 그대로 들어가요.",
               ]),
               ("Controllers and automation", [
@@ -675,7 +663,7 @@ PARTS = [
               ])),
             F("decksettings", ("decksettings", (0.5, 0, 1, 0.85)),
               ("판 설정", [
-                  "판 시작 시간(▶과 판 잡기를 놓을 때 제 속도까지)과 판 멈춤 시간(■과 판 잡기로 설 때까지), 패턴 길이. 바로부터 몇 박까지 골라요.",
+                  "판 시작 시간(▶이나 판 잡기를 놓았을 때 제 속도까지)과 판 멈춤 시간(■이나 판 잡기로 설 때까지), 패턴 길이를 바로부터 몇 박까지 골라요.",
                   "페이더 컷인, 페이더 방향, 스크럽 감도, 큐 모드, DAW가 멈출 때, 바늘(큐 위에 / 고정)도 여기 있어요.",
               ]),
               ("Record settings", [
@@ -704,7 +692,7 @@ PARTS = [
               ])),
             F("cell", ("drum", (0.63, 0.09, 1, 0.62)),
               ("셀마다 조절", [
-                  "볼륨, 팬, 음높이(반음 ±24), 엔진(clean · grey · black · purple), 초크 그룹, 페이드 인 · 아웃. 볼륨, 팬, 음높이, 엔진, 페이드는 DAW 오토메이션이 돼요.",
+                  "셀마다 볼륨, 팬, 음높이(반음 ±24), 엔진(clean · grey · black · purple), 초크 그룹, 페이드 인 · 아웃이 있어요. 볼륨, 팬, 음높이, 엔진, 페이드는 DAW 오토메이션이 돼요.",
                   "여러 셀을 골라 한꺼번에 바꿀 수 있어요. 끌면 모두 같은 만큼 움직이고, 숫자를 치면 모두 그 값이 돼요.",
               ]),
               ("Per cell", [
@@ -714,11 +702,11 @@ PARTS = [
             F("trim", ("drum", (0.63, 0.09, 1, 0.33)),
               ("시작 · 끝, 잘라내기, 노멀라이즈", [
                   "셀마다 원샷의 파형과 시작 · 끝 마커가 있어요. 샘플러처럼 샘플 단위로 다듬어요.",
-                  "가위는 시작부터 끝까지만 남기고, 노멀라이즈는 그 사이 가장 큰 자리를 0 dB로 올려요. 원래 파일은 그대로이고, 되돌리기로 돌아와요.",
+                  "가위는 시작부터 끝까지만 남기고, 노멀라이즈는 그 사이 가장 큰 자리를 0 dB로 올려요.",
               ]),
               ("Start, end, truncate, normalize", [
                   "Each cell shows its one-shot's waveform with start and end markers, trimmed in samples like the sampler.",
-                  "The scissors keep only start to end; normalize brings the loudest point between them up to 0 dB. The file stays as it is, and undo brings it back.",
+                  "The scissors keep only start to end; normalize brings the loudest point between them up to 0 dB.",
               ])),
             F("inserts", ("drum", (0.63, 0.6, 1, 0.97)),
               ("셀마다 fx와 센드", [
@@ -731,7 +719,7 @@ PARTS = [
               ])),
             F("choke", ("drum", (0, 0.05, 1, 1)),
               ("초크와 출력", [
-                  "초크 그룹 1–4. 같은 그룹의 셀을 치면 앞 소리가 멈춰요. 닫힌 하이햇이 열린 하이햇을 끊듯이요. 같은 셀을 다시 치면 겹쳐 울려요.",
+                  "초크 그룹은 1–4예요. 같은 그룹의 셀을 치면 앞 소리가 멈춰요. 닫힌 하이햇이 열린 하이햇을 끊듯이요. 같은 셀을 다시 치면 겹쳐 울려요.",
                   "출력 16개: 셀을 오른쪽 클릭해서 DAW의 다른 트랙으로 보내요. 1번은 fx 랙을 거치고, 2–16번은 따로 나가요. DAW에서 flipper를 멀티 출력 악기로 넣고 '멀티 출력으로 넣음'을 켜야 하고, 꺼진 출력의 셀은 1번으로 나와요.",
               ]),
               ("Choke and outputs", [
@@ -749,7 +737,7 @@ PARTS = [
               ])),
             F("kits", ("drumempty", (0, 0.05, 1, 1)),
               ("킷 파일과 가져오기", [
-                  "셀을 오른쪽 클릭하면 킷 저장 · 열기. .flipkit에 샘플과 설정을 함께 담아요. 다른 프로젝트에서 열면 샘플러는 그대로 두고 킷만 들어와요.",
+                  "셀을 오른쪽 클릭해서 킷을 저장하고 열어요. .flipkit에 샘플과 설정을 함께 담아요. 다른 프로젝트에서 열면 샘플러는 그대로 두고 킷만 들어와요.",
                   "다른 프로그램의 드럼 킷도 가져와요: WAV 폴더, 16슬라이스 WAV, .sfz, .mxgrp, .xpm · .xpn, .adg. 앞의 패드 16개를 셀로, 가장 큰 패드를 0 dB에 맞춰 균형을 지켜요. 내보내기는 들리는 그대로의 WAV 킷(번호 붙은 파일 폴더)이에요.",
               ]),
               ("Kit files and imports", [
@@ -788,7 +776,7 @@ PARTS = [
             F("learnmenu", ("learnmenu", (0, 0.4, 0.62, 0.95)),
               ("노브가 보내는 값", [
                   "지정한 컨트롤을 다시 오른쪽 클릭하면 메뉴가 나와요. 노브가 보내는 값(절댓값, 상댓값 몇 가지)을 고르면 끝없이 도는 노브도 맞게 움직여요. 감도도 골라요.",
-                  "키와 패드는 '누르는 동안'이나 '켜 두기'로. 지정 지우기도 여기 있어요.",
+                  "키와 패드는 '누르는 동안'이나 '켜 두기'로 정해요. 지정 지우기도 여기 있어요.",
               ]),
               ("What the knob sends", [
                   "Right-click a learned control again for its menu: pick what the knob sends (absolute, or one of the relative kinds) and endless knobs move right; pick a sensitivity too.",
@@ -806,11 +794,9 @@ PARTS = [
             F("meter", ("meter", (0.4, 0, 1, 0.075)),
               ("볼륨과 미터", [
                   "머리줄의 볼륨은 flipper에서 나가는 소리예요. 위 막대가 왼쪽, 아래 막대가 오른쪽, 눈금은 가장 컸던 순간을 잡아 두고, 오른쪽 끝의 빨간 표시는 리미터가 일하는 만큼이에요. 소리가 꼭대기에 닿으면 점이 켜지고, 누르면 꺼져요.",
-                  "손잡이를 끌거나(Shift는 미세하게), 더블클릭하면 0 dB, 숫자를 누르면 쳐 넣어요.",
               ]),
               ("Volume and the meter", [
                   "The header's volume is what leaves flipper: the top bar is left, the bottom one right; a tick holds the loudest moment, and the red mark from the right end is the limiter at work. The dot lights when the sound hit the top; click it to clear.",
-                  "Drag the handle (shift for finer), double-click for 0 dB, click the number to type one.",
               ])),
             F("safety", ("slot_all", (0.45, 0.1, 1, 0.3)),
               ("큰 소리 규칙", [
@@ -831,13 +817,11 @@ PARTS = [
                   "The old-machine engines, the bakes, the fx's flux and the record all keep time by the DAW's beat and sample position, which is what makes it hold.",
               ])),
             F("undo", ("settingskeys", (0.5, 0.36, 0.97, 0.58)),
-              ("되돌리기와 A | B", [
-                  "머리줄의 ↶ ↷. 노브 하나, 끌기 하나, 찹 하나가 한 단계예요.",
-                  "A | B 비교는 설정 두 가지를 저장해 두고 바꿔 들어 보는 거예요. 'A를 B로 복사'로 지금 것을 두고 조금씩 바꿔 봐요.",
+              ("A | B 비교", [
+                  "한 프로젝트 안에 설정 두 벌을 두고 오가며 들어 봐요. 'A를 B로 복사'로 지금 소리를 B에 옮긴 뒤, B만 바꿔서 A와 비교해요.",
               ]),
-              ("Undo and A | B", [
-                  "↶ ↷ in the header. One knob turn, one drag, one chop is one step.",
-                  "Compare A | B keeps two settings to switch between and hear the difference; 'copy A to B' to try changes against what you have.",
+              ("Compare A | B", [
+                  "Two sets of settings in one project, to switch between by ear. 'copy A to B' puts the current sound in B; change B alone and hold it against A.",
               ])),
             F("help", ("help", (0, 0, 1, 0.62)),
               ("도움말", [
@@ -851,15 +835,13 @@ PARTS = [
             F("looks", ("night", (0, 0, 1, 1)),
               ("낮과 밤, 스킨", [
                   "머리줄의 달 키로 낮과 밤을 바꿔요. 엔진을 바꾸면 화면 스킨도 그 기계처럼 바뀌어요(clean, grey, black, purple). 늘 버터 색으로 두고 싶으면 설정의 '스킨'에서요.",
-                  "스킨은 색과 재질만 달라요. 같은 컨트롤은 어느 스킨에서나 같은 자리, 같은 크기, 같은 말, 같은 동작이에요.",
               ]),
               ("Day, night and skins", [
                   "The moon key in the header switches day and night. Change the engine and the screen wears that machine's skin (clean, grey, black, purple); 'skin: always clean' in the settings keeps it plain.",
-                  "Skins differ only in colour and material: the same control keeps its place, size, words and behaviour in every skin.",
               ])),
             F("settings", ("settings", (0, 0.13, 0.5, 0.6)),
               ("언어, 창 크기, 연못", [
-                  "화면 전체가 한국어와 영어예요. 창 크기는 75, 100, 125, 150 %.",
+                  "화면 전체를 한국어와 영어로 볼 수 있어요. 창 크기는 75, 100, 125, 150 % 중에서 골라요.",
                   "머리줄 가운데의 연못은 슬라이스가 울릴 때마다 움직여요. 누르면 종이 꽃가루, 줄 울림, 잉어 연못, 먹물 마블링으로 바뀌고, 끌 수도 있어요.",
               ]),
               ("Language, window size, the pond", [
