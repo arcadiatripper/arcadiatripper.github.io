@@ -1074,6 +1074,85 @@ h2.heading,
   line-height: 1.6;
 }
 
+/* the guide and the manual */
+.docs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.doc {
+  display: flex;
+  min-width: 0;
+  padding: 26px 28px 28px;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.doc__tag {
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--well);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.doc h3 {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.doc__text {
+  color: var(--soft);
+  line-height: 1.6;
+}
+
+.doc__go {
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+/* support, under the last download key */
+.support {
+  display: flex;
+  margin-top: 36px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.support p {
+  color: var(--soft);
+  font-size: 15px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.support__key {
+  min-height: 44px;
+  font-size: 15px;
+}
+
+/* the copyright line: © and the tripper dot logo */
+.foot__mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.foot__mark .foot__logo {
+  height: 19px;
+}
+
+.foot__mark .gnav__logo-off {
+  opacity: 0.08;
+}
+
 .foot__legal strong {
   font-size: 15px;
   font-weight: 800;
@@ -1208,7 +1287,8 @@ h2.heading,
   .shell--split,
   .engine,
   .screen,
-  .pros {
+  .pros,
+  .docs {
     grid-template-columns: minmax(0, 1fr);
   }
 
