@@ -836,7 +836,6 @@ def page(lang: str, home: bool) -> str:
       <div class="foot__bottom">
         <div class="shell">
           <span class="foot__credit">© tripper / <em>@arcadiatripper</em></span>
-          <span class="foot__plate">clean · the sample as it is</span>
         </div>
       </div>
     </footer>

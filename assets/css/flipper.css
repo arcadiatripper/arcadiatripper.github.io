@@ -1027,15 +1027,6 @@ h2.heading,
   font-style: italic;
 }
 
-.foot__plate {
-  padding: 3px 12px;
-  border: 2px solid var(--line);
-  border-radius: 999px;
-  background: var(--card);
-  font-size: 12px;
-  font-weight: 700;
-}
-
 .video iframe {
   display: block;
   width: 100%;
