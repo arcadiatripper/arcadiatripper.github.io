@@ -94,18 +94,16 @@ T = {
         "tempo_st": "반음",
         "tempo_ct": "센트",
         "pond_title": "슬라이스가 울리면, 비주얼라이저가 움직여요",
-        "pond_sub": "플러그인 위쪽 가운데에 있는 작은 비주얼라이저예요. 모양이 네 가지라서, 누를 때마다 다음 것으로 바뀌어요. 아래 패드를 치거나 비트를 틀어 보세요.",
+        "pond_sub": "플러그인 위쪽에 비주얼라이저가 있어요. 슬라이스가 울릴 때마다 움직이고, 모양은 네 가지예요.",
         "pond_looks": [
             ("paper", "종이 꽃가루", "색종이가 톡 튀어 올라 빙글빙글 떨어지고, 바닥에 붙었다가 스티커처럼 떼어져요."),
             ("strings", "줄 울림", "가는 줄 세 가닥이 소리 난 자리에서 튕겨지고, 떨리는 동안 패드 색으로 물들어요."),
             ("koi", "잉어 연못", "느긋하게 헤엄치던 잉어들이 소리가 떨어진 곳으로 꼬리를 치며 달려와요."),
             ("ink", "먹물 마블링", "먹물이 똑 떨어져 동그랗게 번지고, 물결을 따라 무늬로 말리다가 맑아져요."),
         ],
-        "pond_pads": "패드",
-        "pond_play": "▶ 비트",
-        "pond_stop": "■ 멈춤",
+        "pond_pause": "일시정지",
+        "pond_resume": "재생",
         "pond_rev": "거꾸로",
-        "pond_hint": "비주얼라이저를 직접 눌러도 그 자리의 슬라이스가 쳐져요. 거꾸로를 켜면 거꾸로 움직여요.",
         "slides_title": "핵심 기능",
         "slides": [
             ("lazy", "레이지 찹", "들으면서 원하는 순간에 치면, 친 자리가 잘려요.", ""),
@@ -136,7 +134,7 @@ T = {
         "install_win": "Windows 10 · 11 (64비트) / VST3",
         "install_guide": "설치 안내",
         "install_note": "베타예요. 이상한 점은 플러그인 오른쪽 아래 버그 제보로 알려주세요. 사용 기록은 보내지 않아요.",
-        "faq_title": "자주 묻는 것",
+        "faq_title": "자주 묻는 질문",
         "faq": [
             ("정말 무료예요?", "네. 돈도 가입도 필요 없고, 소스 코드도 모두 공개해요."),
             ("flipper로 만든 곡을 팔아도 되나요?", "네. flipper로 만든 소리와 곡은 만든 사람의 것이에요. 라이선스는 플러그인 프로그램에 붙는 것이고, 결과물에는 붙지 않아요."),
@@ -209,18 +207,16 @@ T = {
         "tempo_st": "st",
         "tempo_ct": "ct",
         "pond_title": "Every slice moves the visualizer",
-        "pond_sub": "The little visualizer at the top of the plug-in. It has four looks, and a click moves on to the next. Hit the pads below or play the beat.",
+        "pond_sub": "The visualizer sits at the top of the plug-in. It moves with every slice that plays, in four looks.",
         "pond_looks": [
             ("paper", "paper confetti", "Paper shapes pop up, tumble down, stick to the floor and peel away like stickers."),
             ("strings", "strings", "Three thin strings are plucked where the sound lands and take the pad's colour while they ring."),
             ("koi", "koi pond", "Koi drift around, then flick their tails and dash to where the sound dropped."),
             ("ink", "ink marbling", "A drop of ink blooms into rings, curls into marbled patterns and clears away."),
         ],
-        "pond_pads": "pads",
-        "pond_play": "▶ beat",
-        "pond_stop": "■ stop",
+        "pond_pause": "pause",
+        "pond_resume": "play",
         "pond_rev": "reverse",
-        "pond_hint": "A tap on a visualizer plays the slice under it. With reverse on, everything runs backwards.",
         "slides_title": "What it does",
         "slides": [
             ("lazy", "Lazy chop", "Tap along. It chops where you tap.", ""),
@@ -251,7 +247,7 @@ T = {
         "install_win": "Windows 10 · 11 (64-bit) / VST3",
         "install_guide": "Install guide",
         "install_note": "It's a beta. If something looks wrong, use the bug report key at the bottom right of the plug-in. It sends no usage data.",
-        "faq_title": "Questions",
+        "faq_title": "FAQ",
         "faq": [
             ("Is it really free?", "Yes. No money, no sign-up, and all of the source code is public."),
             ("Can I sell music I make with flipper?", "Yes. The sounds and songs you make are yours. The licence covers the plug-in program, not what you make with it."),
@@ -426,21 +422,19 @@ def features_block(lang: str, t: dict, part: dict) -> str:
 
 
 def pond_block(t: dict) -> str:
-    """The four pond looks, live (assets/js/flipper-pond.js draws them), with pads and a beat to hit them."""
+    """The four visualizer looks, live (assets/js/flipper-pond.js plays a silent beat into them), with small pause and reverse keys."""
     looks = "".join(f"""
             <figure class="pond__look">
               <div class="pond__well" data-pond-look="{key}"></div>
               <figcaption><b>{E(name)}</b> {E(line)}</figcaption>
             </figure>""" for key, name, line in t["pond_looks"])
     return f"""          <div class="pond" data-pond>
-            <div class="pond__deck">
-              <div class="pond__pads" role="group" aria-label="{E(t['pond_pads'])}" data-pond-pads></div>
-              <button type="button" class="pond__key pond__key--play" aria-pressed="false" data-pond-beat data-play="{E(t['pond_play'])}" data-stop="{E(t['pond_stop'])}">{E(t['pond_play'])}</button>
-              <button type="button" class="pond__key" aria-pressed="false" data-pond-rev>{E(t['pond_rev'])}</button>
-            </div>
             <div class="pond__looks">{looks}
             </div>
-            <p class="pond__hint">{E(t['pond_hint'])}</p>
+            <div class="pond__deck">
+              <button type="button" class="pond__key" aria-pressed="false" data-pond-pause data-pause="{E(t['pond_pause'])}" data-resume="{E(t['pond_resume'])}"><span aria-hidden="true">❚❚</span> <b>{E(t['pond_pause'])}</b></button>
+              <button type="button" class="pond__key" aria-pressed="false" data-pond-rev><span aria-hidden="true">⇆</span> <b>{E(t['pond_rev'])}</b></button>
+            </div>
           </div>"""
 
 

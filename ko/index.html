@@ -210,13 +210,8 @@
 
       <section class="band band--pond" id="pond" aria-labelledby="pond-title">
         <div class="shell">
-          <header class="heading heading--center" data-reveal><h2 id="pond-title">슬라이스가 울리면, 비주얼라이저가 움직여요</h2><p>플러그인 위쪽 가운데에 있는 작은 비주얼라이저예요. 모양이 네 가지라서, 누를 때마다 다음 것으로 바뀌어요. 아래 패드를 치거나 비트를 틀어 보세요.</p></header>
+          <header class="heading heading--center" data-reveal><h2 id="pond-title">슬라이스가 울리면, 비주얼라이저가 움직여요</h2><p>플러그인 위쪽에 비주얼라이저가 있어요. 슬라이스가 울릴 때마다 움직이고, 모양은 네 가지예요.</p></header>
           <div class="pond" data-pond>
-            <div class="pond__deck">
-              <div class="pond__pads" role="group" aria-label="패드" data-pond-pads></div>
-              <button type="button" class="pond__key pond__key--play" aria-pressed="false" data-pond-beat data-play="▶ 비트" data-stop="■ 멈춤">▶ 비트</button>
-              <button type="button" class="pond__key" aria-pressed="false" data-pond-rev>거꾸로</button>
-            </div>
             <div class="pond__looks">
             <figure class="pond__look">
               <div class="pond__well" data-pond-look="paper"></div>
@@ -235,7 +230,10 @@
               <figcaption><b>먹물 마블링</b> 먹물이 똑 떨어져 동그랗게 번지고, 물결을 따라 무늬로 말리다가 맑아져요.</figcaption>
             </figure>
             </div>
-            <p class="pond__hint">비주얼라이저를 직접 눌러도 그 자리의 슬라이스가 쳐져요. 거꾸로를 켜면 거꾸로 움직여요.</p>
+            <div class="pond__deck">
+              <button type="button" class="pond__key" aria-pressed="false" data-pond-pause data-pause="일시정지" data-resume="재생"><span aria-hidden="true">❚❚</span> <b>일시정지</b></button>
+              <button type="button" class="pond__key" aria-pressed="false" data-pond-rev><span aria-hidden="true">⇆</span> <b>거꾸로</b></button>
+            </div>
           </div>
         </div>
       </section>
@@ -802,7 +800,7 @@
 
       <section class="band" id="faq" aria-labelledby="faq-title">
         <div class="shell">
-          <h2 class="heading heading--center" id="faq-title" data-reveal>자주 묻는 것</h2>
+          <h2 class="heading heading--center" id="faq-title" data-reveal>자주 묻는 질문</h2>
           <div class="faq"><details class="faq__item"><summary>정말 무료예요?</summary><p>네. 돈도 가입도 필요 없고, 소스 코드도 모두 공개해요.</p></details><details class="faq__item"><summary>flipper로 만든 곡을 팔아도 되나요?</summary><p>네. flipper로 만든 소리와 곡은 만든 사람의 것이에요. 라이선스는 플러그인 프로그램에 붙는 것이고, 결과물에는 붙지 않아요.</p></details><details class="faq__item"><summary>제 컴퓨터에서 돌아가나요?</summary><p>Mac은 Apple Silicon과 Intel 모두, Windows는 64비트 Windows 10과 11에서 돌아가요. ARM Windows는 아직이에요.</p></details><details class="faq__item"><summary>어떤 DAW에서 쓸 수 있나요?</summary><p>AU나 VST3 플러그인을 여는 DAW면 돼요. Logic Pro, REAPER, Cubase에서 확인했어요.</p></details><details class="faq__item"><summary>베타라서 조심할 게 있나요?</summary><p>macOS는 처음 열 때 한 번 허용해야 하고, Windows는 SmartScreen에서 &#x27;추가 정보 → 실행&#x27;을 누르면 돼요. 새 버전이 나오면 플러그인 로고 옆에 점이 켜져요.</p></details><details class="faq__item"><summary>소스 코드는 어디 있나요?</summary><p>GitHub에 있어요. 우리가 쓴 코드는 MIT, 배포하는 플러그인은 함께 묶인 라이브러리 때문에 AGPL-3.0이에요.</p></details>
           </div>
         </div>

@@ -1798,12 +1798,13 @@ PONDS.push ({
 });
 
 
-// --- the site's pond board: the four looks side by side, hit by the pads or the beat --------------------------------
-// (one board per page; the preview holds two)
+// --- the site's visualizer board: the four looks side by side, a silent beat playing into them --------------------
+// (one board per page; the preview holds two). The beat runs by itself; pause and reverse sit under the looks.
 document.querySelectorAll('[data-pond]').forEach(root => {
   const night = () => document.documentElement.dataset.theme === 'night';
   const stages = [];
-  let reversed = false, beatOn = false, beatStart = 0, beatNext = 0, seen = false, running = false;
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let reversed = false, beatOn = !still, beatStart = 0, beatNext = 0, seen = false, running = false;
 
   for (const box of root.querySelectorAll('[data-pond-look]')) {
     const concept = PONDS.find(p => p.id === box.dataset.pondLook);
@@ -1819,37 +1820,25 @@ document.querySelectorAll('[data-pond]').forEach(root => {
       const r = cv.getBoundingClientRect(), x = (e.clientX - r.left) / r.width;
       let best = 0;
       lab.SLICES.forEach((s, i) => { if (Math.abs(s.x - x) < Math.abs(lab.SLICES[best].x - x)) best = i; });
-      hit(best, 0.9, reversed);
+      const t = performance.now();
+      for (const st of stages) st.hit(lab.hitFor(best, t, 0.9, reversed));
+      start();
     });
   }
 
-  function hit(slice, v = 0.9, rev = false) {
-    const t = performance.now();
-    for (const st of stages) st.hit(lab.hitFor(slice, t, v, rev));
-    start();
-  }
-
-  const pads = root.querySelector('[data-pond-pads]');
-  lab.SLICES.forEach((s, i) => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'pond__pad';
-    b.style.background = lab.util.sliceColour(s.b);
-    b.textContent = String(i + 1);
-    b.setAttribute('aria-label', `${i + 1} ${s.what}`);
-    b.addEventListener('pointerdown', () => hit(i, 0.9, reversed));
-    b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hit(i, 0.9, reversed); } });
-    pads.appendChild(b);
-  });
-
-  const beat = root.querySelector('[data-pond-beat]');
-  beat.addEventListener('click', () => {
+  const pause = root.querySelector('[data-pond-pause]');
+  const label = () => {
+    pause.setAttribute('aria-pressed', String(!beatOn));
+    pause.querySelector('span').textContent = beatOn ? '❚❚' : '▶';
+    pause.querySelector('b').textContent = beatOn ? pause.dataset.pause : pause.dataset.resume;
+  };
+  pause.addEventListener('click', () => {
     beatOn = !beatOn;
     beatStart = beatNext = performance.now() + 30;
-    beat.setAttribute('aria-pressed', String(beatOn));
-    beat.textContent = beatOn ? beat.dataset.stop : beat.dataset.play;
+    label();
     start();
   });
+  label();
   const rev = root.querySelector('[data-pond-rev]');
   rev.addEventListener('click', () => { reversed = !reversed; rev.setAttribute('aria-pressed', String(reversed)); });
 
@@ -1867,8 +1856,9 @@ document.querySelectorAll('[data-pond]').forEach(root => {
         beatNext += lab.STEP_MS;
       }
     }
-    for (const st of stages) if (st.moving || beatOn) st.draw(t);
-    requestAnimationFrame(tick);
+    let moving = beatOn;
+    for (const st of stages) if (st.moving || beatOn) { st.draw(t); moving = moving || st.moving; }
+    if (moving) requestAnimationFrame(tick); else running = false;
   }
   function start() {
     if (running || !seen || document.hidden) return;
