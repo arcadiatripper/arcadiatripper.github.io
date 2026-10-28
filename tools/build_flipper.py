@@ -38,8 +38,8 @@ INSTALL_URL = {
 VIDEO_ID = {"ko": None, "en": None}
 # The guide (샘플러 안내서) and the manual (사용 설명서) per language; None shows the card with "coming soon".
 DOCS_URL = {
-    "guide": {"ko": None, "en": None},
-    "manual": {"ko": None, "en": None},
+    "guide": {"ko": "/ko/flipper/guide/", "en": "/en/flipper/guide/"},
+    "manual": {"ko": "/ko/flipper/manual/", "en": "/en/flipper/manual/"},
 }
 # Where support goes, per language: (label key in T, url), first one = the main key and the footer link.
 # Toonation takes Korean payments; Ko-fi takes cards and PayPal from abroad. Empty shows "coming soon".
