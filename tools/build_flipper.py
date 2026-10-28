@@ -151,6 +151,8 @@ T = {
         "built_with": "JUCE, Rubber Band, Signalsmith Stretch, Airwindows, FLAC, Ogg Vorbis, Opus로 만들었어요.",
         "fonts": "글꼴: Fredoka, 나눔스퀘어라운드, Barlow, DotGothic16, Jersey 15 · SIL OFL 1.1",
         "made_by": "레네 RENÉ가 만들었어요",
+        "maker_role": "만든 사람",
+        "maker_art": "레네 RENÉ의 캐릭터, 우주 고양이 트리퍼",
         "foot_line": "모두를 위한 무료 샘플러 플러그인.",
         "foot_links": "LINKS",
         "foot_notes": "MADE WITH",
@@ -267,6 +269,8 @@ T = {
         "built_with": "Built with JUCE, Rubber Band, Signalsmith Stretch, Airwindows, FLAC, Ogg Vorbis and Opus.",
         "fonts": "Fonts: Fredoka, NanumSquareRound, Barlow, DotGothic16, Jersey 15 · SIL OFL 1.1",
         "made_by": "Made by RENÉ (레네)",
+        "maker_role": "made by",
+        "maker_art": "Tripper the cosmic cat, RENÉ's character",
         "foot_line": "A free sampler plug-in for everyone.",
         "foot_links": "LINKS",
         "foot_notes": "MADE WITH",
@@ -648,6 +652,7 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
       <canvas class="gnav__dots" aria-hidden="true"></canvas>
       <div class="gnav__inner">
         <a class="gnav__home" href="{prefix}/" aria-label="tripper">{TRIPPER_LOGO}</a>
+        <div class="gnav__panel" id="gnav-panel">
         <nav class="gnav__links" aria-label="{E(t['nav_label'])}">
           <div class="gnav__menu" data-menu>
             <button type="button" class="gnav__menu-key" aria-expanded="false" aria-controls="menu-plugins"{plugins_on}>plugins<span aria-hidden="true">▾</span></button>
@@ -662,6 +667,10 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
           <span aria-hidden="true">/</span>
           <a href="{en_href}" lang="en" hreflang="en"{' aria-current="true"' if lang == 'en' else ''}>en</a>
         </div>
+        </div>
+        <button type="button" class="gnav__burger" aria-expanded="false" aria-controls="gnav-panel" aria-label="{E(t['nav_label'])}" data-burger>
+          <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path class="gnav__burger-open" d="M3 4.5h10M3 8h10M3 11.5h10"/><path class="gnav__burger-shut" d="M4 4l8 8M12 4l-8 8"/></svg>
+        </button>
       </div>
     </header>"""
 
@@ -829,12 +838,23 @@ def page(lang: str, home: bool) -> str:
             <span>{E(t['license'])}</span>
             <span>{E(t['built_with'])}</span>
             <span>{E(t['fonts'])}</span>
-            <span>{E(t['made_by'])}</span>
           </div>
         </div>
       </div>
       <div class="foot__bottom">
         <div class="shell">
+          <div class="foot__maker">
+            <img src="/assets/images/profile-tripper-256.webp" width="256" height="256" alt="{E(t['maker_art'])}" loading="lazy">
+            <div>
+              <span>{E(t['maker_role'])}</span>
+              <strong>레네 RENÉ</strong>
+              <p lang="en">a sound chef floating in space.</p>
+              <div class="foot__maker-links">
+                <a href="https://www.youtube.com/@arcadiatripper">YouTube ↗</a>
+                <a href="/{lang}/artist/">artist ↗</a>
+              </div>
+            </div>
+          </div>
           <span class="foot__credit">© tripper / <em>@arcadiatripper</em></span>
         </div>
       </div>

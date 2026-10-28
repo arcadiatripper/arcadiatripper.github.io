@@ -64,6 +64,32 @@
 })();
 
 (() => {
+  // A phone shows only the logo and a menu key; the key opens the links, day / night and ko / en below the bar.
+  document.querySelectorAll('[data-burger]').forEach((key) => {
+  const bar = key.closest('.gnav');
+  const set = (open) => {
+    bar.classList.toggle('is-open', open);
+    key.setAttribute('aria-expanded', String(open));
+  };
+  key.addEventListener('click', (event) => {
+    event.stopPropagation();
+    set(!bar.classList.contains('is-open'));
+  });
+  document.addEventListener('click', (event) => {
+    if (!bar.contains(event.target)) set(false);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && bar.classList.contains('is-open')) {
+      set(false);
+      key.focus();
+    }
+  });
+  bar.querySelectorAll('.gnav__panel a').forEach((link) => link.addEventListener('click', () => set(false)));
+  matchMedia('(min-width: 721px)').addEventListener('change', () => set(false));
+  });
+})();
+
+(() => {
   // Day / night: the page opens in day; the pick is kept for the next visit. One key, as in the plug-in: the moon
   // by day, the sun by night.
   const keys = document.querySelectorAll('[data-theme-toggle]');

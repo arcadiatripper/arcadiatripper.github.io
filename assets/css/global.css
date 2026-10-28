@@ -325,3 +325,137 @@
   position: relative;
   z-index: 1;
 }
+
+/* the panel holds the links, day / night and ko / en: in the bar on a computer, behind the menu key on a phone */
+.gnav__panel {
+  display: contents;
+}
+
+.gnav__burger {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .gnav__inner {
+    justify-content: space-between;
+  }
+
+  .gnav__burger {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    place-items: center;
+    border: 2px solid currentColor;
+    border-radius: 10px;
+    background: var(--gnav-drop-bg, #fffdf7);
+    box-shadow: 0 2px 0 currentColor;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .gnav__burger:active {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
+
+  .gnav__burger svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  .gnav__burger-shut,
+  .gnav.is-open .gnav__burger-open {
+    display: none;
+  }
+
+  .gnav.is-open .gnav__burger-shut {
+    display: inline;
+  }
+
+  .gnav__panel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    gap: 18px;
+    padding: 18px max(20px, env(safe-area-inset-left, 0px)) 26px;
+    border-bottom: 1px solid var(--gnav-line);
+    background: var(--gnav-drop-bg, #fffdf7);
+    box-shadow: 0 18px 30px -18px rgb(0 0 0 / 35%);
+  }
+
+  .gnav.is-open .gnav__panel {
+    display: grid;
+  }
+
+  .gnav__panel .gnav__links {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 0;
+  }
+
+  /* the plug-ins are listed right away: "plugins" becomes a small label over them */
+  .gnav__panel .gnav__menu-key {
+    pointer-events: none;
+    font-size: 12px;
+    opacity: 0.6;
+  }
+
+  .gnav__panel .gnav__menu-key span {
+    display: none;
+  }
+
+  .gnav__panel .gnav__menu-key[data-current="true"] {
+    border-bottom-color: transparent;
+  }
+
+  .gnav__panel .gnav__drop,
+  .gnav__panel .gnav__drop[hidden] {
+    position: static;
+    display: grid;
+    min-width: 0;
+    margin-top: 6px;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .gnav__panel .gnav__drop a {
+    padding: 4px 0;
+    background: none;
+  }
+
+  .gnav__panel .gnav__drop b {
+    font-size: 26px;
+  }
+
+  .gnav__panel .gnav__links > a {
+    justify-self: start;
+  }
+
+  .gnav__panel .gnav__theme,
+  .gnav__panel .gnav__lang {
+    display: inline-flex;
+  }
+
+  .gnav__panel .gnav__lang {
+    gap: 8px;
+    font-size: 15px;
+  }
+
+  .gnav__panel {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+
+  .gnav__panel .gnav__links {
+    grid-column: 1 / -1;
+  }
+}

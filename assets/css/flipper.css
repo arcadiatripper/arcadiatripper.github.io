@@ -1023,6 +1023,51 @@ h2.heading,
   font-size: 13px;
 }
 
+/* the maker, as at the foot of the Koala guide: the character, then the name and two links */
+.foot__maker {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.foot__maker img {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  border: var(--border) solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 3px 0 var(--shadow);
+  object-fit: cover;
+}
+
+.foot__maker span {
+  color: var(--soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.foot__maker strong {
+  display: block;
+  font-size: 17px;
+}
+
+.foot__maker p {
+  color: var(--soft);
+  font-size: 13px;
+}
+
+.foot__maker-links {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.foot__maker-links a {
+  color: inherit;
+}
+
 .foot__credit em {
   font-style: italic;
 }
