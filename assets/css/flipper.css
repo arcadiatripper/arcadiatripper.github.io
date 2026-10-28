@@ -622,6 +622,11 @@ h2.heading,
   transition: background-color 380ms ease, color 380ms ease;
 }
 
+/* clean wears the page's own night palette, where the line colour is darker than the card */
+:root[data-theme="night"] .band--engines[data-skin="clean"] .engine__plate {
+  color: var(--ink);
+}
+
 .band--engines[data-skin="black"] {
   --e-paper: #57616d;
   --e-card: #d5d9de;
