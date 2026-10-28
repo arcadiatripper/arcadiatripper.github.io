@@ -264,7 +264,7 @@ T = {
         "source": "Source code (GitHub)",
         "source_soon": "Source code goes public with the beta",
         "made_by": "Made by RENÉ (레네)",
-        "maker_role": "made by",
+        "maker_role": "MADE BY",
         "maker_art": "Tripper the cosmic cat, RENÉ's character",
         "foot_line": "A free sampler plug-in for everyone.",
         "foot_links": "LINKS",
