@@ -1140,17 +1140,16 @@ h2.heading,
 .foot__mark {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 15px;
+  gap: 8px;
+  font-size: 18px;
   font-weight: 800;
 }
 
-.foot__mark .foot__logo {
-  height: 19px;
-}
-
-.foot__mark .gnav__logo-off {
-  opacity: 0.08;
+.foot__logo {
+  display: block;
+  width: auto;
+  height: 28px;
+  fill: currentColor;
 }
 
 .foot__legal strong {
