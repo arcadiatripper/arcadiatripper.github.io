@@ -967,11 +967,15 @@ h2.heading,
 
 .foot__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  gap: 32px 80px;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 32px 48px;
   align-items: start;
   padding-top: 52px;
   padding-bottom: 44px;
+}
+
+.foot__inner > :last-child {
+  justify-self: end;
 }
 
 .foot__brand .logo {
@@ -1108,6 +1112,10 @@ h2.heading,
   .foot__inner {
     grid-template-columns: auto auto;
     justify-content: start;
+  }
+
+  .foot__inner > :last-child {
+    justify-self: start;
   }
 
   .foot__brand {

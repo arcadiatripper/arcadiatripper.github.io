@@ -765,17 +765,17 @@ def page(lang: str, home: bool) -> str:
         </div>
       </section>
 
-      <section class="band band--pond" id="pond" aria-labelledby="pond-title">
-        <div class="shell">
-          <header class="heading heading--center" data-reveal><h2 id="pond-title">{E(t['pond_title'])}</h2><p>{E(t['pond_sub'])}</p></header>
-{pond_block(t)}
-        </div>
-      </section>
-
       <section class="band band--engines" id="engines" aria-labelledby="engines-title" data-engines data-skin="clean">
         <div class="shell">
           <header class="heading heading--center" data-reveal><h2 id="engines-title">{E(t['engines_title'])}</h2><p>{E(t['engines_sub'])}</p></header>
 {engines_block(lang, t)}
+        </div>
+      </section>
+
+      <section class="band band--pond" id="pond" aria-labelledby="pond-title">
+        <div class="shell">
+          <header class="heading heading--center" data-reveal><h2 id="pond-title">{E(t['pond_title'])}</h2><p>{E(t['pond_sub'])}</p></header>
+{pond_block(t)}
         </div>
       </section>
 
