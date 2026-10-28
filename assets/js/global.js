@@ -70,6 +70,8 @@
   const set = (open) => {
     bar.classList.toggle('is-open', open);
     key.setAttribute('aria-expanded', String(open));
+    // the plug-in list shows right away inside the panel
+    bar.querySelectorAll('.gnav__drop').forEach((list) => { list.hidden = !open; });
   };
   key.addEventListener('click', (event) => {
     event.stopPropagation();

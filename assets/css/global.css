@@ -396,7 +396,7 @@
     display: grid;
     gap: 10px;
     margin: 0;
-    font-size: 20px;
+    font-size: 16px;
     letter-spacing: 0;
   }
 
@@ -433,7 +433,7 @@
   }
 
   .gnav__panel .gnav__drop b {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .gnav__panel .gnav__links > a {

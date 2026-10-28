@@ -851,7 +851,7 @@ def page(lang: str, home: bool) -> str:
               <p lang="en">a sound chef floating in space.</p>
               <div class="foot__maker-links">
                 <a href="https://www.youtube.com/@arcadiatripper">YouTube ↗</a>
-                <a href="/{lang}/artist/">artist ↗</a>
+                <a href="/{lang}/artist/">Portfolio ↗</a>
               </div>
             </div>
           </div>
