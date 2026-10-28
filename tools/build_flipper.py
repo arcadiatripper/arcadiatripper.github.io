@@ -45,10 +45,15 @@ DOCS_URL = {
 # Toonation takes Korean payments; Ko-fi takes cards and PayPal from abroad. Empty shows "coming soon".
 TOONATION_URL = "https://toon.at/donate/arcadiatripper"
 KOFI_URL = "https://ko-fi.com/arcadiatripper"
+# Set once GitHub Sponsors approves the account (https://github.com/sponsors/arcadiatripper); None leaves it out.
+SPONSORS_URL = None
 SUPPORT_LINKS = {
     "ko": [("support_toon", TOONATION_URL), ("support_kofi", KOFI_URL)],
     "en": [("support_kofi", KOFI_URL)],
 }
+if SPONSORS_URL:
+    for _lang in SUPPORT_LINKS:
+        SUPPORT_LINKS[_lang].append(("support_sponsors", SPONSORS_URL))
 
 # --- words ----------------------------------------------------------------------------------------------------------
 
@@ -185,6 +190,7 @@ T = {
         "support": "후원하기",
         "support_toon": "투네이션으로 후원하기",
         "support_kofi": "해외에서는 Ko-fi",
+        "support_sponsors": "GitHub Sponsors",
         "support_soon": "후원 준비 중",
         "close_title": "샘플 하나, 꺼내 볼까요?",
         "source": "소스 코드 (GitHub)",
@@ -327,6 +333,7 @@ T = {
         "support_line": "flipper is free. If you like it, you can support it.",
         "support": "Support flipper",
         "support_kofi": "Support on Ko-fi",
+        "support_sponsors": "or GitHub Sponsors",
         "support_soon": "Support coming soon",
         "close_title": "Got a sample? Let's flip it.",
         "source": "Source code (GitHub)",
@@ -837,7 +844,7 @@ def page(lang: str, home: bool) -> str:
         if DOCS_URL[key][lang]:
             source += f'\n            <a href="{DOCS_URL[key][lang]}">{E(name)} →</a>'
     for label, url in SUPPORT_LINKS.get(lang) or []:  # the footer names the service only
-        source += f'\n            <a href="{url}">♥ {"투네이션" if label == "support_toon" else "Ko-fi"} ↗</a>'
+        source += f'\n            <a href="{url}">♥ { {"support_toon": "투네이션", "support_kofi": "Ko-fi"}.get(label, "GitHub Sponsors") } ↗</a>'
 
 
     return f"""<!doctype html>
