@@ -73,12 +73,12 @@ T = {
         "engines_title": "엔진을 바꾸면, 옷도 바뀌어요",
         "engines_sub": "전설적인 샘플러 두 대와 90년대 게임기 소리 칩을, 회로까지 따라 만들었어요.",
         "engines": [
-            ("clean", "clean", "아무리 늘여도 소리가 맑아요.", "CLEAN · THE SAMPLE AS IT IS", ""),
+            ("clean", "clean", "있는 그대로의 소리예요.", "CLEAN · THE SAMPLE AS IT IS", ""),
             ("black", "black", "80년대 후반의 전설적인 샘플러예요. 소리가 거칠고 묵직해요.", "BLACK · 12-BIT · 26 kHz",
-             "회로도대로 만들었어요. 12비트로 담는 방식, 샘플을 건너뛰고 되풀이하며 바꾸는 음정, 출력마다 다른 필터, 움직이는 필터까지 담았어요. "
+             "회로도를 보고 그대로 만들었어요. 12비트로 담는 방식, 샘플을 건너뛰고 되풀이하며 바꾸는 음정, 출력마다 다른 필터, 움직이는 필터까지 원본과 똑같아요. "
              "움직이는 필터는 실제 기계의 녹음과 비교해 맞췄어요."),
             ("grey", "grey", "80년대 후반의 또 다른 전설적인 샘플러예요. 소리가 단단하고 따뜻해요.", "GREY · 12-BIT · 40 kHz",
-             "공개된 자료가 적어서 추정한 곳이 있어요: 12비트로 담는 방식, 음정을 바꾸는 방식, 출력 필터의 모양, 잡음 크기."),
+             "공개된 자료가 적어서 추정한 곳이 있어요(12비트로 담는 방식, 음정을 바꾸는 방식, 출력 필터의 모양, 잡음 크기)."),
             ("purple", "purple", "90년대 초 게임기의 소리 칩이에요. 소리가 동글고 먹먹해요.", "PURPLE · 4-BIT · 32 kHz",
              "칩의 계산(BRR 디코딩, 가우스 보간, 32,040 Hz)은 오픈소스 에뮬레이터 ares와 7,300가지 경우를 비교해 비트 하나까지 같아요. "
              "보드의 필터는 회로도대로예요."),
@@ -108,20 +108,18 @@ T = {
         "slides": [
             ("lazy", "레이지 찹", "들으면서 원하는 순간에 치면, 친 자리가 잘려요.", ""),
             ("key", "키 찾기", "샘플의 키를 찾고, 튜닝이 몇 센트 어긋났는지도 알려줘요.",
-             "직접 만든 분석기(MIT)예요. 샘플 안에서 도부터 시까지 열두 음이 각각 얼마나 크게 울리는지 모아 보고, "
-             "24개 장조·단조가 저마다 어떤 음을 즐겨 쓰는지 정리한 표와 비교해 가장 닮은 키를 골라요. "
-             "키가 적힌 루프 158개로 맞혀 보며 다듬었고, 드럼처럼 음이 없는 소리엔 키를 붙이지 않아요."),
-            ("repitch", "리피치와 템포 유지", "리피치는 옛 샘플러처럼 키와 속도가 같이 움직여요. 템포 유지는 템포를 그대로 두고 키만 바꿔요.",
-             "템포 유지는 Rubber Band R3(GPL)로 미리 구워 두고, 굽는 동안엔 Signalsmith Stretch(MIT)로 바로 들려줘요. "
-             "바운스도 구운 소리를 그대로 써서, 들은 그대로 나가요."),
-            ("crisp", "또렷하게", "템포 유지로 늘려도 타격이 뭉개지지 않아요. 비트와 드럼 루프엔 켜고, 멜로디, 코드, 목소리엔 꺼 두세요.",
-             "켜면 타격과 타격 사이를 하나씩 따로 늘리고, 타격의 앞부분은 원래 소리를 그대로 남겨요. Signalsmith Stretch(MIT)."),
-            ("channels", "채널 고르기", "샘플마다 스테레오, 왼쪽, 오른쪽, 미드, 사이드 중에서 골라요. 다른 샘플러에선 보기 힘든 기능이에요.",
-             "미드 = (L+R)/2, 사이드 = (L−R)/2. 엔진보다 앞, 샘플이 들어오는 자리에서 바꾸고 원래보다 커지지 않아요. 샘플러 화면에서 써요."),
+             "직접 만든 분석기(MIT)예요. 음 높이 분포(크로마)를 Albrecht–Shanahan 키 프로필과 맞춰 보고, "
+             "키가 적힌 루프 158개로 다듬었어요. 음이 없는 소리엔 키를 붙이지 않아요."),
+            ("repitch", "리피치와 템포 유지", "리피치(Repitch)는 옛 샘플러처럼 키와 속도가 같이 움직여요. 템포 유지는 템포를 그대로 두고 키만 바꿔요.",
+             "템포 유지는 고품질 타임 스트레치 알고리즘인 Rubber Band R3(GPL)를 사용하고, 해당 부분의 소리를 만드는 동안엔 "
+             "빠른 속도의 알고리즘인 Signalsmith Stretch(MIT)로 바로 들려줘요. 바운스도 들은 그대로 나가요."),
+            ("crisp", "또렷하게", "템포 유지에서 켤 수 있는 기능이에요. 비트와 드럼 루프에서 타격이 또렷해져요.",
+             "원리는 타격 앞부분의 원래 소리를 그대로 남기는 방식이에요. Signalsmith Stretch(MIT)."),
+            ("channels", "채널 고르기", "샘플마다 스테레오, 왼쪽, 오른쪽, 미드, 사이드 중에서 골라요.", ""),
             ("melody", "멜로디", "슬라이스 하나를 건반에 깔고, 스케일을 골라 연주해요.", ""),
             ("midi", "찹을 MIDI로", "자른 순서 그대로 MIDI 클립이 돼요. DAW 트랙에 끌어다 놓으면 돼요.", ""),
             ("drum", "드럼 킷", "원샷 16개로 킷을 짜고, 셀마다 따로 다듬어요.", ""),
-            ("fx", "fx 랙", "필터부터 스페이스까지 아홉 칸, 그리고 마스터가 있어요.", "Airwindows(MIT) 모델에 직접 만든 펀치, 퍼즈, 필터를 더했어요."),
+            ("fx", "fx 랙", "필터, 펀치, 디스토션, 크러시, 테이프, 코러스, 노이즈, 에코, 스페이스, 마스터 열 칸이에요.", "일부는 Airwindows(MIT)의 모델을 귀로 골라 가져왔어요."),
             ("scratch", "스크래치", "판을 잡고 긁어요. 베이비, 처프 같은 스크래치 패턴도 있어요.", ""),
             ("night", "낮과 밤", "키 하나로 밤 화면이 돼요.", ""),
         ],
@@ -185,10 +183,10 @@ T = {
         "engines_title": "Change the engine, change the look",
         "engines_sub": "Two legendary samplers and an early-90s console's sound chip, modelled down to the circuits.",
         "engines": [
-            ("clean", "clean", "Clear however far you stretch it.", "CLEAN · THE SAMPLE AS IT IS", ""),
+            ("clean", "clean", "The sound as it is.", "CLEAN · THE SAMPLE AS IT IS", ""),
             ("black", "black", "The legendary late-80s sampler. Gritty and heavy.", "BLACK · 12-BIT · 26 kHz",
-             "Built to the schematics: how it stores 12 bits, pitch by skipping and repeating samples, a different filter "
-             "on each output, and the moving filter, which was checked against recordings of a real unit."),
+             "Built straight from the schematics. How it stores 12 bits, pitch by skipping and repeating samples, a different filter "
+             "on each output and the moving filter all match the original. The moving filter was checked against recordings of a real unit."),
             ("grey", "grey", "The other legendary late-80s sampler. Tight and warm.", "GREY · 12-BIT · 40 kHz",
              "Little is published about it, so these are estimates: its 12-bit storage, how it changes pitch, the output "
              "filter's shape and the noise level."),
@@ -221,20 +219,18 @@ T = {
         "slides": [
             ("lazy", "Lazy chop", "Tap along. It chops where you tap.", ""),
             ("key", "Key detection", "It finds the sample's key, and how many cents it is off tune.",
-             "Our own analyser (MIT). It adds up how loud each of the twelve notes, C to B, rings through the sample, "
-             "then compares that with a chart of which notes each of the 24 major and minor keys tends to use, and picks the closest. "
-             "Tuned on 158 key-labelled loops; a sound with no notes, like a drum, gets no key."),
+             "Our own analyser (MIT). It matches the spread of pitches (chroma) against the Albrecht–Shanahan key profiles, "
+             "tuned on 158 key-labelled loops. A sound with no notes gets no key."),
             ("repitch", "Repitch and keep tempo", "Repitch moves key and speed together, like the old samplers. Keep tempo moves the key only.",
-             "Keep tempo is baked ahead with Rubber Band R3 (GPL); until the bake is ready you hear Signalsmith Stretch (MIT). "
-             "Bounces use the same bake, so what you hear is what you get."),
-            ("crisp", "Crisp", "Hits stay sharp when keep tempo stretches. On for beats and drum loops, off for melodies, chords and voices.",
-             "When on, each stretch between two hits is done on its own and every hit's attack keeps the original sound. Signalsmith Stretch (MIT)."),
-            ("channels", "Channel select", "Per sample: stereo, left, right, mid or side. Something you rarely find in other samplers.",
-             "Mid = (L+R)/2, side = (L−R)/2. Picked where the sample comes in, before the engine, and never louder than the source. On the sampler screen."),
+             "Keep tempo uses Rubber Band R3 (GPL), a high-quality time-stretch algorithm; while that part's sound is being made, "
+             "you hear Signalsmith Stretch (MIT), a fast one, straight away. Bounces come out as you heard them too."),
+            ("crisp", "Crisp", "A switch in keep tempo. Hits in beats and drum loops come out sharp.",
+             "It works by keeping the front of each hit as the original sound. Signalsmith Stretch (MIT)."),
+            ("channels", "Channel select", "Per sample: stereo, left, right, mid or side.", ""),
             ("melody", "Melody", "One slice across the keys, in the scale you pick.", ""),
             ("midi", "Chop to MIDI", "Drag the chop order into your DAW.", ""),
             ("drum", "Drum kit", "16 one-shots, each trimmed on its own.", ""),
-            ("fx", "fx rack", "Nine slots, from filter to space.", "Airwindows (MIT) models, plus our own punch, fuzz and filter."),
+            ("fx", "fx rack", "Ten slots: filter, punch, distortion, crush, tape, chorus, noise, echo, space and master.", "Some are Airwindows (MIT) models, picked by ear."),
             ("scratch", "Scratch", "Grab the record. Baby and chirp patterns too.", ""),
             ("night", "Day and night", "One button for the night look.", ""),
         ],
@@ -380,11 +376,15 @@ def engines_block(lang: str, t: dict) -> str:
 # plug-in's design notes (flipper docs/DESIGN.md, DRUM.md, DECK.md, RECORDING.md, third_party/airwindows/README.md).
 DEEP = {
     "ko": {"title": "하나하나, 직접 다듬었어요",
-           "lead": "요즘 나오는 샘플러를 따라 만든 게 아니에요. 비트를 만들면서 걸리던 것들을 하나씩 정해서 만들었어요. "
-                   "기능마다 플러그인 화면 한 장과 설명이에요."},
+           "lead": ["'하나의 플러그인에서 모든 것을 할 수 없을까?' 하는 의문에서 시작한 플러그인이에요. "
+                    "10년의 비트메이킹 경험에서 나온 실제 필요한 기능들을 압축해서 담았어요.",
+                    "Claude와 함께 100% 바이브코딩으로 제작했어요. 직접 사용하기 위해 만들었기에 디테일을 하나하나 검수하며 "
+                    "모두 취향대로 만들었어요."]},
     "en": {"title": "Shaped by hand, one decision at a time",
-           "lead": "flipper is not a copy of today's samplers. It was built by settling, one at a time, the things that got "
-                   "in the way of making beats. Each feature, with its own picture of the plug-in."},
+           "lead": ["It started with one question: could a single plug-in do it all? Ten years of making beats, boiled down "
+                    "to the features that are actually needed.",
+                    "Made entirely by vibe coding, with Claude. Built to be used by its maker, so every detail was checked "
+                    "one by one and shaped to taste."]},
 }
 
 
@@ -461,7 +461,7 @@ def deep_block(lang: str, t: dict) -> str:
             </div>
           </article>""")
     return f"""
-          <header class="heading heading--center" data-reveal><h2 id="more-title">{E(d['title'])}</h2><p>{E(d['lead'])}</p></header>
+          <header class="heading heading--center" data-reveal><h2 id="more-title">{E(d['title'])}</h2>{''.join(f'<p>{E(p)}</p>' for p in d['lead'])}</header>
           <div class="deep">{''.join(rows)}
           </div>"""
 
