@@ -967,10 +967,10 @@ h2.heading,
 
 .foot__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr) minmax(0, 1.3fr);
   gap: 40px;
   padding-top: 56px;
-  padding-bottom: 48px;
+  padding-bottom: 36px;
 }
 
 .foot__brand p:not(.logo) {
@@ -1001,29 +1001,7 @@ h2.heading,
   color: var(--soft);
 }
 
-.foot__notes {
-  display: grid;
-  gap: 6px;
-  color: var(--soft);
-  font-size: 13px;
-}
-
-.foot__bottom {
-  border-top: 2px dashed color-mix(in srgb, var(--ink) 20%, transparent);
-}
-
-.foot__bottom .shell {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 20px;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 16px;
-  padding-bottom: 20px;
-  font-size: 13px;
-}
-
-/* the maker, as at the foot of the Koala guide: the character, then the name and two links */
+/* the maker: the character, the name, then their own links (kept apart from flipper's) */
 .foot__maker {
   display: flex;
   align-items: center;
@@ -1040,12 +1018,6 @@ h2.heading,
   object-fit: cover;
 }
 
-.foot__maker span {
-  color: var(--soft);
-  font-size: 12px;
-  font-weight: 700;
-}
-
 .foot__maker strong {
   display: block;
   font-size: 17px;
@@ -1055,6 +1027,27 @@ h2.heading,
   margin-top: 2px;
   color: var(--soft);
   font-size: 13px;
+}
+
+.foot__maker-links {
+  display: flex;
+  gap: 14px;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.foot__maker-links a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+/* the small print */
+.foot__legal p {
+  padding-bottom: 22px;
+  color: var(--soft);
+  font-size: 11px;
+  line-height: 1.6;
 }
 
 .video iframe {

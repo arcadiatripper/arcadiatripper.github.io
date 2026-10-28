@@ -148,15 +148,11 @@ T = {
         "close_title": "샘플 하나, 꺼내 볼까요?",
         "source": "소스 코드 (GitHub)",
         "source_soon": "소스 코드는 베타와 함께 공개",
-        "license": "우리 코드 MIT · 배포하는 플러그인 AGPL-3.0",
-        "built_with": "JUCE, Rubber Band, Signalsmith Stretch, Airwindows, FLAC, Ogg Vorbis, Opus로 만들었어요.",
-        "fonts": "글꼴: Fredoka, 나눔스퀘어라운드, Barlow, DotGothic16, Jersey 15 · SIL OFL 1.1",
         "made_by": "레네 RENÉ가 만들었어요",
-        "maker_role": "만든 사람",
+        "maker_role": "MADE BY",
         "maker_art": "레네 RENÉ의 캐릭터, 우주 고양이 트리퍼",
         "foot_line": "모두를 위한 무료 샘플러 플러그인.",
         "foot_links": "LINKS",
-        "foot_notes": "MADE WITH",
     },
     "en": {
         "lang": "en",
@@ -267,15 +263,11 @@ T = {
         "close_title": "Got a sample? Let's flip it.",
         "source": "Source code (GitHub)",
         "source_soon": "Source code goes public with the beta",
-        "license": "Our code MIT · the shipped plug-in AGPL-3.0",
-        "built_with": "Built with JUCE, Rubber Band, Signalsmith Stretch, Airwindows, FLAC, Ogg Vorbis and Opus.",
-        "fonts": "Fonts: Fredoka, NanumSquareRound, Barlow, DotGothic16, Jersey 15 · SIL OFL 1.1",
         "made_by": "Made by RENÉ (레네)",
         "maker_role": "made by",
         "maker_art": "Tripper the cosmic cat, RENÉ's character",
         "foot_line": "A free sampler plug-in for everyone.",
         "foot_links": "LINKS",
-        "foot_notes": "MADE WITH",
     },
 }
 
@@ -830,31 +822,26 @@ def page(lang: str, home: bool) -> str:
           <h2>{E(t['foot_links'])}</h2>
           <div class="foot__links">
             {source}
-            <a href="https://www.youtube.com/@arcadiatripper">YouTube ↗</a>
-            <a href="https://www.instagram.com/arcadiatripper">Instagram ↗</a>
           </div>
         </div>
         <div>
-          <h2>{E(t['foot_notes'])}</h2>
-          <div class="foot__notes">
-            <span>{E(t['license'])}</span>
-            <span>{E(t['built_with'])}</span>
-            <span>{E(t['fonts'])}</span>
-          </div>
-        </div>
-      </div>
-      <div class="foot__bottom">
-        <div class="shell">
+          <h2>{E(t['maker_role'])}</h2>
           <div class="foot__maker">
             <img src="/assets/images/profile-tripper-256.webp" width="256" height="256" alt="{E(t['maker_art'])}" loading="lazy">
             <div>
-              <span>{E(t['maker_role'])}</span>
               <strong>레네 RENÉ</strong>
               <p lang="en">a sound chef floating in space.</p>
+              <div class="foot__maker-links">
+                <a href="https://www.youtube.com/@arcadiatripper">YouTube ↗</a>
+                <a href="https://www.instagram.com/arcadiatripper">Instagram ↗</a>
+              </div>
             </div>
           </div>
-          <span class="foot__credit">© tripper</span>
         </div>
+      </div>
+      <div class="foot__legal" lang="en">
+        <p class="shell">© tripper. Source code: MIT License. Plug-in binaries: GNU AGPL-3.0.
+          Includes JUCE, Rubber Band, Signalsmith Stretch, Airwindows, FLAC, Ogg Vorbis and Opus, each under its own licence.</p>
       </div>
     </footer>
   </body>
