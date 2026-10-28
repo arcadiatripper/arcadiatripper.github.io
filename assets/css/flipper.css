@@ -967,10 +967,15 @@ h2.heading,
 
 .foot__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr) minmax(0, 1.3fr);
-  gap: 40px;
-  padding-top: 56px;
-  padding-bottom: 36px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 32px 80px;
+  align-items: start;
+  padding-top: 52px;
+  padding-bottom: 44px;
+}
+
+.foot__brand .logo {
+  margin-top: -4px;
 }
 
 .foot__brand p:not(.logo) {
@@ -1044,7 +1049,7 @@ h2.heading,
 
 /* the small print */
 .foot__legal p {
-  padding-bottom: 22px;
+  padding-bottom: 28px;
   color: var(--soft);
   font-size: 11px;
   line-height: 1.6;
@@ -1085,7 +1090,8 @@ h2.heading,
   }
 
   .foot__inner {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: auto auto;
+    justify-content: start;
   }
 
   .foot__brand {
