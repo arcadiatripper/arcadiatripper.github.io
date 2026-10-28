@@ -403,8 +403,6 @@
   /* the plug-ins are listed right away: "plugins" becomes a small label over them */
   .gnav__panel .gnav__menu-key {
     pointer-events: none;
-    font-size: 12px;
-    opacity: 0.6;
   }
 
   .gnav__panel .gnav__menu-key span {
