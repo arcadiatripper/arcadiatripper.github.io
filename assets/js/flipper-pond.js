@@ -1799,9 +1799,8 @@ PONDS.push ({
 
 
 // --- the site's pond board: the four looks side by side, hit by the pads or the beat --------------------------------
-(() => {
-  const root = document.querySelector('[data-pond]');
-  if (!root) return;
+// (one board per page; the preview holds two)
+document.querySelectorAll('[data-pond]').forEach(root => {
   const night = () => document.documentElement.dataset.theme === 'night';
   const stages = [];
   let reversed = false, beatOn = false, beatStart = 0, beatNext = 0, seen = false, running = false;
@@ -1880,4 +1879,4 @@ PONDS.push ({
   new IntersectionObserver(entries => { seen = entries.some(e => e.isIntersecting); start(); }).observe(root);
   document.addEventListener('visibilitychange', start);
   for (const st of stages) st.draw(performance.now());
-})();
+});
