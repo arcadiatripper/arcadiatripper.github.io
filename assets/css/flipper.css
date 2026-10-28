@@ -1052,24 +1052,9 @@ h2.heading,
 }
 
 .foot__maker p {
+  margin-top: 2px;
   color: var(--soft);
   font-size: 13px;
-}
-
-.foot__maker-links {
-  display: flex;
-  gap: 14px;
-  margin-top: 6px;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.foot__maker-links a {
-  color: inherit;
-}
-
-.foot__credit em {
-  font-style: italic;
 }
 
 .video iframe {

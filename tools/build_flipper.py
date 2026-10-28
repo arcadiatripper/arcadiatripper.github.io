@@ -849,13 +849,9 @@ def page(lang: str, home: bool) -> str:
               <span>{E(t['maker_role'])}</span>
               <strong>레네 RENÉ</strong>
               <p lang="en">a sound chef floating in space.</p>
-              <div class="foot__maker-links">
-                <a href="https://www.youtube.com/@arcadiatripper">YouTube ↗</a>
-                <a href="/{lang}/artist/">Portfolio ↗</a>
-              </div>
             </div>
           </div>
-          <span class="foot__credit">© tripper / <em>@arcadiatripper</em></span>
+          <span class="foot__credit">© tripper</span>
         </div>
       </div>
     </footer>
