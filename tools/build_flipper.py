@@ -65,10 +65,28 @@ T = {
         "video_title": "flipper 소개 영상",
         "video_soon": "소개 영상 준비 중",
         "screens_title": "화면은 세 개",
+        "screens_sub": "플러그인 하나에 샘플러, 드럼, fx가 다 들어 있어요. 머리줄의 탭으로 오가요.",
+        "screens_tab_label": "화면 고르기",
         "screens": [
-            ("sampler", "샘플러", "샘플 하나를 잘라서 연주해요."),
-            ("drum", "드럼", "원샷 16개로 킷을 짜요."),
-            ("fx", "fx", "판을 긁고 효과를 걸어요."),
+            ("sampler", "샘플러", "샘플 하나를 잘라서 연주해요.",
+             "타격을 찾아 바로 자르고, 레이지 찹으로 들으면서 치고, 키와 템포를 바꿔 플립해요."),
+            ("drum", "드럼", "원샷 16개로 킷을 짜요.",
+             "셀마다 음높이, 엔진, 초크, fx를 따로 두고, 출력 16개로 DAW 트랙에 나눠 보내요."),
+            ("fx", "fx", "판을 긁고 효과를 걸어요.",
+             "열 칸짜리 fx 랙, 누르는 동안만 걸리는 fx 패드, 33⅓ rpm으로 도는 판과 스크래치 패턴이 있어요."),
+        ],
+        "pro_title": "쓰던 대로 가져오세요",
+        "pro_sub": "다른 샘플러를 오래 써 온 분도 환영해요. 쓰던 킷과 컨트롤러를 그대로 가져올 수 있어요.",
+        "pro": [
+            ("킷 가져오기", "다른 프로그램의 드럼 킷을 그대로 불러와요.",
+             ["WAV 폴더", ".sfz", ".mxgrp", ".xpm · .xpn", ".adg"],
+             "만든 킷은 .flipkit으로 저장하고, 들리는 그대로 WAV 킷으로 내보낼 수도 있어요."),
+            ("MIDI 지정(MIDI Learn)", "노브, 스위치, 키 어디든 오른쪽 클릭해서 CC를 지정해요.",
+             ["끝없이 도는 노브(상댓값)", "노브 8개 차례로", "조그 · 터치 스트립으로 긁기"],
+             "끝없이 도는 노브도 맞게 움직이고, 노브 여덟 개를 돌리기만 해도 차례로 지정돼요. 판은 조그, 터치 스트립, 피치 휠로 긁을 수 있어요."),
+            ("DAW와 함께", "만든 것은 DAW 안에서 그대로 이어져요.",
+             ["찹을 MIDI로", "키스위치", "출력 16개", "채널 10"],
+             "찹은 MIDI 클립으로 끌어 놓고, 키스위치로 곡 중간에 연주 방법을 바꾸고, 드럼 셀은 따로 출력해요. 노브는 모두 오토메이션돼요."),
         ],
         "engines_title": "엔진을 바꾸면, 옷도 바뀌어요",
         "engines_sub": "전설적인 샘플러 두 대와 90년대 게임기 소리 칩을, 회로까지 따라 만들었어요.",
@@ -175,10 +193,28 @@ T = {
         "video_title": "flipper intro video",
         "video_soon": "Intro video coming soon",
         "screens_title": "Three screens",
+        "screens_sub": "Sampler, drums and fx, all in one plug-in. The tabs in the header switch between them.",
+        "screens_tab_label": "Pick a screen",
         "screens": [
-            ("sampler", "sampler", "Chop one sample and play it."),
-            ("drum", "drum", "Build a kit from 16 one-shots."),
-            ("fx", "fx", "Scratch the record, add effects."),
+            ("sampler", "sampler", "Chop one sample and play it.",
+             "Hits found and chopped right away, lazy chop to tap along, then change the key and tempo to flip it."),
+            ("drum", "drum", "Build a kit from 16 one-shots.",
+             "Pitch, engine, choke and fx for each cell, and 16 outputs to split them over DAW tracks."),
+            ("fx", "fx", "Scratch the record, add effects.",
+             "A ten-slot fx rack, fx pads that work while held, and a record spinning at 33⅓ rpm with scratch patterns."),
+        ],
+        "pro_title": "Bring what you already use",
+        "pro_sub": "Long-time sampler users are welcome too. Your kits and controllers come along as they are.",
+        "pro": [
+            ("Kit import", "Open drum kits from other software as they are.",
+             ["WAV folder", ".sfz", ".mxgrp", ".xpm · .xpn", ".adg"],
+             "Save your kits as .flipkit, or export one as WAVs that sound as you hear them."),
+            ("MIDI learn", "Right-click any knob, switch or key to map a CC.",
+             ["endless knobs (relative)", "eight knobs in turn", "scratch from a jog or touch strip"],
+             "Endless knobs move the right way, and eight knobs map just by turning them one after another. Scratch the record from a jog wheel, touch strip or pitch wheel."),
+            ("With your DAW", "What you make carries on inside the DAW.",
+             ["chop to MIDI", "keyswitches", "16 outputs", "channel 10"],
+             "Drag the chop out as a MIDI clip, switch the way you play mid-song with keyswitches, and send drum cells out on their own. Every knob can be automated."),
         ],
         "engines_title": "Change the engine, change the look",
         "engines_sub": "Two legendary samplers and an early-90s console's sound chip, modelled down to the circuits.",
@@ -461,9 +497,51 @@ def deep_block(lang: str, t: dict) -> str:
             </div>
           </article>""")
     return f"""
-          <header class="heading heading--center" data-reveal><h2 id="more-title">{E(d['title'])}</h2><p>{'<br>'.join(E(p) for p in d['lead'])}</p></header>"""
+          <header class="heading heading--center" data-reveal><h2 id="more-title">{E(d['title'])}</h2><p>{'<br>'.join(E(p) for p in d['lead'])}</p></header>
+{pro_block(T[lang])}"""
     # The parts below (PARTS, features_block) are off since 2026-10-28: the manual and the guide carry the details now,
     # and the page keeps to what it does. Add `<div class="deep">{''.join(rows)}</div>` back to show them again.
+
+
+def screens_block(lang: str, t: dict) -> str:
+    """The three screens as tabs, like the plug-in's header: a full picture of each and a line or two."""
+    tabs, panels = [], []
+    for i, (key, name, text, more) in enumerate(t["screens"]):
+        selected = "true" if i == 0 else "false"
+        hidden = "" if i == 0 else " hidden"
+        tabs.append(
+            f'<button class="seg__item" type="button" role="tab" id="screen-tab-{key}" aria-controls="screen-{key}"'
+            f' aria-selected="{selected}">{E(name)}</button>'
+        )
+        panels.append(f"""
+            <div class="screen" role="tabpanel" id="screen-{key}" aria-labelledby="screen-tab-{key}"{hidden}>
+              <div class="screen__shot">{shot(f'tab_{key}', lang, name)}</div>
+              <div class="screen__body">
+                <p class="screen__text">{E(text)}</p>
+                <p class="screen__more">{E(more)}</p>
+              </div>
+            </div>""")
+    return f"""
+          <div class="seg" role="tablist" aria-label="{E(t['screens_tab_label'])}">{''.join(tabs)}</div>
+          {''.join(panels)}"""
+
+
+def pro_block(t: dict) -> str:
+    """For people coming from other samplers: kits, MIDI learn, the DAW."""
+    cards = []
+    for name, lead, chips, more in t["pro"]:
+        chip_html = "".join(f"<li>{E(c)}</li>" for c in chips)
+        cards.append(f"""
+            <article class="card pro" data-reveal>
+              <h3>{E(name)}</h3>
+              <p class="pro__lead">{E(lead)}</p>
+              <ul class="pro__chips">{chip_html}</ul>
+              <p class="pro__more">{E(more)}</p>
+            </article>""")
+    return f"""
+          <header class="heading heading--center pro__head" data-reveal><h3 class="pro__title">{E(t['pro_title'])}</h3><p>{E(t['pro_sub'])}</p></header>
+          <div class="pros">{''.join(cards)}
+          </div>"""
 
 
 def tempo_block(t: dict) -> str:
@@ -749,6 +827,13 @@ def page(lang: str, home: bool) -> str:
 {download_block(t)}
 {video_block(lang, t)}
           <ul class="hero__meta">{meta}</ul>
+        </div>
+      </section>
+
+      <section class="band band--screens" id="screens" aria-labelledby="screens-title" data-tabs>
+        <div class="shell">
+          <header class="heading heading--center" data-reveal><h2 id="screens-title">{E(t['screens_title'])}</h2><p>{E(t['screens_sub'])}</p></header>
+{screens_block(lang, t)}
         </div>
       </section>
 

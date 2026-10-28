@@ -109,6 +109,35 @@
         </div>
       </section>
 
+      <section class="band band--screens" id="screens" aria-labelledby="screens-title" data-tabs>
+        <div class="shell">
+          <header class="heading heading--center" data-reveal><h2 id="screens-title">화면은 세 개</h2><p>플러그인 하나에 샘플러, 드럼, fx가 다 들어 있어요. 머리줄의 탭으로 오가요.</p></header>
+
+          <div class="seg" role="tablist" aria-label="화면 고르기"><button class="seg__item" type="button" role="tab" id="screen-tab-sampler" aria-controls="screen-sampler" aria-selected="true">샘플러</button><button class="seg__item" type="button" role="tab" id="screen-tab-drum" aria-controls="screen-drum" aria-selected="false">드럼</button><button class="seg__item" type="button" role="tab" id="screen-tab-fx" aria-controls="screen-fx" aria-selected="false">fx</button></div>
+            <div class="screen" role="tabpanel" id="screen-sampler" aria-labelledby="screen-tab-sampler">
+              <div class="screen__shot"><img class="shot" src="/assets/images/flipper/tab_sampler_ko.webp" width="960" height="639" alt="샘플러" loading="lazy"></div>
+              <div class="screen__body">
+                <p class="screen__text">샘플 하나를 잘라서 연주해요.</p>
+                <p class="screen__more">타격을 찾아 바로 자르고, 레이지 찹으로 들으면서 치고, 키와 템포를 바꿔 플립해요.</p>
+              </div>
+            </div>
+            <div class="screen" role="tabpanel" id="screen-drum" aria-labelledby="screen-tab-drum" hidden>
+              <div class="screen__shot"><img class="shot" src="/assets/images/flipper/tab_drum_ko.webp" width="960" height="639" alt="드럼" loading="lazy"></div>
+              <div class="screen__body">
+                <p class="screen__text">원샷 16개로 킷을 짜요.</p>
+                <p class="screen__more">셀마다 음높이, 엔진, 초크, fx를 따로 두고, 출력 16개로 DAW 트랙에 나눠 보내요.</p>
+              </div>
+            </div>
+            <div class="screen" role="tabpanel" id="screen-fx" aria-labelledby="screen-tab-fx" hidden>
+              <div class="screen__shot"><img class="shot" src="/assets/images/flipper/tab_fx_ko.webp" width="960" height="639" alt="fx" loading="lazy"></div>
+              <div class="screen__body">
+                <p class="screen__text">판을 긁고 효과를 걸어요.</p>
+                <p class="screen__more">열 칸짜리 fx 랙, 누르는 동안만 걸리는 fx 패드, 33⅓ rpm으로 도는 판과 스크래치 패턴이 있어요.</p>
+              </div>
+            </div>
+        </div>
+      </section>
+
       <section class="band" id="features" aria-labelledby="features-title">
         <div class="shell">
           <h2 class="heading heading--center" id="features-title" data-reveal>핵심 기능</h2>
@@ -242,6 +271,28 @@
         <div class="shell">
 
           <header class="heading heading--center" data-reveal><h2 id="more-title">하나하나, 직접 다듬었어요</h2><p>&#x27;하나의 플러그인에서 모든 것을 할 수 없을까?&#x27; 하는 의문에서 시작한 플러그인이에요.<br>10년의 비트메이킹 경험에서 나온 실제 필요한 기능들을 압축해서 담았어요.<br>Claude와 함께 100% 바이브코딩으로 제작했어요.<br>직접 사용하기 위해 만들었기에 디테일을 하나하나 검수하며 모두 취향대로 만들었어요.</p></header>
+
+          <header class="heading heading--center pro__head" data-reveal><h3 class="pro__title">쓰던 대로 가져오세요</h3><p>다른 샘플러를 오래 써 온 분도 환영해요. 쓰던 킷과 컨트롤러를 그대로 가져올 수 있어요.</p></header>
+          <div class="pros">
+            <article class="card pro" data-reveal>
+              <h3>킷 가져오기</h3>
+              <p class="pro__lead">다른 프로그램의 드럼 킷을 그대로 불러와요.</p>
+              <ul class="pro__chips"><li>WAV 폴더</li><li>.sfz</li><li>.mxgrp</li><li>.xpm · .xpn</li><li>.adg</li></ul>
+              <p class="pro__more">만든 킷은 .flipkit으로 저장하고, 들리는 그대로 WAV 킷으로 내보낼 수도 있어요.</p>
+            </article>
+            <article class="card pro" data-reveal>
+              <h3>MIDI 지정(MIDI Learn)</h3>
+              <p class="pro__lead">노브, 스위치, 키 어디든 오른쪽 클릭해서 CC를 지정해요.</p>
+              <ul class="pro__chips"><li>끝없이 도는 노브(상댓값)</li><li>노브 8개 차례로</li><li>조그 · 터치 스트립으로 긁기</li></ul>
+              <p class="pro__more">끝없이 도는 노브도 맞게 움직이고, 노브 여덟 개를 돌리기만 해도 차례로 지정돼요. 판은 조그, 터치 스트립, 피치 휠로 긁을 수 있어요.</p>
+            </article>
+            <article class="card pro" data-reveal>
+              <h3>DAW와 함께</h3>
+              <p class="pro__lead">만든 것은 DAW 안에서 그대로 이어져요.</p>
+              <ul class="pro__chips"><li>찹을 MIDI로</li><li>키스위치</li><li>출력 16개</li><li>채널 10</li></ul>
+              <p class="pro__more">찹은 MIDI 클립으로 끌어 놓고, 키스위치로 곡 중간에 연주 방법을 바꾸고, 드럼 셀은 따로 출력해요. 노브는 모두 오토메이션돼요.</p>
+            </article>
+          </div>
         </div>
       </section>
 

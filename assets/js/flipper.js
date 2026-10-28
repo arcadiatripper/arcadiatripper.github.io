@@ -57,6 +57,32 @@
     });
   });
 
+  // Screens: plain tabs (sampler, drum, fx) that pick a panel.
+  document.querySelectorAll('[data-tabs]').forEach((box) => {
+    const tabs = [...box.querySelectorAll('[role="tab"]')];
+    const pick = (tab, focus) => {
+      tabs.forEach((other) => {
+        const on = other === tab;
+        other.setAttribute('aria-selected', String(on));
+        other.tabIndex = on ? 0 : -1;
+        document.getElementById(other.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tab.focus();
+    };
+    tabs.forEach((tab, i) => {
+      tab.tabIndex = i === 0 ? 0 : -1;
+      tab.addEventListener('click', () => pick(tab, false));
+      tab.addEventListener('keydown', (event) => {
+        const move = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+        if (event.key === 'Home') pick(tabs[0], true);
+        else if (event.key === 'End') pick(tabs[tabs.length - 1], true);
+        else if (move) pick(tabs[(i + move + tabs.length) % tabs.length], true);
+        else return;
+        event.preventDefault();
+      });
+    });
+  });
+
   // Features: arrows and dots turn the slides; swiping or scrolling the track works too.
   document.querySelectorAll('[data-slides]').forEach((box) => {
     const track = box.querySelector('[data-slides-track]');

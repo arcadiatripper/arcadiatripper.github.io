@@ -108,6 +108,35 @@
         </div>
       </section>
 
+      <section class="band band--screens" id="screens" aria-labelledby="screens-title" data-tabs>
+        <div class="shell">
+          <header class="heading heading--center" data-reveal><h2 id="screens-title">Three screens</h2><p>Sampler, drums and fx, all in one plug-in. The tabs in the header switch between them.</p></header>
+
+          <div class="seg" role="tablist" aria-label="Pick a screen"><button class="seg__item" type="button" role="tab" id="screen-tab-sampler" aria-controls="screen-sampler" aria-selected="true">sampler</button><button class="seg__item" type="button" role="tab" id="screen-tab-drum" aria-controls="screen-drum" aria-selected="false">drum</button><button class="seg__item" type="button" role="tab" id="screen-tab-fx" aria-controls="screen-fx" aria-selected="false">fx</button></div>
+            <div class="screen" role="tabpanel" id="screen-sampler" aria-labelledby="screen-tab-sampler">
+              <div class="screen__shot"><img class="shot" src="/assets/images/flipper/tab_sampler_en.webp" width="960" height="639" alt="sampler" loading="lazy"></div>
+              <div class="screen__body">
+                <p class="screen__text">Chop one sample and play it.</p>
+                <p class="screen__more">Hits found and chopped right away, lazy chop to tap along, then change the key and tempo to flip it.</p>
+              </div>
+            </div>
+            <div class="screen" role="tabpanel" id="screen-drum" aria-labelledby="screen-tab-drum" hidden>
+              <div class="screen__shot"><img class="shot" src="/assets/images/flipper/tab_drum_en.webp" width="960" height="639" alt="drum" loading="lazy"></div>
+              <div class="screen__body">
+                <p class="screen__text">Build a kit from 16 one-shots.</p>
+                <p class="screen__more">Pitch, engine, choke and fx for each cell, and 16 outputs to split them over DAW tracks.</p>
+              </div>
+            </div>
+            <div class="screen" role="tabpanel" id="screen-fx" aria-labelledby="screen-tab-fx" hidden>
+              <div class="screen__shot"><img class="shot" src="/assets/images/flipper/tab_fx_en.webp" width="960" height="639" alt="fx" loading="lazy"></div>
+              <div class="screen__body">
+                <p class="screen__text">Scratch the record, add effects.</p>
+                <p class="screen__more">A ten-slot fx rack, fx pads that work while held, and a record spinning at 33⅓ rpm with scratch patterns.</p>
+              </div>
+            </div>
+        </div>
+      </section>
+
       <section class="band" id="features" aria-labelledby="features-title">
         <div class="shell">
           <h2 class="heading heading--center" id="features-title" data-reveal>What it does</h2>
@@ -241,6 +270,28 @@
         <div class="shell">
 
           <header class="heading heading--center" data-reveal><h2 id="more-title">Shaped by hand, one decision at a time</h2><p>It started with one question: could a single plug-in do it all?<br>Ten years of making beats, boiled down to the features that are actually needed.<br>Made entirely by vibe coding, with Claude.<br>Built to be used by its maker, so every detail was checked one by one and shaped to taste.</p></header>
+
+          <header class="heading heading--center pro__head" data-reveal><h3 class="pro__title">Bring what you already use</h3><p>Long-time sampler users are welcome too. Your kits and controllers come along as they are.</p></header>
+          <div class="pros">
+            <article class="card pro" data-reveal>
+              <h3>Kit import</h3>
+              <p class="pro__lead">Open drum kits from other software as they are.</p>
+              <ul class="pro__chips"><li>WAV folder</li><li>.sfz</li><li>.mxgrp</li><li>.xpm · .xpn</li><li>.adg</li></ul>
+              <p class="pro__more">Save your kits as .flipkit, or export one as WAVs that sound as you hear them.</p>
+            </article>
+            <article class="card pro" data-reveal>
+              <h3>MIDI learn</h3>
+              <p class="pro__lead">Right-click any knob, switch or key to map a CC.</p>
+              <ul class="pro__chips"><li>endless knobs (relative)</li><li>eight knobs in turn</li><li>scratch from a jog or touch strip</li></ul>
+              <p class="pro__more">Endless knobs move the right way, and eight knobs map just by turning them one after another. Scratch the record from a jog wheel, touch strip or pitch wheel.</p>
+            </article>
+            <article class="card pro" data-reveal>
+              <h3>With your DAW</h3>
+              <p class="pro__lead">What you make carries on inside the DAW.</p>
+              <ul class="pro__chips"><li>chop to MIDI</li><li>keyswitches</li><li>16 outputs</li><li>channel 10</li></ul>
+              <p class="pro__more">Drag the chop out as a MIDI clip, switch the way you play mid-song with keyswitches, and send drum cells out on their own. Every knob can be automated.</p>
+            </article>
+          </div>
         </div>
       </section>
 
