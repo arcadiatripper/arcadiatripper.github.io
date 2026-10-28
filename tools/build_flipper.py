@@ -41,8 +41,14 @@ DOCS_URL = {
     "guide": {"ko": None, "en": None},
     "manual": {"ko": None, "en": None},
 }
-# Where support goes (a donation page); None shows the key as "coming soon".
-SUPPORT_URL = None
+# Where support goes, per language: (label key in T, url), first one = the main key and the footer link.
+# Toonation takes Korean payments; Ko-fi takes cards and PayPal from abroad. Empty shows "coming soon".
+TOONATION_URL = "https://toon.at/donate/arcadiatripper"
+KOFI_URL = "https://ko-fi.com/arcadiatripper"
+SUPPORT_LINKS = {
+    "ko": [("support_toon", TOONATION_URL), ("support_kofi", KOFI_URL)],
+    "en": [("support_kofi", KOFI_URL)],
+}
 
 # --- words ----------------------------------------------------------------------------------------------------------
 
@@ -177,6 +183,8 @@ T = {
         "docs_soon": "곧 열려요",
         "support_line": "flipper는 무료예요. 마음에 드셨다면 후원으로 응원해 주세요.",
         "support": "후원하기",
+        "support_toon": "투네이션으로 후원하기",
+        "support_kofi": "해외에서는 Ko-fi",
         "support_soon": "후원 준비 중",
         "close_title": "샘플 하나, 꺼내 볼까요?",
         "source": "소스 코드 (GitHub)",
@@ -318,6 +326,7 @@ T = {
         "docs_soon": "Coming soon",
         "support_line": "flipper is free. If you like it, you can support it.",
         "support": "Support flipper",
+        "support_kofi": "Support on Ko-fi",
         "support_soon": "Support coming soon",
         "close_title": "Got a sample? Let's flip it.",
         "source": "Source code (GitHub)",
@@ -633,9 +642,15 @@ def docs_block(lang: str, t: dict) -> str:
     return "".join(cards)
 
 
-def support_block(t: dict) -> str:
-    action = (f'<a class="key support__key" href="{SUPPORT_URL}">♥ {E(t["support"])}</a>' if SUPPORT_URL
-              else f'<span class="key key--waiting support__key" aria-disabled="true">♥ {E(t["support_soon"])}</span>')
+def support_block(lang: str, t: dict) -> str:
+    links = SUPPORT_LINKS.get(lang) or []
+    if links:
+        keys = [f'<a class="key support__key" href="{url}">♥ {E(t[label])}</a>' if n == 0
+                else f'<a class="text-key support__more" href="{url}">{E(t[label])} ↗</a>'
+                for n, (label, url) in enumerate(links)]
+        action = "\n            ".join(keys)
+    else:
+        action = f'<span class="key key--waiting support__key" aria-disabled="true">♥ {E(t["support_soon"])}</span>'
     return f"""
           <div class="support">
             <p>{E(t['support_line'])}</p>
@@ -821,8 +836,8 @@ def page(lang: str, home: bool) -> str:
     for key, name, _title, _text, _go in t["docs"]:
         if DOCS_URL[key][lang]:
             source += f'\n            <a href="{DOCS_URL[key][lang]}">{E(name)} →</a>'
-    if SUPPORT_URL:
-        source += f'\n            <a href="{SUPPORT_URL}">♥ {E(t["support"])} ↗</a>'
+    for label, url in SUPPORT_LINKS.get(lang) or []:  # the footer names the service only
+        source += f'\n            <a href="{url}">♥ {"투네이션" if label == "support_toon" else "Ko-fi"} ↗</a>'
 
 
     return f"""<!doctype html>
@@ -961,7 +976,7 @@ def page(lang: str, home: bool) -> str:
           <p class="logo">flipper<i>.</i></p>
           <h2 id="close-title">{E(t['close_title'])}</h2>
 {download_block(t)}
-{support_block(t)}
+{support_block(lang, t)}
         </div>
       </section>
     </main>

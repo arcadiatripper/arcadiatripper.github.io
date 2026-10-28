@@ -1136,6 +1136,12 @@ h2.heading,
   font-size: 15px;
 }
 
+.support__more {
+  margin-top: 0;
+  color: var(--soft);
+  font-size: 14px;
+}
+
 /* the copyright line: © and the tripper dot logo */
 .foot__mark {
   display: inline-flex;
