@@ -1476,3 +1476,122 @@ h2.heading,
   transform: translateY(2px);
   box-shadow: 0 1px 0 var(--ink);
 }
+
+/* --- the pond: the four looks of the plug-in's top-bar animation, live, with pads to hit them ------------------- */
+
+.pond {
+  display: grid;
+  gap: 28px;
+}
+
+.pond__deck {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pond__pads {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pond__pad,
+.pond__key {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 14px;
+  border: var(--border) solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: 0 3px 0 var(--shadow);
+  color: var(--ink);
+  font: 700 15px var(--font);
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 60ms ease, box-shadow 60ms ease;
+}
+
+.pond__pad {
+  padding: 0;
+  color: #3b2a24; /* the pads keep their sound colour by night too, so their number stays dark */
+}
+
+.pond__pad:active,
+.pond__key:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--shadow);
+}
+
+.pond__key[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.pond__key--play[aria-pressed="false"] {
+  background: var(--pick);
+  color: var(--pick-text);
+}
+
+.pond__looks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 32px;
+}
+
+.pond__look {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  min-width: 0;
+}
+
+.pond__well {
+  min-width: 0;
+}
+
+.pond__well canvas {
+  display: block;
+  max-width: 100%;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.pond__look figcaption {
+  color: var(--soft);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.pond__look figcaption b {
+  display: block;
+  color: var(--ink);
+  font-size: 18px;
+}
+
+.pond__hint {
+  color: var(--soft);
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .pond__looks {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pond__pads {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 6px;
+    width: 100%;
+  }
+
+  .pond__pad {
+    min-width: 0;
+    height: 40px;
+  }
+}

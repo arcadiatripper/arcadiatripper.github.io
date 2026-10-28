@@ -53,9 +53,9 @@
   gap: 22px;
   margin-right: auto;
   font-family: var(--gnav-font);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.02em;
 }
 
 .gnav__links a,
@@ -134,12 +134,12 @@
   }
 
   .gnav__inner {
-    gap: 12px;
+    gap: 18px;
   }
 
   .gnav__links {
-    gap: 10px;
-    letter-spacing: 0.06em;
+    gap: 18px;
+    letter-spacing: 0;
   }
 
   .gnav__lang {

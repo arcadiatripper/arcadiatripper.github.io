@@ -54,7 +54,7 @@ T = {
         "lang_hint": "English version",
         "lang_hint_close": "닫기",
         "badges": ["FREE", "OPEN SOURCE", "BETA"],
-        "lead": "모두를 위한 무료 샘플러 플러그인.",
+        "lead": "모두를 위한\n무료 샘플러 플러그인",
         "slogan": "Chop it. Flip it. Cook it.",
         "meta": ["Mac · Windows", "AU · VST3", "한국어 · English"],
         "get_mac": "Mac용 받기",
@@ -93,6 +93,19 @@ T = {
         "tempo_reverse_result": "이만큼 내리면 돼요",
         "tempo_st": "반음",
         "tempo_ct": "센트",
+        "pond_title": "슬라이스가 울리면, 연못이 움직여요",
+        "pond_sub": "플러그인 위쪽 가운데에 있는 작은 연못이에요. 모양이 네 가지라서, 누를 때마다 다음 것으로 바뀌어요. 아래 패드를 치거나 비트를 틀어 보세요.",
+        "pond_looks": [
+            ("paper", "종이 꽃가루", "색종이가 톡 튀어 올라 빙글빙글 떨어지고, 바닥에 붙었다가 스티커처럼 떼어져요."),
+            ("strings", "줄 울림", "가는 줄 세 가닥이 소리 난 자리에서 튕겨지고, 떨리는 동안 패드 색으로 물들어요."),
+            ("koi", "잉어 연못", "느긋하게 헤엄치던 잉어들이 소리가 떨어진 곳으로 꼬리를 치며 달려와요."),
+            ("ink", "먹물 마블링", "먹물이 똑 떨어져 동그랗게 번지고, 물결을 따라 무늬로 말리다가 맑아져요."),
+        ],
+        "pond_pads": "패드",
+        "pond_play": "▶ 비트",
+        "pond_stop": "■ 멈춤",
+        "pond_rev": "거꾸로",
+        "pond_hint": "연못을 직접 눌러도 그 자리의 슬라이스가 쳐져요. 거꾸로를 켜면 거꾸로 움직여요.",
         "slides_title": "핵심 기능",
         "slides": [
             ("lazy", "레이지 찹", "들으면서 원하는 순간에 치면, 친 자리가 잘려요.", ""),
@@ -104,8 +117,8 @@ T = {
              "바운스도 구운 소리를 그대로 써서, 들은 그대로 나가요."),
             ("crisp", "또렷하게", "템포 유지로 늘려도 타격이 뭉개지지 않아요. 비트와 드럼 루프엔 켜고, 멜로디, 코드, 목소리엔 꺼 두세요.",
              "켜면 타격과 타격 사이를 하나씩 따로 늘리고, 타격의 앞부분은 원래 소리를 그대로 남겨요. Signalsmith Stretch(MIT)."),
-            ("channels", "채널 고르기", "샘플마다 스테레오, 왼쪽, 오른쪽, 가운데, 양옆 중에서 골라요. 다른 샘플러에선 보기 힘든 기능이에요.",
-             "가운데 = (L+R)/2, 양옆 = (L−R)/2. 엔진보다 앞, 샘플이 들어오는 자리에서 바꾸고 원래보다 커지지 않아요. 샘플러 화면에서 써요."),
+            ("channels", "채널 고르기", "샘플마다 스테레오, 왼쪽, 오른쪽, 미드, 사이드 중에서 골라요. 다른 샘플러에선 보기 힘든 기능이에요.",
+             "미드 = (L+R)/2, 사이드 = (L−R)/2. 엔진보다 앞, 샘플이 들어오는 자리에서 바꾸고 원래보다 커지지 않아요. 샘플러 화면에서 써요."),
             ("melody", "멜로디", "슬라이스 하나를 건반에 깔고, 스케일을 골라 연주해요.", ""),
             ("midi", "찹을 MIDI로", "자른 순서 그대로 MIDI 클립이 돼요. DAW 트랙에 끌어다 놓으면 돼요.", ""),
             ("drum", "드럼 킷", "원샷 16개로 킷을 짜고, 셀마다 따로 다듬어요.", ""),
@@ -156,7 +169,7 @@ T = {
         "lang_hint": "",
         "lang_hint_close": "",
         "badges": ["FREE", "OPEN SOURCE", "BETA"],
-        "lead": "A free sampler plug-in for everyone.",
+        "lead": "A free sampler plug-in\nfor everyone",
         "slogan": "Chop it. Flip it. Cook it.",
         "meta": ["Mac · Windows", "AU · VST3", "English · 한국어"],
         "get_mac": "Get it for Mac",
@@ -196,6 +209,19 @@ T = {
         "tempo_reverse_result": "Pitch it by",
         "tempo_st": "st",
         "tempo_ct": "ct",
+        "pond_title": "Every slice moves the pond",
+        "pond_sub": "The little pond at the top of the plug-in. It has four looks, and a click moves on to the next. Hit the pads below or play the beat.",
+        "pond_looks": [
+            ("paper", "paper confetti", "Paper shapes pop up, tumble down, stick to the floor and peel away like stickers."),
+            ("strings", "strings", "Three thin strings are plucked where the sound lands and take the pad's colour while they ring."),
+            ("koi", "koi pond", "Koi drift around, then flick their tails and dash to where the sound dropped."),
+            ("ink", "ink marbling", "A drop of ink blooms into rings, curls into marbled patterns and clears away."),
+        ],
+        "pond_pads": "pads",
+        "pond_play": "▶ beat",
+        "pond_stop": "■ stop",
+        "pond_rev": "reverse",
+        "pond_hint": "A tap on a pond plays the slice under it. With reverse on, everything runs backwards.",
         "slides_title": "What it does",
         "slides": [
             ("lazy", "Lazy chop", "Tap along. It chops where you tap.", ""),
@@ -399,6 +425,25 @@ def features_block(lang: str, t: dict, part: dict) -> str:
                 <button type="button" class="slides__arrow" data-slides-next aria-label="{E(t['slides_next'])}">→</button>
               </div>
             </div>"""
+
+
+def pond_block(t: dict) -> str:
+    """The four pond looks, live (assets/js/flipper-pond.js draws them), with pads and a beat to hit them."""
+    looks = "".join(f"""
+            <figure class="pond__look">
+              <div class="pond__well" data-pond-look="{key}"></div>
+              <figcaption><b>{E(name)}</b> {E(line)}</figcaption>
+            </figure>""" for key, name, line in t["pond_looks"])
+    return f"""          <div class="pond" data-pond>
+            <div class="pond__deck">
+              <div class="pond__pads" role="group" aria-label="{E(t['pond_pads'])}" data-pond-pads></div>
+              <button type="button" class="pond__key pond__key--play" aria-pressed="false" data-pond-beat data-play="{E(t['pond_play'])}" data-stop="{E(t['pond_stop'])}">{E(t['pond_play'])}</button>
+              <button type="button" class="pond__key" aria-pressed="false" data-pond-rev>{E(t['pond_rev'])}</button>
+            </div>
+            <div class="pond__looks">{looks}
+            </div>
+            <p class="pond__hint">{E(t['pond_hint'])}</p>
+          </div>"""
 
 
 def deep_block(lang: str, t: dict) -> str:
@@ -605,12 +650,12 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
         <a class="gnav__home" href="{prefix}/" aria-label="tripper">{TRIPPER_LOGO}</a>
         <nav class="gnav__links" aria-label="{E(t['nav_label'])}">
           <div class="gnav__menu" data-menu>
-            <button type="button" class="gnav__menu-key" aria-expanded="false" aria-controls="menu-plugins"{plugins_on}>PLUGINS<span aria-hidden="true">▾</span></button>
+            <button type="button" class="gnav__menu-key" aria-expanded="false" aria-controls="menu-plugins"{plugins_on}>plugins<span aria-hidden="true">▾</span></button>
             <div class="gnav__drop" id="menu-plugins" hidden>
               <a href="{prefix}/flipper/"{here if current == 'flipper' else ''}><b>flipper<i>.</i></b></a>
             </div>
           </div>
-          <a href="{prefix}/artist/"{here if current == 'artist' else ''}>ARTIST</a>
+          <a href="{prefix}/artist/"{here if current == 'artist' else ''}>artist</a>
         </nav>{theme_keys}
         <div class="gnav__lang" aria-label="{E(t['lang_label'])}">
           <a href="{ko_href}" lang="ko" hreflang="ko"{' aria-current="true"' if lang == 'ko' else ''}>ko</a>
@@ -678,6 +723,7 @@ def page(lang: str, home: bool) -> str:
     <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
     <script src="/assets/js/global.js" defer></script>
     <script src="/assets/js/flipper.js" defer></script>
+    <script src="/assets/js/flipper-pond.js" defer></script>
     <script type="application/ld+json">
       {{
         "@context": "https://schema.org",
@@ -701,7 +747,7 @@ def page(lang: str, home: bool) -> str:
         <div class="shell hero__shell">
           <ul class="badges">{''.join(f'<li>{E(b)}</li>' for b in t['badges'])}</ul>
           <h1 class="logo">flipper<i>.</i></h1>
-          <p class="hero__lead">{E(t['lead'])}</p>
+          <p class="hero__lead">{E(t['lead']).replace(chr(10), "<br>")}</p>
           <p class="hero__slogan" lang="en">{E(t['slogan'])}</p>
 {download_block(t)}
 {video_block(lang, t)}
@@ -713,6 +759,13 @@ def page(lang: str, home: bool) -> str:
         <div class="shell">
           <h2 class="heading heading--center" id="features-title" data-reveal>{E(t['slides_title'])}</h2>
 {slides_block(lang, t)}
+        </div>
+      </section>
+
+      <section class="band band--pond" id="pond" aria-labelledby="pond-title">
+        <div class="shell">
+          <header class="heading heading--center" data-reveal><h2 id="pond-title">{E(t['pond_title'])}</h2><p>{E(t['pond_sub'])}</p></header>
+{pond_block(t)}
         </div>
       </section>
 
