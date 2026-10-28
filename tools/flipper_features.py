@@ -328,11 +328,11 @@ PARTS = [
               ])),
             F("colours", ("colours", (0, 0, 1, 1)),
               ("패드 색", [
-                  "기본은 '소리 따라'예요. 슬라이스마다 소리가 밝을수록 밝은 색, 어두울수록 짙은 색으로 칠해서, 보기만 해도 하이햇과 킥이 갈려요. 연못도 같은 색으로 움직여요.",
+                  "기본은 '소리 따라'예요. 슬라이스마다 소리가 밝을수록 밝은 색, 어두울수록 짙은 색으로 칠해서, 보기만 해도 하이햇과 킥이 갈려요. 비주얼라이저도 같은 색으로 움직여요.",
                   "'16색'은 패드마다 정해진 16가지 색이에요.",
               ]),
               ("Pad colours", [
-                  "'by sound' is the default: the brighter a slice sounds, the brighter its colour, so hats and kicks tell apart at a glance. The pond moves in the same colours.",
+                  "'by sound' is the default: the brighter a slice sounds, the brighter its colour, so hats and kicks tell apart at a glance. The visualizer moves in the same colours.",
                   "'16 colours' gives each pad one of 16 fixed colours.",
               ])),
             F("velocity", ("settings", (0.5, 0.13, 0.97, 0.36)),
@@ -840,13 +840,13 @@ PARTS = [
                   "The moon key in the header switches day and night. Change the engine and the screen wears that machine's skin (clean, grey, black, purple); 'skin: always clean' in the settings keeps it plain.",
               ])),
             F("settings", ("settings", (0, 0.13, 0.5, 0.6)),
-              ("언어, 창 크기, 연못", [
+              ("언어, 창 크기, 비주얼라이저", [
                   "화면 전체를 한국어와 영어로 볼 수 있어요. 창 크기는 75, 100, 125, 150 % 중에서 골라요.",
-                  "머리줄 가운데의 연못은 슬라이스가 울릴 때마다 움직여요. 누르면 종이 꽃가루, 줄 울림, 잉어 연못, 먹물 마블링으로 바뀌고, 끌 수도 있어요.",
+                  "머리줄 가운데의 비주얼라이저는 슬라이스가 울릴 때마다 움직여요. 누르면 종이 꽃가루, 줄 울림, 잉어 연못, 먹물 마블링으로 바뀌고, 끌 수도 있어요.",
               ]),
-              ("Language, window size, the pond", [
+              ("Language, window size, the visualizer", [
                   "The whole screen in Korean and English. The window at 75, 100, 125 or 150 %.",
-                  "The pond in the middle of the header answers every slice that plays. Click it for paper confetti, plucked strings, a koi pond or marbled ink, or turn it off.",
+                  "The visualizer in the middle of the header answers every slice that plays. Click it for paper confetti, plucked strings, a koi pond or marbled ink, or turn it off.",
               ])),
             F("report", ("report", (0, 0, 1, 1)),
               ("버그 제보", [

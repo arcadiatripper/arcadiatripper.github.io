@@ -93,8 +93,8 @@ T = {
         "tempo_reverse_result": "이만큼 내리면 돼요",
         "tempo_st": "반음",
         "tempo_ct": "센트",
-        "pond_title": "슬라이스가 울리면, 연못이 움직여요",
-        "pond_sub": "플러그인 위쪽 가운데에 있는 작은 연못이에요. 모양이 네 가지라서, 누를 때마다 다음 것으로 바뀌어요. 아래 패드를 치거나 비트를 틀어 보세요.",
+        "pond_title": "슬라이스가 울리면, 비주얼라이저가 움직여요",
+        "pond_sub": "플러그인 위쪽 가운데에 있는 작은 비주얼라이저예요. 모양이 네 가지라서, 누를 때마다 다음 것으로 바뀌어요. 아래 패드를 치거나 비트를 틀어 보세요.",
         "pond_looks": [
             ("paper", "종이 꽃가루", "색종이가 톡 튀어 올라 빙글빙글 떨어지고, 바닥에 붙었다가 스티커처럼 떼어져요."),
             ("strings", "줄 울림", "가는 줄 세 가닥이 소리 난 자리에서 튕겨지고, 떨리는 동안 패드 색으로 물들어요."),
@@ -105,7 +105,7 @@ T = {
         "pond_play": "▶ 비트",
         "pond_stop": "■ 멈춤",
         "pond_rev": "거꾸로",
-        "pond_hint": "연못을 직접 눌러도 그 자리의 슬라이스가 쳐져요. 거꾸로를 켜면 거꾸로 움직여요.",
+        "pond_hint": "비주얼라이저를 직접 눌러도 그 자리의 슬라이스가 쳐져요. 거꾸로를 켜면 거꾸로 움직여요.",
         "slides_title": "핵심 기능",
         "slides": [
             ("lazy", "레이지 찹", "들으면서 원하는 순간에 치면, 친 자리가 잘려요.", ""),
@@ -208,8 +208,8 @@ T = {
         "tempo_reverse_result": "Pitch it by",
         "tempo_st": "st",
         "tempo_ct": "ct",
-        "pond_title": "Every slice moves the pond",
-        "pond_sub": "The little pond at the top of the plug-in. It has four looks, and a click moves on to the next. Hit the pads below or play the beat.",
+        "pond_title": "Every slice moves the visualizer",
+        "pond_sub": "The little visualizer at the top of the plug-in. It has four looks, and a click moves on to the next. Hit the pads below or play the beat.",
         "pond_looks": [
             ("paper", "paper confetti", "Paper shapes pop up, tumble down, stick to the floor and peel away like stickers."),
             ("strings", "strings", "Three thin strings are plucked where the sound lands and take the pad's colour while they ring."),
@@ -220,7 +220,7 @@ T = {
         "pond_play": "▶ beat",
         "pond_stop": "■ stop",
         "pond_rev": "reverse",
-        "pond_hint": "A tap on a pond plays the slice under it. With reverse on, everything runs backwards.",
+        "pond_hint": "A tap on a visualizer plays the slice under it. With reverse on, everything runs backwards.",
         "slides_title": "What it does",
         "slides": [
             ("lazy", "Lazy chop", "Tap along. It chops where you tap.", ""),
