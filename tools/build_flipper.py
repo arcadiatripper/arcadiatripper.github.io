@@ -73,13 +73,13 @@ T = {
         "engines_title": "엔진을 바꾸면, 옷도 바뀌어요",
         "engines_sub": "전설적인 샘플러 두 대와 90년대 게임기 소리 칩을, 회로까지 따라 만들었어요.",
         "engines": [
-            ("clean", "clean", "있는 그대로의 소리예요.", "CLEAN · THE SAMPLE AS IT IS", ""),
-            ("black", "black", "80년대 후반의 전설적인 샘플러예요. 소리가 거칠고 묵직해요.", "BLACK · 12-BIT · 26 kHz",
+            ("clean", "clean", "아무리 늘여도 소리가 맑아요.", "clean · the sample as it is", ""),
+            ("black", "black", "80년대 후반의 전설적인 샘플러예요. 소리가 거칠고 묵직해요.", "black · 12-bit · 26 kHz",
              "회로도를 보고 그대로 만들었어요. 12비트로 담는 방식, 샘플을 건너뛰고 되풀이하며 바꾸는 음정, 출력마다 다른 필터, 움직이는 필터까지 원본과 똑같아요. "
              "움직이는 필터는 실제 기계의 녹음과 비교해 맞췄어요."),
-            ("grey", "grey", "80년대 후반의 또 다른 전설적인 샘플러예요. 소리가 단단하고 따뜻해요.", "GREY · 12-BIT · 40 kHz",
+            ("grey", "grey", "80년대 후반의 또 다른 전설적인 샘플러예요. 소리가 단단하고 따뜻해요.", "grey · 12-bit · 40 kHz",
              "공개된 자료가 적어서 추정한 곳이 있어요(12비트로 담는 방식, 음정을 바꾸는 방식, 출력 필터의 모양, 잡음 크기)."),
-            ("purple", "purple", "90년대 초 게임기의 소리 칩이에요. 소리가 동글고 먹먹해요.", "PURPLE · 4-BIT · 32 kHz",
+            ("purple", "purple", "90년대 초 게임기의 소리 칩이에요. 소리가 동글고 먹먹해요.", "purple · 4-bit · 32 kHz",
              "칩의 계산(BRR 디코딩, 가우스 보간, 32,040 Hz)은 오픈소스 에뮬레이터 ares와 7,300가지 경우를 비교해 비트 하나까지 같아요. "
              "보드의 필터는 회로도대로예요."),
         ],
@@ -183,14 +183,14 @@ T = {
         "engines_title": "Change the engine, change the look",
         "engines_sub": "Two legendary samplers and an early-90s console's sound chip, modelled down to the circuits.",
         "engines": [
-            ("clean", "clean", "The sound as it is.", "CLEAN · THE SAMPLE AS IT IS", ""),
-            ("black", "black", "The legendary late-80s sampler. Gritty and heavy.", "BLACK · 12-BIT · 26 kHz",
+            ("clean", "clean", "Clear however far you stretch it.", "clean · the sample as it is", ""),
+            ("black", "black", "The legendary late-80s sampler. Gritty and heavy.", "black · 12-bit · 26 kHz",
              "Built straight from the schematics. How it stores 12 bits, pitch by skipping and repeating samples, a different filter "
              "on each output and the moving filter all match the original. The moving filter was checked against recordings of a real unit."),
-            ("grey", "grey", "The other legendary late-80s sampler. Tight and warm.", "GREY · 12-BIT · 40 kHz",
+            ("grey", "grey", "The other legendary late-80s sampler. Tight and warm.", "grey · 12-bit · 40 kHz",
              "Little is published about it, so these are estimates: its 12-bit storage, how it changes pitch, the output "
              "filter's shape and the noise level."),
-            ("purple", "purple", "An early-90s console's sound chip. Round and hazy.", "PURPLE · 4-BIT · 32 kHz",
+            ("purple", "purple", "An early-90s console's sound chip. Round and hazy.", "purple · 4-bit · 32 kHz",
              "The chip's maths (BRR decoding, gaussian interpolation, 32,040 Hz) matches the open-source emulator ares bit for "
              "bit, across 7,300 test cases. The board's filter follows the schematic."),
         ],

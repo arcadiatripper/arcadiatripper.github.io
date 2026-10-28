@@ -747,8 +747,7 @@ h2.heading,
   color: var(--e-line);
   font-family: var(--e-plate-font);
   font-size: 15px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .engine__text {
