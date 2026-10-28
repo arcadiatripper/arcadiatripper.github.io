@@ -740,21 +740,8 @@ def tripper_logo() -> str:
 
 TRIPPER_LOGO = tripper_logo()
 
-
-def tripper_logo_small() -> str:
-    """The logo for small sizes (the copyright line): only the lit dots, a little fatter, so at 26 px they still read
-    as round dots and not as a grid."""
-    lit = []
-    for n, ch in enumerate("tripper"):
-        for y, row in enumerate(TRIPPER_GLYPHS[ch]):
-            for x, c in enumerate(row):
-                if c == "#":
-                    lit.append(f'<circle cx="{(n * 6 + x) * 10 + 5}" cy="{y * 10 + 5}" r="4.4"/>')
-    return ('<svg class="foot__logo" viewBox="0 0 410 90" aria-hidden="true" focusable="false">'
-            f'{"".join(lit)}</svg>')
-
-
-FOOT_LOGO = tripper_logo_small()
+# the same logo for the copyright line at the bottom right of every flipper page, unlit dots and all
+FOOT_LOGO = TRIPPER_LOGO.replace('class="gnav__logo"', 'class="gnav__logo foot__logo"')
 
 # The plug-in's own day / night icons (clean skin, Icons.cpp): on its 12-unit grid, strokes 1.75 with round ends.
 MOON_PATH = "M10.42 7.59 L10.30 7.89 L10.16 8.19 L10.00 8.47 L9.81 8.75 L9.61 9.01 L9.39 9.25 L9.16 9.48 L8.91 9.69 L8.64 9.89 L8.37 10.06 L8.08 10.22 L7.78 10.35 L7.47 10.46 L7.16 10.56 L6.84 10.63 L6.51 10.67 L6.18 10.70 L5.86 10.70 L5.53 10.68 L5.20 10.63 L4.88 10.57 L4.57 10.48 L4.26 10.36 L3.96 10.23 L3.67 10.08 L3.39 9.91 L3.12 9.72 L2.87 9.51 L2.63 9.28 L2.41 9.04 L2.21 8.78 L2.02 8.51 L1.86 8.22 L1.71 7.93 L1.59 7.63 L1.49 7.31 L1.41 7.00 L1.35 6.67 L1.31 6.35 L1.30 6.02 L1.31 5.69 L1.34 5.36 L1.40 5.04 L1.48 4.72 L1.58 4.41 L1.70 4.11 L1.84 3.81 L2.00 3.53 L2.19 3.25 L2.39 2.99 L2.61 2.75 L2.84 2.52 L3.09 2.31 L3.36 2.11 L3.63 1.94 L3.92 1.78 L4.22 1.65 L4.53 1.54 L4.84 1.44 L5.16 1.37 L5.49 1.33 L5.68 1.40 L5.50 1.61 L5.34 1.82 L5.18 2.05 L5.05 2.28 L4.93 2.53 L4.83 2.78 L4.75 3.04 L4.68 3.30 L4.64 3.57 L4.61 3.84 L4.60 4.12 L4.61 4.39 L4.64 4.66 L4.69 4.93 L4.76 5.19 L4.84 5.45 L4.94 5.70 L5.06 5.95 L5.20 6.18 L5.35 6.41 L5.52 6.62 L5.71 6.82 L5.90 7.01 L6.11 7.18 L6.33 7.34 L6.56 7.49 L6.80 7.61 L7.05 7.72 L7.31 7.81 L7.57 7.89 L7.84 7.94 L8.11 7.98 L8.38 8.00 L8.65 8.00 L8.92 7.98 L9.19 7.94 L9.46 7.88 L9.72 7.80 L9.98 7.71 L10.22 7.60 L10.46 7.47Z"
@@ -1011,7 +998,7 @@ def page(lang: str, home: bool) -> str:
         <div class="shell">
           <p>Source code: MIT License. Plug-in binaries: GNU AGPL-3.0.
             Includes JUCE, Rubber Band, Signalsmith Stretch, Airwindows, FLAC, Ogg Vorbis and Opus, each under its own licence.</p>
-          <div class="foot__mark" role="img" aria-label="© tripper"><span aria-hidden="true">©</span>{FOOT_LOGO}</div>
+          <div class="foot__mark" role="img" aria-label="tripper">{FOOT_LOGO}</div>
         </div>
       </div>
     </footer>

@@ -1145,11 +1145,8 @@ h2.heading,
   font-weight: 800;
 }
 
-.foot__logo {
-  display: block;
-  width: auto;
+.foot__mark .foot__logo {
   height: 28px;
-  fill: currentColor;
 }
 
 .foot__legal strong {
