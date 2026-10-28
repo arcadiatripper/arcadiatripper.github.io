@@ -376,15 +376,15 @@ def engines_block(lang: str, t: dict) -> str:
 # plug-in's design notes (flipper docs/DESIGN.md, DRUM.md, DECK.md, RECORDING.md, third_party/airwindows/README.md).
 DEEP = {
     "ko": {"title": "하나하나, 직접 다듬었어요",
-           "lead": ["'하나의 플러그인에서 모든 것을 할 수 없을까?' 하는 의문에서 시작한 플러그인이에요. "
+           "lead": ["'하나의 플러그인에서 모든 것을 할 수 없을까?' 하는 의문에서 시작한 플러그인이에요.",
                     "10년의 비트메이킹 경험에서 나온 실제 필요한 기능들을 압축해서 담았어요.",
-                    "Claude와 함께 100% 바이브코딩으로 제작했어요. 직접 사용하기 위해 만들었기에 디테일을 하나하나 검수하며 "
-                    "모두 취향대로 만들었어요."]},
+                    "Claude와 함께 100% 바이브코딩으로 제작했어요.",
+                    "직접 사용하기 위해 만들었기에 디테일을 하나하나 검수하며 모두 취향대로 만들었어요."]},
     "en": {"title": "Shaped by hand, one decision at a time",
-           "lead": ["It started with one question: could a single plug-in do it all? Ten years of making beats, boiled down "
-                    "to the features that are actually needed.",
-                    "Made entirely by vibe coding, with Claude. Built to be used by its maker, so every detail was checked "
-                    "one by one and shaped to taste."]},
+           "lead": ["It started with one question: could a single plug-in do it all?",
+                    "Ten years of making beats, boiled down to the features that are actually needed.",
+                    "Made entirely by vibe coding, with Claude.",
+                    "Built to be used by its maker, so every detail was checked one by one and shaped to taste."]},
 }
 
 
@@ -461,9 +461,9 @@ def deep_block(lang: str, t: dict) -> str:
             </div>
           </article>""")
     return f"""
-          <header class="heading heading--center" data-reveal><h2 id="more-title">{E(d['title'])}</h2>{''.join(f'<p>{E(p)}</p>' for p in d['lead'])}</header>
-          <div class="deep">{''.join(rows)}
-          </div>"""
+          <header class="heading heading--center" data-reveal><h2 id="more-title">{E(d['title'])}</h2><p>{'<br>'.join(E(p) for p in d['lead'])}</p></header>"""
+    # The parts below (PARTS, features_block) are off since 2026-10-28: the manual and the guide carry the details now,
+    # and the page keeps to what it does. Add `<div class="deep">{''.join(rows)}</div>` back to show them again.
 
 
 def tempo_block(t: dict) -> str:
