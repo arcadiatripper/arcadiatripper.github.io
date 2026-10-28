@@ -152,7 +152,7 @@
 .gnav__logo {
   display: block;
   width: auto;
-  height: 22px;
+  height: 28px;
   fill: currentColor;
 }
 
@@ -280,7 +280,7 @@
 /* the dot logo and menu words, smaller on a phone */
 @media (max-width: 560px) {
   .gnav__logo {
-    height: 17px;
+    height: 24px;
   }
 
   .gnav__inner,
@@ -292,7 +292,7 @@
 
 @media (max-width: 400px) {
   .gnav__logo {
-    height: 16px;
+    height: 24px;
   }
 
 
