@@ -110,8 +110,9 @@ T = {
         "slides": [
             ("lazy", "레이지 찹", "들으면서 원하는 순간에 치면, 친 자리가 잘려요.", ""),
             ("key", "키 찾기", "샘플의 키를 찾고, 튜닝이 몇 센트 어긋났는지도 알려줘요.",
-             "직접 만든 분석기(MIT)예요. 음 높이 분포(크로마)를 Albrecht–Shanahan 키 프로필과 맞춰 보고, 키가 적힌 루프 158개로 다듬었어요. "
-             "음이 없는 소리엔 키를 붙이지 않아요."),
+             "직접 만든 분석기(MIT)예요. 샘플 안에서 도부터 시까지 열두 음이 각각 얼마나 크게 울리는지 모아 보고, "
+             "24개 장조·단조가 저마다 어떤 음을 즐겨 쓰는지 정리한 표와 비교해 가장 닮은 키를 골라요. "
+             "키가 적힌 루프 158개로 맞혀 보며 다듬었고, 드럼처럼 음이 없는 소리엔 키를 붙이지 않아요."),
             ("repitch", "리피치와 템포 유지", "리피치는 옛 샘플러처럼 키와 속도가 같이 움직여요. 템포 유지는 템포를 그대로 두고 키만 바꿔요.",
              "템포 유지는 Rubber Band R3(GPL)로 미리 구워 두고, 굽는 동안엔 Signalsmith Stretch(MIT)로 바로 들려줘요. "
              "바운스도 구운 소리를 그대로 써서, 들은 그대로 나가요."),
@@ -228,8 +229,9 @@ T = {
         "slides": [
             ("lazy", "Lazy chop", "Tap along. It chops where you tap.", ""),
             ("key", "Key detection", "It finds the sample's key, and how many cents it is off tune.",
-             "Our own analyser (MIT): it matches the pitch-class profile (chroma) against the Albrecht–Shanahan key profiles, "
-             "tuned on 158 key-labelled loops. A sound with no notes in it gets no key."),
+             "Our own analyser (MIT). It adds up how loud each of the twelve notes, C to B, rings through the sample, "
+             "then compares that with a chart of which notes each of the 24 major and minor keys tends to use, and picks the closest. "
+             "Tuned on 158 key-labelled loops; a sound with no notes, like a drum, gets no key."),
             ("repitch", "Repitch and keep tempo", "Repitch moves key and speed together, like the old samplers. Keep tempo moves the key only.",
              "Keep tempo is baked ahead with Rubber Band R3 (GPL); until the bake is ready you hear Signalsmith Stretch (MIT). "
              "Bounces use the same bake, so what you hear is what you get."),
