@@ -61,7 +61,7 @@
 .tb--fixed{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px)}
 .tb--butter{--tb-ink:#3b2a24;--tb-soft:#766256;--tb-bg1:rgb(255 247 230/62%);--tb-bg2:rgb(255 247 230/34%);--tb-edge:rgb(59 42 36/12%);
   --tb-drop:rgb(255 253 247/94%);--tb-hover:rgb(59 42 36/8%)}
-:root[data-theme="night"] .tb--butter,:root[data-theme="dark"] .tb--butter{--tb-ink:#f7ecd9;--tb-soft:#b59f8b;--tb-bg1:rgb(43 35 30/72%);
+:root[data-theme="night"] .tb--butter[data-night="night"],:root[data-theme="dark"] .tb--butter[data-night="dark"]{--tb-ink:#f7ecd9;--tb-soft:#b59f8b;--tb-bg1:rgb(43 35 30/72%);
   --tb-bg2:rgb(33 27 23/48%);--tb-edge:rgb(255 255 255/8%);--tb-drop:rgb(43 35 30/96%);--tb-hover:rgb(255 255 255/8%)}
 .tb a{color:inherit;text-decoration:none}
 .tb-nav{display:flex;gap:18px;align-items:center}
@@ -127,7 +127,7 @@
   <body class="flipper-page" data-skin="clean">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-<header class="tb tb--butter" data-tb>
+<header class="tb tb--butter" data-tb data-night="night">
   <nav class="tb-nav" aria-label="Menu" data-en-label="Menu">
     <div class="tb-dd"><button type="button" class="tb-ddk" aria-expanded="false" aria-controls="tb-plugins">plugins<span aria-hidden="true">▾</span></button>
       <div class="tb-ddm" id="tb-plugins" hidden>

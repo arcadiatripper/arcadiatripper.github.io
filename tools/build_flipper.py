@@ -1026,7 +1026,7 @@ def main() -> None:
     for lang in ("ko", "en"):
         rel = f"{lang}/artist/index.html"
         text = (ROOT / rel).read_text(encoding="utf-8")
-        m = re.search(r'    <header class="(?:gnav|tb)[^"]*".*?</header>', text, re.S)
+        m = re.search(r'<header class="(?:gnav|tb)[^"]*".*?</header>', text, re.S)
         text = text[:m.start()] + gnav(lang, "artist", "/ko/artist/", "/en/artist/", theme=False) + text[m.end():]
         text = re.sub(r"\n?<!--tb-->.*?<!--/tb-->", "", text, flags=re.S)
         text = text.replace("  </head>", "<!--tb-->" + topbar.STYLE + "<!--/tb-->\n  </head>", 1)

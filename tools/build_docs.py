@@ -109,7 +109,7 @@ def page(kind: str, lang: str) -> str:
     bar, _, rest = body.partition("</header>")
     dn = re.search(r'<button type="button" class="dn".*?</button>', bar, re.S).group(0)
     # the shared top bar (tools/topbar.py) in flipper's butter, with the page's own day / night key
-    header = topbar.bar(lang, "butter", url(kind, "ko"), url(kind, "en"), extra=dn)
+    header = topbar.bar(lang, "butter", url(kind, "ko"), url(kind, "en"), extra=dn, night="dark")
     rest = rest.replace("</body></html>", "")
     # the guide's title (2026-10-29): the short question on top, what it teaches under it
     if kind == "guide":
