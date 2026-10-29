@@ -87,9 +87,10 @@ a.bar__logo{{color:inherit;text-decoration:none}}
 .bar__logo svg{{height:24px}}
 .bar .lang{{white-space:nowrap}}
 .doclink+.lang{{margin-left:0}}
-.foot__tr{{display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--soft)}}
-.foot__tr a{{color:var(--ink);line-height:0}}
-.foot__tr .tb-logo-svg{{height:20px}}
+.foot__in{{align-items:center}}
+.foot__tr{{display:block;flex:none;margin-left:auto;color:var(--ink);line-height:0}}
+.foot__tr .tb-logo-svg{{height:22px;width:auto}}
+@media (max-width:560px){{.foot__in{{flex-direction:column;align-items:flex-start;gap:14px}}.foot__tr{{margin-left:0}}}}
 @media (max-width:480px){{.bar__tag{{display:none}}.bar__in{{gap:8px}}.bar .lang{{padding:6px 8px}}}}
     </style>
   </head>
@@ -125,8 +126,8 @@ def page(kind: str, lang: str) -> str:
         rest = rest.replace(old, url(k, l))
     rest = rest.replace("'audio/", f"'{AUDIO}")
     # the footer signs with the same dot logo as the top bar and the tripper page (2026-10-29), not the old bold word
-    foot = (f'<span class="foot__tr"><a href="/{lang}/" aria-label="tripper">{topbar.LOGO}</a>'
-            '<span>© tripper</span></span>')
+    # (logo only, no "© tripper" beside it: 레네 10-29)
+    foot = f'<a class="foot__tr" href="/{lang}/" aria-label="tripper">{topbar.LOGO}</a>'
     if "<strong>© tripper</strong>" not in rest:
         raise SystemExit(f"{DOCS[kind][lang]}: no footer signature")
     rest = rest.replace("<strong>© tripper</strong>", foot)
