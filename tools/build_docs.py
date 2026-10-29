@@ -17,6 +17,8 @@ import shutil
 import sys
 from pathlib import Path
 
+import topbar
+
 ROOT = Path(__file__).resolve().parent.parent
 SRC = Path(sys.argv[1] if len(sys.argv) > 1 else "/mnt/project-files/flipper/site-docs")
 SITE = "https://arcadiatripper.com"
@@ -77,12 +79,9 @@ img{{max-width:100%}}
 {style}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
     <style>
-/* the top bar: the same tripper bar on every page, tinted in each plug-in's own colour (flipper = butter) */
-.bar{{background:linear-gradient(180deg,rgb(255 247 230 / 62%),rgb(255 247 230 / 34%))!important;
-  backdrop-filter:blur(14px) saturate(1.8);-webkit-backdrop-filter:blur(14px) saturate(1.8);border-bottom:1px solid rgb(59 42 36 / 12%)!important}}
-[data-theme="dark"] .bar{{background:linear-gradient(180deg,rgb(43 35 30 / 70%),rgb(33 27 23 / 45%))!important;border-bottom-color:rgb(255 255 255 / 8%)!important}}
 .h1sub{{margin:.3em 0 1.4em;text-align:center;font-size:clamp(17px,2.2vw,22px);font-weight:700;color:var(--soft)}}
     </style>
+{tbstyle}
     <style>
 a.bar__logo{{color:inherit;text-decoration:none}}
 .bar__logo svg{{height:24px}}
@@ -108,20 +107,9 @@ def page(kind: str, lang: str) -> str:
     style = "\n".join(re.findall(r"<style>.*?</style>", head, re.S))
 
     bar, _, rest = body.partition("</header>")
-    logo = re.search(r'<span class="bar__logo">(.*?)</span><span class="bar__tag">', bar, re.S).group(1)
-    tag = re.search(r'<span class="bar__tag">(.*?)</span>', bar, re.S).group(1)
     dn = re.search(r'<button type="button" class="dn".*?</button>', bar, re.S).group(0)
-    other_kind = "manual" if kind == "guide" else "guide"
-    other_lang = "en" if lang == "ko" else "ko"
-    header = (
-        f'<header class="bar"><div class="bar__in">'
-        f'<a class="bar__logo" href="/{lang}/flipper/" '
-        f'aria-label="flipper">{logo}</a>'
-        f'<span class="bar__tag">{NAME[kind][lang]}</span>'
-        f'<a class="lang doclink" href="{url(other_kind, lang)}">{NAME[other_kind][lang]}</a>'
-        f'<a class="lang" href="{url(kind, other_lang)}" lang="{other_lang}">{"English" if lang == "ko" else "한국어"}</a>'
-        f"{dn}</div></header>"
-    )
+    # the shared top bar (tools/topbar.py) in flipper's butter, with the page's own day / night key
+    header = topbar.bar(lang, "butter", url(kind, "ko"), url(kind, "en"), extra=dn)
     rest = rest.replace("</body></html>", "")
     # the guide's title (2026-10-29): the short question on top, what it teaches under it
     if kind == "guide":
@@ -137,7 +125,8 @@ def page(kind: str, lang: str) -> str:
     return HEAD.format(
         kind=kind, lang=lang, title=title, description=DESCRIPTION[kind][lang], site=SITE,
         here=url(kind, lang), ko=url(kind, "ko"), en=url(kind, "en"), style=style,
-    ) + header + rest + "\n  </body>\n</html>\n"
+        tbstyle=topbar.STYLE,
+    ) + header + rest + "\n" + topbar.SCRIPT + "\n  </body>\n</html>\n"
 
 
 def main() -> None:

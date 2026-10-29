@@ -14,9 +14,12 @@ from __future__ import annotations
 import html
 import math
 import random
+import re
 from pathlib import Path
 
 from PIL import Image
+
+import topbar
 
 from flipper_features import PARTS
 
@@ -794,42 +797,10 @@ def night_key(t: dict, attr: str, extra_class: str = "") -> str:
 
 
 def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> str:
-    """The bar at the top of every page: the tripper logo, the menu (plug-ins, artist), day / night on pages that
-    have a night look, and the language switch. current is "flipper" or "artist"."""
-    t = T[lang]
-    prefix = f"/{lang}"
-    here = ' aria-current="page"'
-    plugins_on = ' data-current="true"' if current == "flipper" else ""
-    theme_keys = ""
-    if theme:
-        theme_keys = f"""
-        <div class="gnav__theme">{night_key(t, "data-theme-toggle")}</div>"""
-    return f"""    <header class="gnav">
-      <canvas class="gnav__dots" aria-hidden="true"></canvas>
-      <div class="gnav__inner">
-        <a class="gnav__home" href="{prefix}/" aria-label="tripper">{TRIPPER_LOGO}</a>
-        <div class="gnav__panel" id="gnav-panel">
-        <nav class="gnav__links" aria-label="{E(t['nav_label'])}">
-          <div class="gnav__menu" data-menu>
-            <button type="button" class="gnav__menu-key" aria-expanded="false" aria-controls="menu-plugins"{plugins_on}>plugins<span aria-hidden="true">▾</span></button>
-            <a class="gnav__menu-link" href="{prefix}/flipper/">plugins</a>
-            <div class="gnav__drop" id="menu-plugins" hidden>
-              <a href="{prefix}/flipper/"{here if current == 'flipper' else ''}><b>flipper<i>.</i></b></a>
-            </div>
-          </div>
-          <a href="{prefix}/artist/"{here if current == 'artist' else ''}>artist</a>
-        </nav>{theme_keys}
-        <div class="gnav__lang" aria-label="{E(t['lang_label'])}">
-          <a href="{ko_href}" lang="ko" hreflang="ko"{' aria-current="true"' if lang == 'ko' else ''}>ko</a>
-          <span aria-hidden="true">/</span>
-          <a href="{en_href}" lang="en" hreflang="en"{' aria-current="true"' if lang == 'en' else ''}>en</a>
-        </div>
-        </div>
-        <button type="button" class="gnav__burger" aria-expanded="false" aria-controls="gnav-panel" aria-label="{E(t['nav_label'])}" data-burger>
-          <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path class="gnav__burger-open" d="M3 4.5h10M3 8h10M3 11.5h10"/><path class="gnav__burger-shut" d="M4 4l8 8M12 4l-8 8"/></svg>
-        </button>
-      </div>
-    </header>"""
+    """The shared top bar (tools/topbar.py): butter on flipper's page, blue on the artist page.
+    theme adds the day / night key. current is "flipper" or "artist"."""
+    extra = night_key(T[lang], "data-theme-toggle") if theme else ""
+    return topbar.bar(lang, "butter" if current == "flipper" else "blue", ko_href, en_href, extra=extra)
 
 
 THEME_EARLY = """    <script>try { if (localStorage.getItem('theme') === 'night') document.documentElement.dataset.theme = 'night'; } catch (error) {}</script>"""
@@ -895,6 +866,7 @@ def page(lang: str, home: bool) -> str:
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
     <link rel="stylesheet" href="/assets/css/global.css">
     <link rel="stylesheet" href="/assets/css/flipper.css">
+{topbar.STYLE}
     <script>document.documentElement.classList.remove('no-js'); document.documentElement.classList.add('js');</script>
     <script src="/assets/js/global.js" defer></script>
     <script src="/assets/js/flipper.js" defer></script>
@@ -1036,6 +1008,7 @@ def page(lang: str, home: bool) -> str:
         </div>
       </div>
     </footer>
+{topbar.SCRIPT}
   </body>
 </html>
 """
@@ -1053,9 +1026,12 @@ def main() -> None:
     for lang in ("ko", "en"):
         rel = f"{lang}/artist/index.html"
         text = (ROOT / rel).read_text(encoding="utf-8")
-        start = text.index('    <header class="gnav">')
-        end = text.index("    </header>", start) + len("    </header>")
-        outputs[rel] = text[:start] + gnav(lang, "artist", "/ko/artist/", "/en/artist/", theme=False) + text[end:]
+        m = re.search(r'    <header class="(?:gnav|tb)[^"]*".*?</header>', text, re.S)
+        text = text[:m.start()] + gnav(lang, "artist", "/ko/artist/", "/en/artist/", theme=False) + text[m.end():]
+        text = re.sub(r"\n?<!--tb-->.*?<!--/tb-->", "", text, flags=re.S)
+        text = text.replace("  </head>", "<!--tb-->" + topbar.STYLE + "<!--/tb-->\n  </head>", 1)
+        text = text.replace("  </body>", "<!--tb-->" + topbar.SCRIPT + "<!--/tb-->\n  </body>", 1)
+        outputs[rel] = text
     for rel, text in outputs.items():
         path = ROOT / rel
         path.parent.mkdir(parents=True, exist_ok=True)

@@ -143,21 +143,7 @@ a.row:hover .t,a.row:focus-visible .t{background:var(--ink);color:var(--paper)}
 @media (prefers-reduced-motion:reduce){#gl{transition:none}}
 </style>
 
-<header class="top">
-  <nav class="mnav" aria-label="메뉴" data-en-label="Menu">
-    <div class="dd"><button type="button" class="ddk" aria-expanded="false" aria-controls="dd-plugins">plugins<span aria-hidden="true">▾</span></button>
-      <div class="ddm" id="dd-plugins" hidden><a href="/ko/flipper/" data-href-en="/en/flipper/"><b>flipper</b><span data-en="free sampler plug-in">무료 샘플러 플러그인</span></a></div></div>
-    <a href="/ko/artist/" data-href-en="/en/artist/">artist</a>
-  </nav>
-  <a class="c" href="/ko/" data-href-en="/en/" aria-label="tripper"><svg id="logo" role="img" aria-label="tripper"></svg></a>
-  <div class="r"><div class="lang"><button type="button" data-lang="ko">ko</button> / <button type="button" data-lang="en">en</button></div>
-    <button type="button" class="burger" aria-expanded="false" aria-controls="sheet" aria-label="메뉴" data-en-label="Menu"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path class="b-open" d="M3 4.5h10M3 8h10M3 11.5h10"/><path class="b-shut" d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
-  <div class="sheet" id="sheet" hidden>
-    <a class="grp" href="/ko/flipper/" data-href-en="/en/flipper/">plugins</a>
-    <a class="sub" href="/ko/flipper/" data-href-en="/en/flipper/">flipper</a>
-    <a class="grp" href="/ko/artist/" data-href-en="/en/artist/">artist</a>
-  </div>
-</header>
+<!--TOPBAR-->
 
 <div class="stage" id="stage">
   <div class="sticky">
@@ -205,26 +191,19 @@ function drawLogo(svg){
   for(const ch of word){const g=GLY[ch];for(let r=0;r<9;r++)for(let c=0;c<5;c++){const on=g[r][c]==='#';s+=`<circle cx="${x+c*P+P/2}" cy="${r*P+P/2}" r="${on?R*1.25:R}" fill="currentColor" opacity="${on?1:.13}"/>`;}x+=6*P;}
   svg.setAttribute('viewBox',`0 0 ${x-P} ${9*P}`);svg.style.color='var(--ink)';svg.innerHTML=s;
 }
-drawLogo(document.getElementById('logo'));drawLogo(document.getElementById('logo2'));
+drawLogo(document.getElementById('logo2'));
 // ko / en: same page, words swap in place (remembers the choice like the flipper pages)
 function setLang(l){window.__lang=l;document.documentElement.lang=l;
   document.querySelectorAll('[data-en]').forEach(e=>{if(e.dataset.ko==null)e.dataset.ko=e.textContent;e.textContent=l==='en'?e.dataset.en:e.dataset.ko;});
   document.querySelectorAll('[data-href-en]').forEach(e=>{if(e.dataset.hrefKo==null)e.dataset.hrefKo=e.getAttribute('href');e.setAttribute('href',l==='en'?e.dataset.hrefEn:e.dataset.hrefKo);});
   document.querySelectorAll('[data-en-label]').forEach(e=>{if(e.dataset.koLabel==null)e.dataset.koLabel=e.getAttribute('aria-label');e.setAttribute('aria-label',l==='en'?e.dataset.enLabel:e.dataset.koLabel);});
-  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===l));
+  document.querySelectorAll('.tb-lang a').forEach(a=>a.dataset.lang===l?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
   if(window.__onLang)window.__onLang(l);try{localStorage.setItem('lang',l);}catch(e){}}
 const pathLang=(location.pathname.match(/^\/(ko|en)\//)||[])[1];
-document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{const l=b.dataset.lang;
-  if(pathLang&&l!==pathLang){try{localStorage.setItem('lang',l);}catch(e){}location.href='/'+l+'/'+location.hash;return;}setLang(l);});
+// on the site the ko / en links simply go to the other address; off the site (a preview) they swap the words here
+document.querySelectorAll('.tb-lang a').forEach(a=>a.addEventListener('click',e=>{if(!pathLang){e.preventDefault();setLang(a.dataset.lang);}}));
 {let l=pathLang||null;if(!l){try{l=localStorage.getItem('lang');}catch(e){}}if(l!=='ko'&&l!=='en')l=/^ko/i.test(navigator.language||'')?'ko':'en';setLang(l);}
-// menu: plugins drop-down, and the phone sheet behind the burger
-{const k=document.querySelector('.ddk'),m=document.getElementById('dd-plugins'),bg=document.querySelector('.burger'),sh=document.getElementById('sheet');
- const set=(btn,el,on)=>{btn.setAttribute('aria-expanded',on);el.hidden=!on;};
- k.onclick=e=>{e.stopPropagation();set(k,m,m.hidden);};
- bg.onclick=e=>{e.stopPropagation();set(bg,sh,sh.hidden);};
- document.addEventListener('click',e=>{if(!m.hidden&&!m.contains(e.target))set(k,m,false);if(!sh.hidden&&!sh.contains(e.target))set(bg,sh,false);});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){set(k,m,false);set(bg,sh,false);}});
- addEventListener('resize',()=>{if(innerWidth>760)set(bg,sh,false);});}
+
 // colour sets to compare (review only): paper, surface, ink, muted, line, dot, accent
 const GLOW={'백라이트':1};
 const TONES={

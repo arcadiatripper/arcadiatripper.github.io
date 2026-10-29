@@ -14,6 +14,8 @@ import html
 import json
 from pathlib import Path
 
+import topbar
+
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "tools" / "tripper_home"
 SITE = "https://arcadiatripper.com"
@@ -72,7 +74,10 @@ def main() -> None:
     body = page.replace("const GLY=GLYPHS;", data)
     # page.html starts with its own <title>; the head above goes before it
     for lang in ("ko", "en"):
-        text = head(lang) + body.replace("<style>", "</head>\n<body>\n<style>", 1)
+        page_body = body.replace("<!--TOPBAR-->", topbar.bar(lang, "blue", "/ko/", "/en/", fixed=True), 1)
+        page_body = page_body.replace("</main>", "</main>", 1)
+        text = head(lang) + topbar.STYLE + "\n" + page_body.replace("<style>", "</head>\n<body>\n<style>", 1)
+        text = text.replace("</body>", topbar.SCRIPT + "\n</body>", 1) if "</body>" in text else text + topbar.SCRIPT
         if "</body>" not in text:
             text += "\n</body>\n</html>\n"
         path = ROOT / lang / "index.html"
