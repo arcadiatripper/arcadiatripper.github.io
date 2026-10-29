@@ -192,7 +192,7 @@ a.row:hover .t,a.row:focus-visible .t{background:var(--ink);color:var(--paper)}
     <div class="hint" id="hint">tripper</div>
     <div class="caps">
       <div class="cap" id="cap"><b>tripper</b><span class="ko">projects 001–</span></div>
-      <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <div class="steps" aria-hidden="true"><i class="on"></i><i></i></div>
     </div>
   </div>
 </div>
@@ -560,7 +560,7 @@ function frame(){
   const r=stage.getBoundingClientRect(),prog=cl(-r.top/(r.height-innerHeight));
   const s=reduce?(prog>.1?1:0):sm(cl((prog-.03)/.16));
   const ci=prog<.12?0:prog<.5?1:2;
-  if(ci!==capIdx){capIdx=ci;cap.innerHTML=`<b>${CAPS[ci][0]}</b><span class="ko">${CAPS[ci][1]}</span>`;steps.forEach((e,j)=>e.classList.toggle('on',j===ci));}
+  if(ci!==capIdx){capIdx=ci;cap.innerHTML=`<b>${CAPS[ci][0]}</b><span class="ko">${CAPS[ci][1]}</span>`;steps.forEach((e,j)=>e.classList.toggle('on',j===Math.min(ci,1)));   // one pip per project: tripper, flipper (its two scenes share one)}
   mx+=(tmx-mx)*.04;my+=(tmy-my)*.04;
   U.uT.value=reduce?0:t;
   U.uOn.value=U.uBL.value?1:0;   // backlight is simply on (no switch-on flicker)
