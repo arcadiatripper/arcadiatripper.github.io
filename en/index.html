@@ -578,7 +578,10 @@ function frame(){
   updateFlipper(t,prog);
   if(U.uBL.value){const h=.66+(.52-.66)*(.5+.5*Math.sin(t*.16-spark.position.x*.035));spark.material.color.setHSL(h,.85,.6);bg.update(t,h,s);}else bg.update(t,0,0);
   spark.rotation.y=t*.8;spark.rotation.x=t*.3;spark.position.y=13+Math.sin(t*1.3)*.6+(1-U.uIn.value)*-14;spark.scale.setScalar(Math.max(0,1-s));
-  renderer.render(scene,cam);
+  // the plug-in is drawn in its own pass over the finished scene, so the wave never shows through a corner that dips below it
+  const fv=flip.visible;flip.visible=false;renderer.render(scene,cam);
+  if(fv){flip.visible=true;const hide=[];scene.children.forEach(o=>{if(o!==flip&&o.visible&&!o.isLight){o.visible=false;hide.push(o);}});
+    renderer.autoClear=false;renderer.clearDepth();renderer.render(scene,cam);renderer.autoClear=true;hide.forEach(o=>o.visible=true);}
   if(!shown){shown=true;cv.classList.add('on');document.getElementById('hint').hidden=true;}
   requestAnimationFrame(frame);
 }
