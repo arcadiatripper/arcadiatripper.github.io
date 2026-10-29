@@ -89,7 +89,8 @@ def bar(lang: str, tint: str, ko_href: str, en_href: str, extra: str = "", fixed
 </header>"""
 
 
-STYLE = """<style>
+STYLE = """<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;700&display=swap">
+<style>
 /* the one top bar (tools/topbar.py): same on every page, tinted per page */
 .tb{--tb-ink:#0b2a6f;--tb-soft:#566785;--tb-bg1:rgb(248 251 253/34%);--tb-bg2:rgb(238 243 247/14%);--tb-edge:rgb(255 255 255/70%);
   --tb-drop:rgb(248 251 253/86%);--tb-hover:rgb(31 95 214/10%);
