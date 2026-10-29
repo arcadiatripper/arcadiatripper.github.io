@@ -1355,7 +1355,7 @@ a.bar__logo{color:inherit;text-decoration:none}
     return s;
   }
   function draw() {
-    stop(); rowsEl.textContent = '';
+    stop(true); rowsEl.textContent = '';
     const list = rows(semis), pxs = (W - 4) / Math.max(...list.map(r => LEN / r.speed));
     list.forEach((row, i) => {
       const b = document.createElement('button'); b.type = 'button'; b.className = 'pgrid__row'; b.setAttribute('aria-pressed', 'false');
@@ -1363,19 +1363,24 @@ a.bar__logo{color:inherit;text-decoration:none}
       const nm = document.createElement('b'); nm.className = 'pgrid__name'; nm.dataset.name = row.name; nm.textContent = '▶ ' + row.name; b.appendChild(nm);
       row.tags.forEach((t, k) => { const c = document.createElement('span'); c.className = 'pgrid__tag' + (row.on[k] ? ' is-on' : ''); c.textContent = t; top.appendChild(c); });
       b.appendChild(top); b.appendChild(roll(row, pxs));
-      b.onclick = () => (now && now.i === i) ? stop() : play(i, row, pxs, b);
+      b.onclick = () => (now && now.i === i) ? stop(true) : play(i, row, pxs, b);
       rowsEl.appendChild(b);
     });
   }
-  function stop() {
+  function stop(all) {
+    if (all) seq++;
     cancelAnimationFrame(raf);
     if (now) { const { src, g, ctx } = now; g.gain.setTargetAtTime(0, ctx.currentTime, 0.015); setTimeout(() => { try { src.stop(); } catch (e) {} }, 120); now = null; }
     rowsEl.querySelectorAll('.pgrid__row').forEach(b => { b.setAttribute('aria-pressed', 'false'); b.querySelector('.pgrid__head').style.display = 'none'; const n = b.querySelector('.pgrid__name'); n.textContent = '▶ ' + n.dataset.name; });
   }
+  let seq = 0;  // a newer press wins: a press that is still loading never starts after it
   async function play(i, row, pxs, btn) {
-    L.audio(); L.stopOthers(); stop();
+    L.audio(); L.stopOthers();  // this sends tut-stop, which would cancel the press below, so it goes first
+    const my = ++seq; stop();
     const out = L.out(), ctx = out.context; await ctx.resume();
     const buf = await L.source(row.key);
+    if (my !== seq) return;
+    stop();
     const src = ctx.createBufferSource(), g = ctx.createGain(); src.buffer = buf; g.gain.value = 1; src.connect(g).connect(out);
     const t0 = ctx.currentTime + 0.03; src.start(t0);
     const me = { i, src, g, ctx }; now = me; btn.setAttribute('aria-pressed', 'true'); const nm = btn.querySelector('.pgrid__name'); nm.textContent = '■ ' + nm.dataset.name;
@@ -1390,8 +1395,8 @@ a.bar__logo{color:inherit;text-decoration:none}
     tick();
   }
   dirs.forEach(d => d.onclick = () => { semis = +d.dataset.s; dirs.forEach(x => x.setAttribute('aria-pressed', String(x === d))); draw(); });
-  document.addEventListener('tut-stop', () => { if (now) stop(); });
-  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+  document.addEventListener('tut-stop', () => stop(true));
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(true); });
   draw();
 })();
 </script>
