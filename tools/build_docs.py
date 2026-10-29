@@ -26,8 +26,8 @@ DOCS = {
     "manual": {"ko": "manual.html", "en": "manual_en.html"},
 }
 NAME = {
-    "guide": {"ko": "샘플러 안내서", "en": "sampler guide"},
-    "manual": {"ko": "사용 설명서", "en": "manual"},
+    "guide": {"ko": "샘플러가 뭘까?", "en": "what is a sampler?"},
+    "manual": {"ko": "flipper 사용설명서", "en": "flipper manual"},
 }
 DESCRIPTION = {
     "guide": {"ko": "샘플러가 소리를 자르고, 피치를 바꾸고, 옛 기계의 질감을 내는 원리를 듣고 보며 익히는 안내서.",
@@ -75,6 +75,18 @@ img{{max-width:100%}}
 [hidden]:not([hidden=until-found i]){{display:none!important}}
     </style>
 {style}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+    <style>
+/* tripper look (2026-10-29): near-white paper for long reading, navy ink, blue links and keywords;
+   butter yellow stays only inside the plug-in's own screenshots. Same token names as the builders use. */
+:root{{--paper:#f6f9fc;--dot:#dde5ee;--card:#ffffff;--ink:#0b2a6f;--soft:#566785;--well:#e8eef6;--pick:#1f5fd6;--pick-text:#fff;
+  --line:#0b2a6f;--shadow:#0b2a6f;--wave:#b6c4d6;--accent:#1f5fd6;--kw:#1f5fd6;
+  --font:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}}
+[data-theme="dark"]{{--paper:#0d1526;--dot:#1b2740;--card:#121d33;--ink:#e6eefb;--soft:#93a3c0;--well:#18243d;--pick:#36b4ff;--pick-text:#06132b;
+  --line:#050a14;--shadow:#050a14;--wave:#3a4a66;--accent:#7cc4ff;--kw:#7cc4ff}}
+.bar{{background:linear-gradient(180deg,color-mix(in srgb,var(--card) 34%,transparent),color-mix(in srgb,var(--paper) 14%,transparent))!important;
+  backdrop-filter:blur(14px) saturate(1.8);-webkit-backdrop-filter:blur(14px) saturate(1.8);border-bottom:1px solid color-mix(in srgb,#fff 70%,transparent)!important}}
+    </style>
     <style>
 a.bar__logo{{color:inherit;text-decoration:none}}
 .bar__logo svg{{height:24px}}
@@ -96,7 +108,7 @@ def page(kind: str, lang: str) -> str:
     head, sep, body = src.partition('<header class="bar">')
     if not sep:
         raise SystemExit(f"{DOCS[kind][lang]}: no header bar")
-    title = re.search(r"<title>.*?</title>", head, re.S).group(0)
+    title = f"<title>{NAME[kind][lang]}</title>"
     style = "\n".join(re.findall(r"<style>.*?</style>", head, re.S))
 
     bar, _, rest = body.partition("</header>")
@@ -109,7 +121,7 @@ def page(kind: str, lang: str) -> str:
         f'<header class="bar"><div class="bar__in">'
         f'<a class="bar__logo" href="/{lang}/flipper/" '
         f'aria-label="flipper">{logo}</a>'
-        f'<span class="bar__tag">{tag}</span>'
+        f'<span class="bar__tag">{NAME[kind][lang]}</span>'
         f'<a class="lang doclink" href="{url(other_kind, lang)}">{NAME[other_kind][lang]}</a>'
         f'<a class="lang" href="{url(kind, other_lang)}" lang="{other_lang}">{"English" if lang == "ko" else "한국어"}</a>'
         f"{dn}</div></header>"

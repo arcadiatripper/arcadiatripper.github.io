@@ -179,9 +179,9 @@ T = {
         "docs_title": "더 알아보기",
         "docs_sub": "샘플링이 처음이라면 안내서부터, 기능을 찾는다면 설명서를 펴 보세요.",
         "docs": [
-            ("guide", "샘플러 안내서", "샘플러는 어떻게 소리를 만들까",
+            ("guide", "샘플러가 뭘까?", "샘플러는 어떻게 소리를 만들까",
              "샘플링이 처음이어도 괜찮아요. 리피치, 타임 스트레치, 옛 샘플러의 소리를 직접 들어 보며 배워요.", "안내서 보기"),
-            ("manual", "사용 설명서", "flipper의 모든 기능",
+            ("manual", "flipper 사용설명서", "flipper의 모든 기능",
              "화면마다 키 하나하나가 하는 일, 설정과 건반 배치, 자주 묻는 질문까지 담았어요.", "설명서 보기"),
         ],
         "docs_soon": "곧 열려요",
@@ -323,9 +323,9 @@ T = {
         "docs_title": "Read more",
         "docs_sub": "New to sampling? Start with the guide. Looking for a feature? Open the manual.",
         "docs": [
-            ("guide", "sampler guide", "How does a sampler make its sound?",
+            ("guide", "what is a sampler?", "How does a sampler make its sound?",
              "No sampling experience needed. Learn repitch, time stretch and the old samplers' sound by listening.", "Read the guide"),
-            ("manual", "manual", "Everything flipper does",
+            ("manual", "flipper manual", "Everything flipper does",
              "What every key on every screen does, the settings, the keyboard layout and the common questions.", "Open the manual"),
         ],
         "docs_soon": "Coming soon",
