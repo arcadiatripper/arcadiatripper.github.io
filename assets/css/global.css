@@ -1,0 +1,485 @@
+/* The bar at the top of every page (flipper, artist, later plug-ins): same place, size and words everywhere.
+   Each page sets --gnav-bg, --gnav-ink and --gnav-line so the bar sits on its own colour. */
+
+.gnav {
+  --gnav-bg: rgb(251 251 248 / 94%);
+  --gnav-ink: #1d0a71;
+  --gnav-line: #d5d4dd;
+  --gnav-font: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  position: sticky;
+  z-index: 60;
+  top: 0;
+  border-bottom: 1px solid var(--gnav-line);
+  background: var(--gnav-bg);
+  color: var(--gnav-ink);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.gnav__inner {
+  display: flex;
+  max-width: 1100px;
+  min-height: 58px;
+  margin: 0 auto;
+  padding: 0 26px;
+  align-items: center;
+  gap: 24px;
+}
+
+.gnav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.gnav__home {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--gnav-font);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.gnav__home img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.gnav__links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-right: auto;
+  font-family: var(--gnav-font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.gnav__links a,
+.gnav__lang a {
+  border-bottom: 1px solid transparent;
+  transition: border-color 150ms ease, opacity 150ms ease;
+}
+
+.gnav__links a:hover,
+.gnav__links a[aria-current="page"] {
+  border-bottom-color: currentColor;
+}
+
+.gnav__lang {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--gnav-font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.gnav__lang a[aria-current="true"] {
+  border-bottom-color: currentColor;
+}
+
+.gnav__lang a:not([aria-current="true"]) {
+  opacity: 0.55;
+}
+
+.gnav__lang a:hover {
+  opacity: 1;
+}
+
+.gnav a:focus-visible {
+  outline: 3px solid #dc2626;
+  outline-offset: 4px;
+}
+
+/* "English version →" for visitors whose browser is in English (shown by global.js, never a redirect) */
+.lang-hint {
+  display: none;
+  border-bottom: 1px solid var(--gnav-line);
+  background: var(--gnav-bg);
+  color: var(--gnav-ink);
+  font-family: var(--gnav-font);
+  font-size: 12px;
+  text-align: center;
+}
+
+.lang-hint.is-shown {
+  display: block;
+}
+
+.lang-hint a {
+  display: inline-block;
+  padding: 8px 12px;
+  color: inherit;
+}
+
+.lang-hint button {
+  margin-left: 4px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .gnav__inner {
+    min-height: 54px;
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .gnav__inner {
+    gap: 18px;
+  }
+
+  .gnav__links {
+    gap: 18px;
+    letter-spacing: 0;
+  }
+
+  .gnav__lang {
+    gap: 4px;
+  }
+
+}
+
+/* the tripper logo: lit dots in the bar's ink, the unlit ones faint behind them */
+.gnav__logo {
+  display: block;
+  width: auto;
+  height: 28px;
+  fill: currentColor;
+}
+
+.gnav__logo-off {
+  opacity: 0.13;
+}
+
+/* PLUGINS opens a small list of the plug-ins (flipper now, more later) */
+.gnav__menu-link {
+  display: none;
+}
+
+.gnav__menu {
+  position: relative;
+}
+
+.gnav__menu-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+
+.gnav__menu-key span {
+  font-size: 9px;
+  transition: transform 150ms ease;
+}
+
+.gnav__menu-key[aria-expanded="true"] span {
+  transform: rotate(180deg);
+}
+
+.gnav__menu-key:hover,
+.gnav__menu-key[data-current="true"] {
+  border-bottom-color: currentColor;
+}
+
+.gnav__drop {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -14px;
+  display: grid;
+  min-width: 160px;
+  padding: 6px;
+  border: 1px solid var(--gnav-line);
+  border-radius: 12px;
+  background: var(--gnav-drop-bg, #fffdf7);
+  box-shadow: 0 12px 30px -12px rgb(0 0 0 / 30%);
+}
+
+.gnav__drop[hidden] {
+  display: none;
+}
+
+.gnav__drop a {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  letter-spacing: 0;
+}
+
+.gnav__drop a:hover,
+.gnav__drop a[aria-current="page"] {
+  background: var(--gnav-drop-hover, rgb(0 0 0 / 6%));
+}
+
+.gnav__drop b {
+  font-family: "flipper ui", system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.gnav__drop b i {
+  color: #ff4b3e;
+  font-style: normal;
+}
+
+/* day / night, on pages that have a night look */
+.gnav__theme {
+  display: flex;
+}
+
+/* the night key: a small square key with the plug-in's pixel moon (by day) or sun (by night) */
+.night-key {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  place-items: center;
+  border: 2px solid currentColor;
+  border-radius: 9px;
+  background: var(--gnav-drop-bg, #fffdf7);
+  box-shadow: 0 2px 0 currentColor;
+  color: inherit;
+  cursor: pointer;
+}
+
+.night-key:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.night-key .dn-icon--sun,
+.night-key[aria-pressed="true"] .dn-icon--moon {
+  display: none;
+}
+
+.night-key[aria-pressed="true"] .dn-icon--sun {
+  display: block;
+}
+
+.gnav button:focus-visible {
+  outline: 3px solid #dc2626;
+  outline-offset: 3px;
+}
+
+/* the dot logo and menu words, smaller on a phone */
+@media (max-width: 560px) {
+  .gnav__logo {
+    height: 24px;
+  }
+
+  .gnav__inner,
+  .gnav__links {
+    gap: 8px;
+  }
+
+}
+
+@media (max-width: 400px) {
+  .gnav__logo {
+    height: 24px;
+  }
+
+
+}
+
+/* day / night switches at once */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
+}
+
+/* the plug-in's sun and moon */
+.dn-icon {
+  display: block;
+  fill: currentColor;
+}
+
+/* the bar's dot board: the logo's dots carried across the bar, a light passing over them now and then */
+.gnav__dots {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.gnav__inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* the panel holds the links, day / night and ko / en: in the bar on a computer, behind the menu key on a phone */
+.gnav__panel {
+  display: contents;
+}
+
+.gnav__burger {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .gnav__inner {
+    justify-content: space-between;
+  }
+
+  .gnav__burger {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    place-items: center;
+    border: 2px solid currentColor;
+    border-radius: 10px;
+    background: var(--gnav-drop-bg, #fffdf7);
+    box-shadow: 0 2px 0 currentColor;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .gnav__burger:active {
+    transform: translateY(2px);
+    box-shadow: none;
+  }
+
+  .gnav__burger svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  .gnav__burger-shut,
+  .gnav.is-open .gnav__burger-open {
+    display: none;
+  }
+
+  .gnav.is-open .gnav__burger-shut {
+    display: inline;
+  }
+
+  .gnav__panel {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    gap: 18px;
+    padding: 18px max(20px, env(safe-area-inset-left, 0px)) 26px;
+    border-bottom: 1px solid var(--gnav-line);
+    background: var(--gnav-drop-bg, #fffdf7);
+    box-shadow: 0 18px 30px -18px rgb(0 0 0 / 35%);
+  }
+
+  .gnav.is-open .gnav__panel {
+    display: grid;
+  }
+
+  .gnav__panel .gnav__links {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0;
+  }
+
+  /* the plug-ins are listed right away: "plugins" becomes a small label over them */
+  .gnav__panel .gnav__menu-key {
+    pointer-events: none;
+  }
+
+  .gnav__panel .gnav__menu-key span {
+    display: none;
+  }
+
+  .gnav__panel .gnav__menu-key[data-current="true"] {
+    border-bottom-color: transparent;
+  }
+
+  .gnav__panel .gnav__drop,
+  .gnav__panel .gnav__drop[hidden] {
+    position: static;
+    display: grid;
+    min-width: 0;
+    margin-top: 6px;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .gnav__panel .gnav__drop a {
+    padding: 4px 0;
+    background: none;
+  }
+
+  /* phone menu: "plugins" is a link too (to flipper while it is the only plug-in), not a dead label */
+  .gnav__panel .gnav__menu-key {
+    display: none;
+  }
+
+  .gnav__panel .gnav__menu-link {
+    display: block;
+    font-weight: 800;
+  }
+
+  /* phone menu: the group names bold (plugins, artist), the plug-ins under them light */
+  .gnav__panel .gnav__menu-key,
+  .gnav__panel .gnav__links > a {
+    font-weight: 800;
+  }
+
+  .gnav__panel .gnav__drop b {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .gnav__panel .gnav__drop b i {
+    display: none;
+  }
+
+  .gnav__panel .gnav__links > a {
+    justify-self: start;
+  }
+
+  .gnav__panel .gnav__theme,
+  .gnav__panel .gnav__lang {
+    display: inline-flex;
+  }
+
+  .gnav__panel .gnav__lang {
+    gap: 8px;
+    font-size: 15px;
+  }
+
+  .gnav__panel {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+
+  .gnav__panel .gnav__links {
+    grid-column: 1 / -1;
+  }
+}

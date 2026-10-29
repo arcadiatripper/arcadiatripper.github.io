@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- Written by tools/build_flipper.py. -->
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EK4GXNHFLS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EK4GXNHFLS');
+    </script>
+    <script>
+      (function () {
+        var lang = null;
+        try { lang = localStorage.getItem('lang'); } catch (error) {}
+        if (lang !== 'ko' && lang !== 'en') {
+          var list = navigator.languages || [navigator.language || ''];
+          lang = /^ko\b/i.test(list[0] || '') || list.some(function (l) { return /^ko\b/i.test(l); }) ? 'ko' : 'en';
+        }
+        var page = 'flipper/';
+        var hash = location.hash;
+        var old = ['#top', '#discography', '#guides', '#writing', '#credits', '#playlists', '#legacy', '#about'];
+        if (page === '' && old.indexOf(hash) > -1) { page = 'artist/'; if (hash === '#top') hash = ''; }
+        location.replace('/' + lang + '/' + page + hash);
+      })();
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>flipper — 무료 샘플러 · free sampler plug-in</title>
+    <meta name="description" content="모두를 위한 무료 오픈소스 샘플러 플러그인. A free, open-source sampler plug-in for everyone. Chop it. Flip it. Cook it.">
+    <link rel="alternate" hreflang="ko" href="https://arcadiatripper.com/ko/flipper/">
+    <link rel="alternate" hreflang="en" href="https://arcadiatripper.com/en/flipper/">
+    <link rel="alternate" hreflang="x-default" href="https://arcadiatripper.com/flipper/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arcadiatripper.com/flipper/">
+    <meta property="og:title" content="flipper — 무료 샘플러 · free sampler plug-in">
+    <meta property="og:description" content="모두를 위한 무료 오픈소스 샘플러 플러그인. A free, open-source sampler plug-in for everyone. Chop it. Flip it. Cook it.">
+    <meta property="og:site_name" content="arcadiatripper">
+    <meta property="og:image" content="https://arcadiatripper.com/assets/images/flipper/og-flipper.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/assets/images/favicon.ico" sizes="any">
+  </head>
+  <body>
+    <p><a href="/ko/flipper/" lang="ko" hreflang="ko">한국어</a> · <a href="/en/flipper/" lang="en" hreflang="en">English</a></p>
+  </body>
+</html>
