@@ -1857,3 +1857,77 @@ h2.heading,
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+
+/* ── tripper look (2026-10-29): the page wears the tripper home's frosted blue; butter yellow stays on the plug-in
+   itself (screenshots, pads, the logo dot). Only the tokens change, so every part follows. ── */
+:root:not([data-theme="night"]) {
+  --paper: #eef3f7;
+  --dot: #cfdae6;
+  --card: #f8fbfd;
+  --ink: #0b2a6f;
+  --soft: #566785;
+  --well: #e3ebf4;
+  --pick: #1f5fd6;
+  --pick-text: #ffffff;
+  --play: #d6e6fb;
+  --line: #0b2a6f;
+  --shadow: #0b2a6f;
+  --wave: #b6c4d6;
+}
+
+:root[data-theme="night"] {
+  --paper: #0d1526;
+  --dot: #1b2740;
+  --card: #121d33;
+  --ink: #e6eefb;
+  --soft: #93a3c0;
+  --well: #18243d;
+  --pick: #36b4ff;
+  --pick-text: #06132b;
+  --play: #1c3358;
+  --line: #050a14;
+  --shadow: #050a14;
+  --wave: #3a4a66;
+}
+
+:root {
+  --font: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --mono: "JetBrains Mono", "IBM Plex Sans KR", ui-monospace, monospace;
+}
+
+body.flipper-page {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(var(--dot) 1.1px, transparent 1.3px),
+    radial-gradient(130% 70% at 50% 100%, #f6f9fb 0%, #e9f0f6 45%, #d6e3f2 100%);
+  background-size: 14px 14px, 100% 100%;
+  background-attachment: scroll, fixed;
+  font-weight: 400;
+}
+
+:root[data-theme="night"] body.flipper-page {
+  background-image:
+    radial-gradient(var(--dot) 1.1px, transparent 1.3px),
+    radial-gradient(130% 70% at 50% 100%, #14223c 0%, #0f1a2e 50%, #0b1322 100%);
+}
+
+/* the flipper word itself stays in the plug-in's own rounded face */
+.logo {
+  font-family: "flipper ui", var(--font);
+}
+
+/* glass top bar, as on the tripper home */
+.flipper-page .gnav,
+.gnav {
+  --gnav-font: var(--mono);
+}
+
+.flipper-page .gnav {
+  --gnav-bg: linear-gradient(180deg, color-mix(in srgb, var(--card) 34%, transparent), color-mix(in srgb, var(--paper) 14%, transparent));
+  --gnav-drop-bg: color-mix(in srgb, var(--card) 92%, transparent);
+  --gnav-line: color-mix(in srgb, #fff 70%, transparent);
+  backdrop-filter: blur(14px) saturate(1.8);
+  -webkit-backdrop-filter: blur(14px) saturate(1.8);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent);
+}
