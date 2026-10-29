@@ -7,9 +7,9 @@ on flipper's pages, a green or silver one for the next plug-in.
     bar(lang, tint, ko_href, en_href, extra="", fixed=False)  -> the <header> html
     STYLE, SCRIPT                                               -> inline <style> / <script>, once per page
 
-Desktop: plugins ▾ and artist on the left, the dot logo in the middle (home), the page's own keys (day / night)
+Desktop: plugins ▾, articles ▾ and artist on the left, the dot logo in the middle (home), the page's own keys (day / night)
 and ko / en on the right. Phones: the logo on the left, the keys, ko / en and a menu key on the right; the menu
-opens plugins (bold, a link too), the plug-in and its documents (light) and artist (bold).
+opens plugins (flipper), articles (the guide and the manual) and artist; group names bold, links light.
 """
 
 from __future__ import annotations
@@ -62,8 +62,12 @@ def bar(lang: str, tint: str, ko_href: str, en_href: str, extra: str = "", fixed
     <div class="tb-dd"><button type="button" class="tb-ddk" aria-expanded="false" aria-controls="tb-plugins">plugins<span aria-hidden="true">▾</span></button>
       <div class="tb-ddm" id="tb-plugins" hidden>
         <a class="tb-main" href="{p}/flipper/" data-href-en="/en/flipper/">flipper</a>
-        {doc("guide")}
-        {doc("manual")}
+      </div>
+    </div>
+    <div class="tb-dd"><button type="button" class="tb-ddk" aria-expanded="false" aria-controls="tb-articles">articles<span aria-hidden="true">▾</span></button>
+      <div class="tb-ddm" id="tb-articles" hidden>
+        {doc("guide").replace('class="tb-sub"', 'class="tb-main"')}
+        {doc("manual").replace('class="tb-sub"', 'class="tb-main"')}
       </div>
     </div>
     <a href="{p}/artist/" data-href-en="/en/artist/">artist</a>
@@ -75,10 +79,11 @@ def bar(lang: str, tint: str, ko_href: str, en_href: str, extra: str = "", fixed
     <button type="button" class="tb-burger" aria-expanded="false" aria-controls="tb-sheet" aria-label="{MENU[lang]}" data-en-label="{MENU['en']}"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false"><path class="tb-b-open" d="M3 4.5h10M3 8h10M3 11.5h10"/><path class="tb-b-shut" d="M4 4l8 8M12 4l-8 8"/></svg></button>
   </div>
   <div class="tb-sheet" id="tb-sheet" hidden>
-    <a class="tb-grp" href="{p}/flipper/" data-href-en="/en/flipper/">plugins</a>
+    <span class="tb-grp">plugins</span>
     <a class="tb-sub" href="{p}/flipper/" data-href-en="/en/flipper/">flipper</a>
-    {doc("guide").replace('class="tb-sub"', 'class="tb-sub tb-doc"')}
-    {doc("manual").replace('class="tb-sub"', 'class="tb-sub tb-doc"')}
+    <span class="tb-grp">articles</span>
+    {doc("guide")}
+    {doc("manual")}
     <a class="tb-grp" href="{p}/artist/" data-href-en="/en/artist/">artist</a>
   </div>
 </header>"""
@@ -114,7 +119,8 @@ STYLE = """<style>
 .tb-ddm[hidden],.tb-sheet[hidden]{display:none}
 .tb-ddm a,.tb-sheet a{display:block;padding:8px 10px;border-radius:6px}
 .tb-ddm a:hover,.tb-ddm a:focus-visible,.tb-sheet a:hover,.tb-sheet a:focus-visible{background:var(--tb-hover);outline:none}
-.tb-ddm .tb-main{font-weight:700;font-size:13px}
+.tb-ddm .tb-main{font-weight:400;font-size:13px;text-transform:none}
+.tb-ddm{min-width:0;white-space:nowrap}
 .tb-ddm .tb-sub{padding:5px 10px 5px 22px;color:var(--tb-soft);text-transform:none}
 .tb-logo{display:block;line-height:0;justify-self:center}
 .tb-logo-svg{display:block;height:28px;width:auto}
@@ -129,9 +135,9 @@ STYLE = """<style>
 .tb-sheet{grid-column:1/-1;display:grid;gap:0;padding-top:14px;font-size:15px}
 .tb-sheet .tb-grp{font-weight:700}
 .tb-sheet .tb-sub{font-weight:400}
-.tb-sheet .tb-doc{padding:5px 10px 5px 22px;font-size:13px;color:var(--tb-soft);text-transform:none}
-.tb-sheet .tb-grp+.tb-sub{margin-top:-2px}
-.tb-sheet .tb-doc+.tb-grp,.tb-sheet .tb-sub+.tb-grp{margin-top:8px}
+.tb-sheet .tb-grp{display:block;padding:8px 10px 2px}
+.tb-sheet .tb-sub{text-transform:none}
+.tb-sheet .tb-sub+.tb-grp{margin-top:10px}
 /* the page's own keys (day / night) sit in the bar as small round keys */
 .tb-r>button:not(.tb-burger){width:30px;height:30px;padding:0;display:inline-grid;place-items:center;border-radius:50%;
   border:1px solid var(--tb-edge);background:var(--tb-hover);color:inherit;box-shadow:none;cursor:pointer;margin:0;min-height:0;min-width:0}
@@ -148,12 +154,12 @@ STYLE = """<style>
 
 SCRIPT = """<script>
 (()=>{const bar=document.querySelector('[data-tb]');if(!bar)return;
- const k=bar.querySelector('.tb-ddk'),m=bar.querySelector('.tb-ddm'),bg=bar.querySelector('.tb-burger'),sh=bar.querySelector('.tb-sheet');
+ const dds=[...bar.querySelectorAll('.tb-dd')].map(d=>[d.querySelector('.tb-ddk'),d.querySelector('.tb-ddm')]),bg=bar.querySelector('.tb-burger'),sh=bar.querySelector('.tb-sheet');
  const set=(btn,el,on)=>{btn.setAttribute('aria-expanded',String(on));el.hidden=!on;};
- k.addEventListener('click',e=>{e.stopPropagation();set(k,m,m.hidden);});
+ dds.forEach(([k,m])=>k.addEventListener('click',e=>{e.stopPropagation();const on=m.hidden;dds.forEach(([k2,m2])=>set(k2,m2,false));set(k,m,on);}));
  bg.addEventListener('click',e=>{e.stopPropagation();set(bg,sh,sh.hidden);});
- document.addEventListener('click',e=>{if(!m.hidden&&!m.contains(e.target))set(k,m,false);if(!sh.hidden&&!sh.contains(e.target))set(bg,sh,false);});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){set(k,m,false);set(bg,sh,false);}});
+ document.addEventListener('click',e=>{dds.forEach(([k,m])=>{if(!m.hidden&&!m.contains(e.target))set(k,m,false);});if(!sh.hidden&&!sh.contains(e.target))set(bg,sh,false);});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){dds.forEach(([k,m])=>set(k,m,false));set(bg,sh,false);}});
  addEventListener('resize',()=>{if(innerWidth>760)set(bg,sh,false);});
  // ko / en remembers the pick, so arcadiatripper.com opens in it next time
  bar.querySelectorAll('.tb-lang a').forEach(a=>a.addEventListener('click',()=>{try{localStorage.setItem('lang',a.dataset.lang);}catch(e){}}));
