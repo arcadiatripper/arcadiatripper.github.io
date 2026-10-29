@@ -89,8 +89,7 @@ def bar(lang: str, tint: str, ko_href: str, en_href: str, extra: str = "", fixed
 </header>"""
 
 
-STYLE = """<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;700&display=swap">
-<style>
+STYLE = """<style>
 /* the one top bar (tools/topbar.py): same on every page, tinted per page */
 .tb{--tb-ink:#0b2a6f;--tb-soft:#566785;--tb-bg1:rgb(248 251 253/34%);--tb-bg2:rgb(238 243 247/14%);--tb-edge:rgb(255 255 255/70%);
   --tb-drop:rgb(248 251 253/86%);--tb-hover:rgb(31 95 214/10%);
@@ -99,7 +98,7 @@ STYLE = """<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family
   background:linear-gradient(180deg,var(--tb-bg1),var(--tb-bg2));
   backdrop-filter:blur(14px) saturate(1.8);-webkit-backdrop-filter:blur(14px) saturate(1.8);
   border-bottom:1px solid var(--tb-edge);box-shadow:0 1px 0 rgb(0 0 0/4%);
-  color:var(--tb-ink);font:400 12px/1.4 "JetBrains Mono","IBM Plex Sans KR",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:var(--tb-ink);font:400 12px/1.4 "tb mono","tb kr",ui-monospace,SFMono-Regular,Menlo,monospace;
   text-transform:lowercase;letter-spacing:0;box-sizing:border-box}
 .tb *{box-sizing:border-box}
 .tb--fixed{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px)}
@@ -166,3 +165,17 @@ SCRIPT = """<script>
  bar.querySelectorAll('.tb-lang a').forEach(a=>a.addEventListener('click',()=>{try{localStorage.setItem('lang',a.dataset.lang);}catch(e){}}));
 })();
 </script>"""
+
+
+def _bar_text() -> str:
+    """Every character the bar can show, in both languages and all tints."""
+    import re
+    html = "".join(bar(lang, tint, "/ko/", "/en/") for lang in ("ko", "en") for tint in ("blue", "butter"))
+    html = re.sub(r"<svg.*?</svg>", "", html, flags=re.S)
+    words = re.sub(r"<[^>]+>", " ", html) + " ".join(re.findall(r'data-en="([^"]*)"', html))
+    return "".join(sorted(set(words)))
+
+
+# the bar's fonts go in the page itself (tools/barfont.py), so the menu never shows in a stand-in font first
+import barfont  # noqa: E402
+STYLE = barfont.css(_bar_text()) + STYLE
