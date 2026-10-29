@@ -430,8 +430,20 @@
     background: none;
   }
 
+  /* phone menu: the group names bold (plugins, artist), the plug-ins under them light */
+  .gnav__panel .gnav__menu-key,
+  .gnav__panel .gnav__links > a {
+    font-weight: 800;
+  }
+
   .gnav__panel .gnav__drop b {
-    font-size: 24px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .gnav__panel .gnav__drop b i {
+    display: none;
   }
 
   .gnav__panel .gnav__links > a {

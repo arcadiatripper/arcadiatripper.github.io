@@ -72,7 +72,10 @@ a{color:inherit}
 .burger[aria-expanded="true"] .b-shut{display:inline}
 .sheet{grid-column:1/-1;display:grid;gap:2px;padding-top:14px}
 .sheet[hidden]{display:none}
-.sheet .sk{margin:8px 10px 0;font-size:11px;color:var(--muted)}
+/* phone menu: group names bold, the plug-ins under them light */
+.sheet .sk,.sheet a.grp{margin:0;padding:9px 10px;font-family:var(--mono);font-size:15px;font-weight:700;color:var(--ink)}
+.sheet a.sub{padding:4px 10px 10px;font-family:var(--mono);font-size:15px;font-weight:400;color:var(--ink)}
+.sheet a.grp{margin-top:6px}
 
 .stage{height:420vh;position:relative}
 .sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--sbg,var(--paper))}
@@ -178,9 +181,8 @@ a.row:hover .t,a.row:focus-visible .t{background:var(--ink);color:var(--paper)}
     <button type="button" class="burger" aria-expanded="false" aria-controls="sheet" aria-label="메뉴" data-en-label="Menu"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path class="b-open" d="M3 4.5h10M3 8h10M3 11.5h10"/><path class="b-shut" d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
   <div class="sheet" id="sheet" hidden>
     <p class="sk">plugins</p>
-    <a href="/ko/flipper/" data-href-en="/en/flipper/"><b>flipper</b><span data-en="free sampler plug-in">무료 샘플러 플러그인</span></a>
-    <p class="sk">&nbsp;</p>
-    <a href="/ko/artist/" data-href-en="/en/artist/"><b>artist</b><span data-en="music, guides and playlists">음악, 가이드, 플레이리스트</span></a>
+    <a class="sub" href="/ko/flipper/" data-href-en="/en/flipper/">flipper</a>
+    <a class="grp" href="/ko/artist/" data-href-en="/en/artist/">artist</a>
   </div>
 </header>
 
