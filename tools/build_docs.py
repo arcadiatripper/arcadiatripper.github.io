@@ -118,7 +118,7 @@ def page(kind: str, lang: str) -> str:
     rest = rest.replace("</body></html>", "")
     # the guide's title (2026-10-29): the short question on top, what it teaches under it
     if kind == "guide":
-        sub = {"ko": "샘플러는 어떻게 소리를 만들까", "en": "How a sampler makes its sound"}[lang]
+        sub = {"ko": "샘플러가 소리를 다루는 법", "en": "How a sampler handles sound"}[lang]  # not a second question (레네 10-29)
         rest = re.sub(r"<h1>[^<]*</h1>", f'<h1>{NAME[kind][lang][0].upper() + NAME[kind][lang][1:] if lang == "en" else NAME[kind][lang]}</h1>'
                       f'<p class="h1sub">{sub}</p>', rest, count=1)
     for old, (k, l) in OLD.items():
