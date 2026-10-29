@@ -189,7 +189,7 @@ T = {
         "support_line": "flipper는 무료예요. 마음에 드셨다면 후원으로 응원해 주세요.",
         "support": "후원하기",
         "support_toon": "투네이션으로 후원하기",
-        "support_kofi": "해외에서는 Ko-fi",
+        "support_kofi": "Ko-fi로 후원하기 (해외)",
         "support_sponsors": "GitHub Sponsors",
         "support_soon": "후원 준비 중",
         "close_title": "샘플 하나, 꺼내 볼까요?",
@@ -332,7 +332,7 @@ T = {
         "docs_soon": "Coming soon",
         "support_line": "flipper is free. If you like it, you can support it.",
         "support": "Support flipper",
-        "support_kofi": "Support on Ko-fi",
+        "support_kofi": "Support me on Ko-fi",
         "support_sponsors": "or GitHub Sponsors",
         "support_soon": "Support coming soon",
         "close_title": "Got a sample? Let's flip it.",
@@ -649,13 +649,21 @@ def docs_block(lang: str, t: dict) -> str:
     return "".join(cards)
 
 
+SUPPORT_LOGO = {"support_toon": "toonation", "support_kofi": "kofi"}
+
+
+def support_logo(label: str) -> str:
+    name = SUPPORT_LOGO.get(label)
+    return f'<img src="/assets/images/support/{name}.webp" alt="" width="20" height="20">' if name else "♥ "
+
+
 def support_block(lang: str, t: dict) -> str:
     links = SUPPORT_LINKS.get(lang) or []
     if links:
-        keys = [f'<a class="key support__key" href="{url}">♥ {E(t[label])}</a>' if n == 0
-                else f'<a class="text-key support__more" href="{url}">{E(t[label])} ↗</a>'
-                for n, (label, url) in enumerate(links)]
-        action = "\n            ".join(keys)
+        # each service as its own button, in its own colour and with its own logo
+        keys = [f'<a class="donate donate--{SUPPORT_LOGO.get(label, "plain")}" href="{url}">{support_logo(label)}{E(t[label])}</a>'
+                for label, url in links]
+        action = '<div class="support__keys">' + "\n            ".join(keys) + "</div>"
     else:
         action = f'<span class="key key--waiting support__key" aria-disabled="true">♥ {E(t["support_soon"])}</span>'
     return f"""
@@ -844,7 +852,7 @@ def page(lang: str, home: bool) -> str:
         if DOCS_URL[key][lang]:
             source += f'\n            <a href="{DOCS_URL[key][lang]}">{E(name)} →</a>'
     for label, url in SUPPORT_LINKS.get(lang) or []:  # the footer names the service only
-        source += f'\n            <a href="{url}">♥ { {"support_toon": "투네이션", "support_kofi": "Ko-fi"}.get(label, "GitHub Sponsors") } ↗</a>'
+        source += f'\n            <a class="foot__support" href="{url}">{support_logo(label)}{ {"support_toon": "투네이션", "support_kofi": "Ko-fi"}.get(label, "GitHub Sponsors") } ↗</a>'
 
 
     return f"""<!doctype html>

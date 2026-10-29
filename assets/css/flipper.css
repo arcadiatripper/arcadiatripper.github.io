@@ -1137,15 +1137,65 @@ h2.heading,
   text-wrap: balance;
 }
 
-.support__key {
-  min-height: 44px;
-  font-size: 15px;
+.support__keys {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
-.support__more {
-  margin-top: 0;
-  color: var(--soft);
-  font-size: 14px;
+/* each service's own button colour, so it reads as a donate button */
+.donate {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px 0 14px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.donate img {
+  width: auto;
+  height: 20px;
+}
+
+.donate--toonation {
+  background: #4f9dff;
+}
+
+.donate--toonation img {
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.donate--kofi {
+  background: #72a4f2;
+}
+
+.donate:hover,
+.donate:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgb(40 90 200 / 28%);
+}
+
+.foot__support {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.foot__support img {
+  width: auto;
+  height: 16px;
 }
 
 /* the copyright line: © and the tripper dot logo */
