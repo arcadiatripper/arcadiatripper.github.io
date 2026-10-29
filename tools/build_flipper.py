@@ -3,11 +3,10 @@
 
     python3 tools/build_flipper.py
 
-Writes ko/ and en/ (home and flipper/ for each language), plus the small pages at /, /flipper/ and /artist/
+Writes ko/flipper/ and en/flipper/, plus the small pages at /, /flipper/ and /artist/
 that send a visitor to their language. GitHub Pages serves those files as they are; nothing runs on the
 server. Change words here, then run this again and commit the output.
-While flipper is the only plug-in, each language's home page (/ko/, /en/) shows the flipper page; when a
-second plug-in comes, those become pages of plug-in cards and /ko/flipper/, /en/flipper/ stay where they are.
+Each language's home page (/ko/, /en/) is the tripper page, written by tools/build_home.py.
 """
 
 from __future__ import annotations
@@ -735,9 +734,9 @@ CHOOSER = """<!doctype html>
 """
 
 CHOOSERS = {
-    "": ("flipper — 무료 샘플러 · free sampler plug-in",
-         "모두를 위한 무료 오픈소스 샘플러 플러그인. A free, open-source sampler plug-in for everyone. Chop it. Flip it. Cook it.",
-         "flipper/og-flipper.png"),
+    "": ("tripper",
+         "tripper의 프로젝트를 하나씩 모아 두는 곳. tripper's projects, one by one. 001 flipper, a free, open-source sampler plug-in.",
+         "og-tripper.jpg"),
     "flipper/": ("flipper — 무료 샘플러 · free sampler plug-in",
                  "모두를 위한 무료 오픈소스 샘플러 플러그인. A free, open-source sampler plug-in for everyone. Chop it. Flip it. Cook it.",
                  "flipper/og-flipper.png"),
@@ -1040,9 +1039,8 @@ def page(lang: str, home: bool) -> str:
 
 def main() -> None:
     outputs = {
-        "ko/index.html": page("ko", home=True),
+        # /ko/ and /en/ are the tripper home page now (tools/build_home.py)
         "ko/flipper/index.html": page("ko", home=False),
-        "en/index.html": page("en", home=True),
         "en/flipper/index.html": page("en", home=False),
     }
     for where, (title, description, image) in CHOOSERS.items():
