@@ -812,6 +812,7 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
         <nav class="gnav__links" aria-label="{E(t['nav_label'])}">
           <div class="gnav__menu" data-menu>
             <button type="button" class="gnav__menu-key" aria-expanded="false" aria-controls="menu-plugins"{plugins_on}>plugins<span aria-hidden="true">▾</span></button>
+            <a class="gnav__menu-link" href="{prefix}/flipper/">plugins</a>
             <div class="gnav__drop" id="menu-plugins" hidden>
               <a href="{prefix}/flipper/"{here if current == 'flipper' else ''}><b>flipper<i>.</i></b></a>
             </div>

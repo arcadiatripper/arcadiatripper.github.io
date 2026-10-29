@@ -75,7 +75,7 @@ a{color:inherit}
 /* phone menu: group names bold, the plug-ins under them light */
 .sheet .sk,.sheet a.grp{margin:0;padding:9px 10px;font-family:var(--mono);font-size:15px;font-weight:700;color:var(--ink)}
 .sheet a.sub{padding:4px 10px 10px;font-family:var(--mono);font-size:15px;font-weight:400;color:var(--ink)}
-.sheet a.grp{margin-top:6px}
+.sheet a.grp+a.grp{margin-top:6px}
 
 .stage{height:420vh;position:relative}
 .sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--sbg,var(--paper))}
@@ -180,7 +180,7 @@ a.row:hover .t,a.row:focus-visible .t{background:var(--ink);color:var(--paper)}
   <div class="r"><div class="lang"><button type="button" data-lang="ko">ko</button> / <button type="button" data-lang="en">en</button></div>
     <button type="button" class="burger" aria-expanded="false" aria-controls="sheet" aria-label="메뉴" data-en-label="Menu"><svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path class="b-open" d="M3 4.5h10M3 8h10M3 11.5h10"/><path class="b-shut" d="M4 4l8 8M12 4l-8 8"/></svg></button></div>
   <div class="sheet" id="sheet" hidden>
-    <p class="sk">plugins</p>
+    <a class="grp" href="/ko/flipper/" data-href-en="/en/flipper/">plugins</a>
     <a class="sub" href="/ko/flipper/" data-href-en="/en/flipper/">flipper</a>
     <a class="grp" href="/ko/artist/" data-href-en="/en/artist/">artist</a>
   </div>

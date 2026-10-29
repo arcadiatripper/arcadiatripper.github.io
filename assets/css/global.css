@@ -161,6 +161,10 @@
 }
 
 /* PLUGINS opens a small list of the plug-ins (flipper now, more later) */
+.gnav__menu-link {
+  display: none;
+}
+
 .gnav__menu {
   position: relative;
 }
@@ -428,6 +432,16 @@
   .gnav__panel .gnav__drop a {
     padding: 4px 0;
     background: none;
+  }
+
+  /* phone menu: "plugins" is a link too (to flipper while it is the only plug-in), not a dead label */
+  .gnav__panel .gnav__menu-key {
+    display: none;
+  }
+
+  .gnav__panel .gnav__menu-link {
+    display: block;
+    font-weight: 800;
   }
 
   /* phone menu: the group names bold (plugins, artist), the plug-ins under them light */
