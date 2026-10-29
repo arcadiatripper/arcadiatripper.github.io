@@ -100,6 +100,8 @@ def url(kind: str, lang: str) -> str:
 
 def page(kind: str, lang: str) -> str:
     src = (SRC / DOCS[kind][lang]).read_text()
+    # day / night follows the device; a press of the key holds only for this visit
+    src = src.replace("localStorage", "sessionStorage")
     head, sep, body = src.partition('<header class="bar">')
     if not sep:
         raise SystemExit(f"{DOCS[kind][lang]}: no header bar")

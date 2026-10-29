@@ -92,7 +92,7 @@
 })();
 
 (() => {
-  // Day / night: the page opens in day; the pick is kept for the next visit. One key, as in the plug-in: the moon
+  // Day / night: the page follows the device; a pick holds for this visit only. One key, as in the plug-in: the moon
   // by day, the sun by night.
   const keys = document.querySelectorAll('[data-theme-toggle]');
   if (!keys.length) return;
@@ -121,7 +121,7 @@
       if (night) root.dataset.theme = 'night';
       else delete root.dataset.theme;
       try {
-        localStorage.setItem('theme', night ? 'night' : 'day');
+        sessionStorage.setItem('theme', night ? 'night' : 'day');
       } catch (error) {
         // nothing to keep
       }

@@ -487,7 +487,7 @@ a.bar__logo{color:inherit;text-decoration:none}
     <a class="tb-grp" href="/ko/artist/" data-href-en="/en/artist/">artist</a>
   </div>
 </header>
-<script>(()=>{const r=document.documentElement;let s=null;try{s=localStorage.getItem("tut-theme")}catch(e){}r.dataset.theme=s||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");addEventListener("DOMContentLoaded",()=>{const k=document.querySelector("[data-dn]");const sync=()=>{const d=r.dataset.theme==="dark";k.setAttribute("aria-pressed",String(d));k.setAttribute("aria-label",d?"낮으로 바꾸기":"밤으로 바꾸기")};sync();k.addEventListener("click",()=>{r.dataset.theme=r.dataset.theme==="dark"?"light":"dark";try{localStorage.setItem("tut-theme",r.dataset.theme)}catch(e){}sync()})})})()</script>
+<script>(()=>{const r=document.documentElement;let s=null;try{s=sessionStorage.getItem("tut-theme")}catch(e){}r.dataset.theme=s||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");addEventListener("DOMContentLoaded",()=>{const k=document.querySelector("[data-dn]");const sync=()=>{const d=r.dataset.theme==="dark";k.setAttribute("aria-pressed",String(d));k.setAttribute("aria-label",d?"낮으로 바꾸기":"밤으로 바꾸기")};sync();k.addEventListener("click",()=>{r.dataset.theme=r.dataset.theme==="dark"?"light":"dark";try{sessionStorage.setItem("tut-theme",r.dataset.theme)}catch(e){}sync()})})})()</script>
 <main>
 <section class="hero">
   <ul class="badges"><li>TUTORIAL</li><li>12 CHAPTERS</li></ul>

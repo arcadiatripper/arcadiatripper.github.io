@@ -803,7 +803,8 @@ def gnav(lang: str, current: str, ko_href: str, en_href: str, theme: bool) -> st
     return topbar.bar(lang, "butter" if current == "flipper" else "blue", ko_href, en_href, extra=extra)
 
 
-THEME_EARLY = """    <script>try { if (localStorage.getItem('theme') === 'night') document.documentElement.dataset.theme = 'night'; } catch (error) {}</script>"""
+# day / night follows the device; a press of the key holds only for this visit
+THEME_EARLY = """    <script>(() => { let s = null; try { s = sessionStorage.getItem('theme'); } catch (error) {} if (s ? s === 'night' : matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'night'; })();</script>"""
 
 
 def page(lang: str, home: bool) -> str:

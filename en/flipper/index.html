@@ -11,7 +11,7 @@
 
       gtag('config', 'G-EK4GXNHFLS');
     </script>
-    <script>try { if (localStorage.getItem('theme') === 'night') document.documentElement.dataset.theme = 'night'; } catch (error) {}</script>
+    <script>(() => { let s = null; try { s = sessionStorage.getItem('theme'); } catch (error) {} if (s ? s === 'night' : matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.dataset.theme = 'night'; })();</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>flipper — a free sampler plug-in for everyone</title>
