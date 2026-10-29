@@ -1011,6 +1011,7 @@ def page(lang: str, home: bool) -> str:
               <div class="foot__maker-links">
                 <a href="https://www.youtube.com/@arcadiatripper">YouTube ↗</a>
                 <a href="https://www.instagram.com/arcadiatripper">Instagram ↗</a>
+                <a class="foot__mail" href="mailto:contact@arcadiatripper.com">contact@arcadiatripper.com</a>
               </div>
             </div>
           </div>
