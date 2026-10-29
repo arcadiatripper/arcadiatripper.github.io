@@ -106,7 +106,7 @@ a{color:inherit}
 .lab{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);text-transform:lowercase}
 .intro p{margin:0;font-family:var(--sans);font-size:clamp(18px,2.2vw,24px);line-height:1.5;max-width:30ch;text-wrap:balance}
 .tbl{display:grid;gap:0}
-.tbl .row{padding-inline:12px;border-radius:4px}   /* room inside the hover highlight, so the numbers do not touch its edge */
+.tbl .row{padding-inline:12px}   /* room inside the hover highlight, so the numbers do not touch its edge */
 .row{display:grid;grid-template-columns:110px minmax(0,1.4fr) minmax(0,1.6fr) 90px 80px;gap:14px;padding-block:9px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12.5px;text-transform:lowercase;align-items:baseline;text-decoration:none;color:var(--ink)}
 .row .ko{font-family:var(--sans);text-transform:none;font-size:13.5px;word-break:keep-all;color:var(--muted);min-width:0}
 .row .t{font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -148,7 +148,11 @@ a.row:hover .t,a.row:focus-visible .t{background:var(--ink);color:var(--paper)}
 :root[data-glow] .row.head span:first-child{color:#fff;background:var(--glow-ink);padding:1px 7px;margin-left:-7px;justify-self:start;border-radius:3px}
 :root[data-glow] .row{border-bottom-color:color-mix(in srgb,var(--glow) 22%,transparent);position:relative;transition:background-color .15s}
 :root[data-glow] a.row::before{content:"▶";position:absolute;left:-16px;top:50%;transform:translateY(-50%);font-size:9px;color:var(--glow);opacity:0;transition:opacity .15s}
-:root[data-glow] a.row:hover,:root[data-glow] a.row:focus-visible{background:linear-gradient(90deg,var(--glow-ink),var(--glow));color:#fff;outline:none;box-shadow:0 0 18px color-mix(in srgb,var(--glow) 45%,transparent)}
+:root[data-glow] a.row{isolation:isolate}
+/* the highlight is its own rounded band, 3px clear of the lines above and below */
+:root[data-glow] a.row::after{content:"";position:absolute;inset:3px 0;z-index:-1;border-radius:5px;background:linear-gradient(90deg,var(--glow-ink),var(--glow));box-shadow:0 0 18px color-mix(in srgb,var(--glow) 45%,transparent);opacity:0;transition:opacity .15s}
+:root[data-glow] a.row:hover::after,:root[data-glow] a.row:focus-visible::after{opacity:1}
+:root[data-glow] a.row:hover,:root[data-glow] a.row:focus-visible{color:#fff;outline:none}
 :root[data-glow] a.row:hover::before,:root[data-glow] a.row:focus-visible::before{opacity:1}
 :root[data-glow] a.row:hover .t,:root[data-glow] a.row:focus-visible .t{background:none;color:#fff}
 :root[data-glow] a.row:hover .ko,:root[data-glow] a.row:hover .k,:root[data-glow] a.row:hover .d,:root[data-glow] a.row:hover .tag,:root[data-glow] a.row:focus-visible .ko,:root[data-glow] a.row:focus-visible .k,:root[data-glow] a.row:focus-visible .d{color:#fff}
