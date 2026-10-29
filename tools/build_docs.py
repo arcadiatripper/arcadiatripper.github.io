@@ -77,9 +77,11 @@ img{{max-width:100%}}
 {style}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
     <style>
-/* the top bar wears the tripper home's glass (2026-10-29); the page keeps its own colours */
-.bar{{background:linear-gradient(180deg,color-mix(in srgb,var(--card) 34%,transparent),color-mix(in srgb,var(--paper) 14%,transparent))!important;
-  backdrop-filter:blur(14px) saturate(1.8);-webkit-backdrop-filter:blur(14px) saturate(1.8);border-bottom:1px solid color-mix(in srgb,#fff 70%,transparent)!important}}
+/* the top bar: the same tripper bar on every page, tinted in each plug-in's own colour (flipper = butter) */
+.bar{{background:linear-gradient(180deg,rgb(255 247 230 / 62%),rgb(255 247 230 / 34%))!important;
+  backdrop-filter:blur(14px) saturate(1.8);-webkit-backdrop-filter:blur(14px) saturate(1.8);border-bottom:1px solid rgb(59 42 36 / 12%)!important}}
+[data-theme="dark"] .bar{{background:linear-gradient(180deg,rgb(43 35 30 / 70%),rgb(33 27 23 / 45%))!important;border-bottom-color:rgb(255 255 255 / 8%)!important}}
+.h1sub{{margin:.3em 0 1.4em;text-align:center;font-size:clamp(17px,2.2vw,22px);font-weight:700;color:var(--soft)}}
     </style>
     <style>
 a.bar__logo{{color:inherit;text-decoration:none}}
@@ -121,6 +123,11 @@ def page(kind: str, lang: str) -> str:
         f"{dn}</div></header>"
     )
     rest = rest.replace("</body></html>", "")
+    # the guide's title (2026-10-29): the short question on top, what it teaches under it
+    if kind == "guide":
+        sub = {"ko": "샘플러는 어떻게 소리를 만들까", "en": "How a sampler makes its sound"}[lang]
+        rest = re.sub(r"<h1>[^<]*</h1>", f'<h1>{NAME[kind][lang][0].upper() + NAME[kind][lang][1:] if lang == "en" else NAME[kind][lang]}</h1>'
+                      f'<p class="h1sub">{sub}</p>', rest, count=1)
     for old, (k, l) in OLD.items():
         rest = rest.replace(old, url(k, l))
     rest = rest.replace("'audio/", f"'{AUDIO}")
