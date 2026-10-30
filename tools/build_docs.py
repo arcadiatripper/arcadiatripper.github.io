@@ -91,6 +91,8 @@ a.bar__logo{{color:inherit;text-decoration:none}}
 .foot__tr{{display:block;flex:none;margin-left:auto;color:var(--ink);line-height:0}}
 .foot__tr .tb-logo-svg{{height:28px;width:auto}}
 @media (max-width:560px){{.foot__in{{flex-direction:column;align-items:flex-start;gap:14px}}.foot__tr{{margin-left:0}}.foot__tr .tb-logo-svg{{height:24px}}}}
+/* phones (레네 10-30): the text column was 318 of 390 px; thinner side room and 16px text give it about 14 % more per line */
+@media (max-width:560px){{main{{padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}}body{{font-size:16px}}.ch{{padding:26px 14px 30px;border-width:2px;border-radius:14px;gap:16px}}.toc{{padding:20px 14px 16px;border-width:2px;border-radius:14px}}th,td{{padding:8px 8px}}.deep__body{{padding-inline:12px;font-size:15px}}}}
 @media (max-width:480px){{.bar__tag{{display:none}}.bar__in{{gap:8px}}.bar .lang{{padding:6px 8px}}}}
     </style>
   </head>
